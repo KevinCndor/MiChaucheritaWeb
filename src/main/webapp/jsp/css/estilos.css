@@ -1,0 +1,515 @@
+* {
+    margin: 0px;
+    box-sizing: border-box;
+
+}
+
+@font-face {
+    font-family: 'PoppinsRegular';
+    /* colocar nombre */
+    src: url('../fuentes/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'PoppinsBlack';
+    /* colocar nombre */
+    src: url('../fuentes/Poppins/Poppins-Black.ttf');
+}
+
+/* Colores Fondo */
+.fondoGrisClaro {
+    background-color: #EEEEEE;
+}
+
+.fondoCelesteDegradado {
+    background: linear-gradient(180deg, #D4E7F9 0%, #B6DAFC 100%);
+}
+
+.fondoIngresos {
+    background-color: #AEAEAE;
+}
+
+.fondoEgresos {
+    background-color: #837C7C;
+}
+
+.fondoMisCuentas {
+    background-color: #D9D9D9;
+}
+
+.fondopiPagina {
+    background-color: #AEAEAE;
+}
+
+.fondoCuadroInformacion {
+    background-color: #B6DAFC;
+    border-radius: 15px;
+}
+
+.fondoBotones {
+    background-color: #32F9A5;
+}
+
+.fondoInicio {
+    background-color: #D4E7F9;
+}
+
+/*  Tipografia */
+.titulo1 {
+    font-size: 32px;
+}
+
+.titulo2 {
+    font-size: 24px;
+}
+
+
+.dflex {
+    display: flex;
+}
+
+.paddingleft {
+    padding-left: 70px;
+}
+
+.paddingright {
+    padding-right: 70px;
+}
+
+/* Estilos para los botones */
+button {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Cambio de color al pasar el mouse sobre los botones */
+button:hover {
+    background-color: #ffff00;
+}
+
+body {
+    font-family: 'PoppinsRegular';
+    margin: 0px;
+    padding: 0px;
+    height: auto;
+    box-sizing: border-box;
+}
+
+header {
+    font-family: 'PoppinsRegular';
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 70px;
+}
+
+/* LOGIN*/
+.LoginChaucherita {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 70px;
+}
+
+.divLogoInicio {
+    width: 845px;
+    height: 1010px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 100px;
+    font-size: xx-large;
+}
+
+.divFormularioIngreso {
+    width: 1440px;
+    height: 1010px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.botonInicio {
+    border-radius: 10px;
+    width: 340px;
+    height: 60px;
+    font-size: 26px;
+    font-weight: bold;
+    border: none;
+}
+
+
+.botonRegistrar {
+    border-radius: 10px;
+    width: 340px;
+    height: 60px;
+    font-size: 26px;
+    font-weight: bold;
+    border: none;
+}
+
+.inputInicio {
+    border: none;
+    outline: none;
+}
+
+/* Estilos para el contenedor del input */
+.inputInicio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+  }
+  
+  /* Estilos para el input estilizado */
+  .styled-input {
+    padding: 1px 15px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out;
+    width: 600px;
+    height: 65px;
+
+  }
+  
+  /* Cambiar el color del borde cuando el input está enfocado */
+  .styled-input:focus {
+    border-color: #32F9A5;
+  }
+
+/* REGISTRAR */
+
+/* TRANSFERENCIA */
+
+/* MOVIMIENTO */
+
+/* DASHBOARD */
+
+.MenuHeader {
+    display: inline-block;
+    padding-right: 70px;
+}
+
+.MenuHeader ul {
+    list-style-type: none;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+    gap: 25px;
+}
+
+.sectionBienvenida {
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1100px;
+    font-size: large;
+}
+
+.sectionCentro {
+    display: flex;
+}
+
+.Ingresos {
+    width: 1200px;
+    height: 213px;
+}
+
+.Egresos {
+    height: auto;
+    width: 1200px;
+}
+
+.MisCuentas {
+    width: 100%;
+    height: auto;
+}
+
+.encabezadoSeccionIzquierda {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 10px;
+}
+
+.contenedorCategoriaIngresos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 70px;
+    padding-right: 70px;
+    font-size: 28px;
+}
+
+.contenedorValoresIngesos {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.botonSectionIzquierda {
+    border-radius: 10px;
+    width: 185px;
+    height: 40px;
+    font-size: large;
+    font-weight: bold;
+    border: none;
+}
+
+.contenedorCategoriaEgresos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 24px;
+    border-radius: 15px;
+    width: 1000px;
+    padding-right: 10px;
+
+}
+
+.contenedorValoresEgresos {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.extra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.botonSectionMisCuentas {
+    border-radius: 10px;
+    width: 185px;
+    height: 50px;
+    font-size: large;
+    font-weight: bold;
+    border: none;
+}
+
+.encabezadoSeccionDerecha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 10px;
+}
+
+.contenedorcuadrosCuenta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    gap: 20px;
+}
+
+.contenedorCuenta {
+    background-color: #B6DAFC;
+    border-radius: 15px;
+    width: 700px;
+    height: 100px;
+    align-items: center;
+}
+
+.numCuenta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.piepagina {
+    background-color: #AEAEAE;
+    height: 97px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+
+.modal-container {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+
+}
+
+.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.modal {
+    background-color: #fff;
+    width: 645px;
+    height: 460px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.modal h1 {
+    margin: 0;
+}
+
+.modal p {
+    opacity: 0.7;
+    font-size: 30px;
+}
+
+.contenedorBotonesModal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.contenedorModal {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-top: 20px;
+    gap: 10px;
+    font-size: 20px;
+}
+
+
+.modal {
+    background-color: #fff;
+    width: 745px;
+    height: 525px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.styled-combo {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+    width: 240px;
+}
+
+/* Estilos cuando se interactúa con el combo box */
+.styled-combo:hover {
+    border-color: #999;
+}
+
+.styled-combo:focus {
+    outline: none;
+    border-color: #66afe9;
+    box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+}
+
+/* Estilos 2 para cuenta */
+.styled-combo2 {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+    width: 300px;
+}
+
+/* Estilos cuando se interactúa con el combo box */
+.styled-combo2:hover {
+    border-color: #999;
+}
+
+.styled-combo2:focus {
+    outline: none;
+    border-color: #66afe9;
+    box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+}
+
+.modal2 {
+    background-color: #fff;
+    width: 650px;
+    height: 400px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.modal2 h1 {
+    margin: 0;
+}
+
+.modal2 p {
+    opacity: 0.7;
+    font-size: 30px;
+}
+
+.modalEliminarCuenta {
+    background-color: #fff;
+    width: 650px;
+    height: 250px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.modalEliminarCuenta h1 {
+    margin: 0;
+}
+
+.modalEliminarCuenta p {
+    opacity: 0.7;
+    font-size: 30px;
+}
