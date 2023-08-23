@@ -30,11 +30,11 @@
                         </div>
                     </form>
                 </div>
-                <a href="dashboard.html">
+                <a href="dashboard.jsp">
                     <button type="submit" value="Iniciar" class="botonInicio fondoBotones">Iniciar</button>
                 </a>
                 <p>¿Sin cuenta? ¡Crea una!</p>
-                <a href="registrar.html">
+                <a href="registrar.jsp">
                     <button type="submit" value="CrearCuenta" class="botonInicio fondoBotones "> Crear Cuenta</button>
                 </a>
                 <br>

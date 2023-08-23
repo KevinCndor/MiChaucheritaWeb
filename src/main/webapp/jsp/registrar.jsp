@@ -40,7 +40,7 @@
                 </div>
                 <button type="submit" value="Iniciar" class="botonRegistrar fondoBotones">Crear</button>
                 <p>¿Tienes una cuenta? ¡Inicia Sesión!</p>
-                <a href="index.html" >
+                <a href="index.jsp" >
                     <button type="submit" value="CrearCuenta" class="botonRegistrar fondoBotones "> Regresar</button>
                 </a>
                 <p>Desarrollado Por Grupo 5 Aplicaciones Web</p>
