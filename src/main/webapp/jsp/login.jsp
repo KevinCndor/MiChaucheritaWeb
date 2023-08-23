@@ -19,7 +19,7 @@
             <div class="divFormularioIngreso fondoInicio">
                 <h3 style="font-size: 50px;">Iniciar Sesión</h3>
                 <div>
-                    <form class="inputInicio inputInicio-container">
+                    <form method="POST" action="AccesoController?ruta=ingresar" class="inputInicio inputInicio-container">
                         <div>
                             <p>Usuario</p><input type="text" name="usuario" placeholder=" Ingrese su Usuario" required
                                 class="styled-input">

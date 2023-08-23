@@ -19,7 +19,7 @@
             <div class="divFormularioIngreso fondoInicio">
                 <h3 style="font-size: 50px;">Crear Una Cuenta</h3>
                 <div>
-                    <form class="inputInicio inputInicio-container">
+                    <form method="POST" action="AccesoController?ruta=crearusuario" class="inputInicio inputInicio-container">
                         <div>
                             <p>Nombre</p><input type="text" name="nombre" placeholder="Ingrese su Nombre" required
                                 class="styled-input">
@@ -40,7 +40,7 @@
                 </div>
                 <button type="submit" value="Iniciar" class="botonRegistrar fondoBotones">Crear</button>
                 <p>¿Tienes una cuenta? ¡Inicia Sesión!</p>
-                <a href="index.jsp" >
+                <a href="login.jsp" >
                     <button type="submit" value="CrearCuenta" class="botonRegistrar fondoBotones "> Regresar</button>
                 </a>
                 <p>Desarrollado Por Grupo 5 Aplicaciones Web</p>
