@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 
@@ -5,7 +7,7 @@
     <meta charset='utf-8'>
     <title>Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css" />
 </head>
 
 <body>
@@ -19,7 +21,7 @@
                 <div>
                     <form class="inputInicio inputInicio-container">
                         <div>
-                            <p>Nombre</p><input type="text" name="nombre" placeholder=" Ingrese su Nombre" required
+                            <p>Nombre</p><input type="text" name="nombre" placeholder="Ingrese su Nombre" required
                                 class="styled-input">
                         </div>
                         <div>
@@ -31,13 +33,13 @@
                                 class="styled-input">
                         </div>
                         <div>
-                            <p>ContraseÃ±a</p><input type="password" name="contrasena"
-                                placeholder="Ingrese su ContraseÃ±a" required class="styled-input">
+                            <p>Contraseña</p><input type="password" name="contrasena"
+                                placeholder="Ingrese su Contraseña" required class="styled-input">
                         </div>
                     </form>
                 </div>
                 <button type="submit" value="Iniciar" class="botonRegistrar fondoBotones">Crear</button>
-                <p>Â¿Tienes una cuenta? Â¡Inicia SesiÃ³n!</p>
+                <p>¿Tienes una cuenta? ¡Inicia Sesión!</p>
                 <a href="index.html" >
                     <button type="submit" value="CrearCuenta" class="botonRegistrar fondoBotones "> Regresar</button>
                 </a>

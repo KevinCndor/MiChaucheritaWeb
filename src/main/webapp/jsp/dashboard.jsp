@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css" />
 </head>
 
 <body>
@@ -17,7 +19,7 @@
             <nav class="MenuHeader">
                 <ul>
                     <li>MOVIMIENTOS</li>
-                    <li>CERRAR SESIÃ“N</li>
+                    <li>CERRAR SESIÓN</li>
                 </ul>
             </nav>
         </header>
@@ -40,7 +42,7 @@
                                 <h3>Nuevo Ingreso</h3>
                                 <form action="">
                                     <div style="display: flex; justify-content: space-between; padding-top: 15px;">
-                                        <p>CategorÃ­a</p><select name="categoriaIngreso" id="" class="styled-combo">
+                                        <p>Categoría</p><select name="categoriaIngreso" id="" class="styled-combo">
                                             <option value="Nomina">Nomina</option>
                                             <option value="Senecyt">Senecyt</option>
                                             <option value="Senecyt">Universidad</option>
@@ -62,7 +64,7 @@
                                             class="styled-combo">
                                     </div>
                                     <div style="display: flex; justify-content: space-between;padding-top: 25px;">
-                                        <p>DescripciÃ³n</p> <input type="text" placeholder="Introduce una DescripciÃ³n "
+                                        <p>Descripción</p> <input type="text" placeholder="Introduce una Descripción "
                                             id="valorIngreso" class="styled-combo">
                                     </div>
                                 </form>
@@ -101,7 +103,7 @@
                                 <h3>Nuevo Egreso</h3>
                                 <form action="">
                                     <div style="display: flex; justify-content: space-between; padding-top: 15px;">
-                                        <p>CategorÃ­a</p><select name="categoriaEgreso" id="" class="styled-combo">
+                                        <p>Categoría</p><select name="categoriaEgreso" id="" class="styled-combo">
                                             <option value="Persona">Persona</option>
                                             <option value="Salud">Salud</option>
                                             <option value="Educacion">Educacion</option>
@@ -123,7 +125,7 @@
                                             class="styled-combo">
                                     </div>
                                     <div style="display: flex; justify-content: space-between;padding-top: 25px;">
-                                        <p>DescripciÃ³n</p> <input type="text" placeholder="Introduce una DescripciÃ³n "
+                                        <p>Descripción</p> <input type="text" placeholder="Introduce una Descripción "
                                             id="descripcionEgreso" class="styled-combo">
                                     </div>
                                 </form>
@@ -146,7 +148,7 @@
                             <div class="contenedorCategoriaEgresos">
                                 <div class="contenedorValoresEgresos">
                                     <p>$0,000.00</p>
-                                    <h5>PeluquerÃ­a</h5>
+                                    <h5>Peluquería</h5>
                                 </div>
                                 <div class="contenedorValoresEgresos">
                                     <p>$0,000.00</p>
@@ -250,7 +252,7 @@
                                 </div>
                                 <div
                                     style="display: flex; justify-content: space-between;padding: 20px 10px 20px 10px;">
-                                    <p>NÃºmero</p> <input type="number" placeholder="Introduce el nÃºmero de la cuenta"
+                                    <p>Número</p> <input type="number" placeholder="Introduce el número de la cuenta"
                                         id="numeroCuenta" class="styled-combo2">
                                 </div>
                                 <div
@@ -274,7 +276,7 @@
                             <form action="">
                                 <div
                                     style="display: flex; justify-content: space-between;padding: 20px 10px 20px 10px;">
-                                    <p>NÃºmero</p> <input type="number" placeholder="Introduce el nÃºmero de la cuenta"
+                                    <p>Número</p> <input type="number" placeholder="Introduce el número de la cuenta"
                                         id="numeroCuenta" class="styled-combo2">
                                 </div>
                             </form>
@@ -329,7 +331,7 @@
             </div>
         </footer>
     </main>
-    <script src="./app.js">	</script>
+    <script src="${pageContext.request.contextPath}/js/app.js">	</script>
     <script src="https://kit.fontawesome.com/85e6f64c7f.js" crossorigin="anonymous"></script>
 </body>
 
