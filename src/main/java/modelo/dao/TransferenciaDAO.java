@@ -1,5 +1,7 @@
 package modelo.dao;
 
-public interface TransferenciaDAO {
+import modelo.entidades.Transferencia;
+
+public interface TransferenciaDAO extends GenericDAO<Transferencia, Integer>{
 
 }

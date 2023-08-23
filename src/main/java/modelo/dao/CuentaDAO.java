@@ -1,5 +1,7 @@
 package modelo.dao;
 
-public interface CuentaDAO {
+import modelo.entidades.Cuenta;
+
+public interface CuentaDAO extends GenericDAO<Cuenta, Integer>{
 
 }

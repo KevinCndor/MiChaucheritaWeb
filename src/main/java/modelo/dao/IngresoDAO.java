@@ -1,5 +1,7 @@
 package modelo.dao;
 
-public interface IngresoDAO {
+import modelo.entidades.Ingreso;
+
+public interface IngresoDAO extends GenericDAO<Ingreso, Integer>{
 
 }

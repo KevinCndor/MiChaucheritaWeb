@@ -318,6 +318,34 @@
                             <p>$0,000.00</p>
                         </div>
                     </div>
+                    <div class="contenedorCuenta">
+                        <p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
+                        <div class="numCuenta">
+                            <p>0123456789</p>
+                            <p>$0,000.00</p>
+                        </div>
+                    </div>
+                    <div class="contenedorCuenta">
+                        <p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
+                        <div class="numCuenta">
+                            <p>0123456789</p>
+                            <p>$0,000.00</p>
+                        </div>
+                    </div>
+                    <div class="contenedorCuenta">
+                        <p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
+                        <div class="numCuenta">
+                            <p>0123456789</p>
+                            <p>$0,000.00</p>
+                        </div>
+                    </div>
+                    <div class="contenedorCuenta">
+                        <p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
+                        <div class="numCuenta">
+                            <p>0123456789</p>
+                            <p>$0,000.00</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

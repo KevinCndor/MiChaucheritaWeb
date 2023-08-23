@@ -1,5 +1,7 @@
 package modelo.dao;
 
-public interface MovimientoDAO {
+import modelo.entidades.Movimiento;
+
+public interface MovimientoDAO extends GenericDAO<Movimiento, Integer>{
 
 }
