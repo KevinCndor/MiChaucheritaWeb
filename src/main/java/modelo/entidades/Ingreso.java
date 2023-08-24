@@ -1,6 +1,7 @@
 package modelo.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,8 +22,8 @@ public class Ingreso extends Movimiento implements Serializable{
 		super();
 	}
 	
-	public Ingreso(Categoria categoria) {
-		super();
+	public Ingreso(int id, String descripcion, Date date, double valor,Cuenta cuenta, Categoria categoria) {
+		super(id, descripcion, date, valor, cuenta);
 		this.categoria = categoria;
 	}
 

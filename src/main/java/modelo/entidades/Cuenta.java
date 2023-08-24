@@ -25,7 +25,7 @@ public class Cuenta implements Serializable{
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "saldo")
-	private String saldo;
+	private double saldo;
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "propietario")
 	private Usuario propietario;
@@ -35,7 +35,7 @@ public class Cuenta implements Serializable{
 	public Cuenta() {
 	}
 	
-	public Cuenta(String numeroCuenta, String nombre, String saldo) {
+	public Cuenta(String numeroCuenta, String nombre, double saldo) {
 		this.numeroCuenta = numeroCuenta;
 		this.nombre = nombre;
 		this.saldo = saldo;
@@ -57,11 +57,11 @@ public class Cuenta implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public String getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(String saldo) {
+	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
 

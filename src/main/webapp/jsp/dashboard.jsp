@@ -104,6 +104,13 @@
                                 <form action="">
                                     <div style="display: flex; justify-content: space-between; padding-top: 15px;">
                                         <p>Categoría</p><select name="categoriaEgreso" id="" class="styled-combo">
+                                            <option value="Personal">Personal</option>
+                                            <option value="Salud">Salud</option>
+                                            <option value="Educacion">Educacion</option>
+                                        </select>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding-top: 15px;">
+                                        <p>Subcategoría</p><select name="subcategoriaEgreso" id="" class="styled-combo">
                                             <option value="Persona">Persona</option>
                                             <option value="Salud">Salud</option>
                                             <option value="Educacion">Educacion</option>

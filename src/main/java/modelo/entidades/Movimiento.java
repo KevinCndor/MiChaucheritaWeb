@@ -40,11 +40,12 @@ public class Movimiento implements Serializable{
 	
 	public Movimiento() {}
 	
-	public Movimiento(int id, String descripcion, Date date, double valor) {
+	public Movimiento(int id, String descripcion, Date date, double valor,Cuenta cuenta) {
 		this.id = id;
 		this.descripcion = descripcion;
 		this.fecha = date;
 		this.valor = valor;
+		this.cuenta = cuenta;
 	}
 
 	public int getId() {

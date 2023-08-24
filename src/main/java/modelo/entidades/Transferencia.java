@@ -1,6 +1,7 @@
 package modelo.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,9 +16,6 @@ public class Transferencia extends Movimiento implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "cuentaOrigen")
-	private Cuenta cuentaOrigen;
-	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "cuentaDestino")
 	private Cuenta cuentaDestino;
 	
@@ -25,18 +23,9 @@ public class Transferencia extends Movimiento implements Serializable{
 		super();
 	}
 	
-	public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino) {
-		super();
-		this.cuentaOrigen = cuentaOrigen;
+	public Transferencia(int id, String descripcion, Date date, double valor,Cuenta cuenta, Cuenta cuentaDestino) {
+		super(id, descripcion, date, valor, cuenta);
 		this.cuentaDestino = cuentaDestino;
-	}
-
-	public Cuenta getCuentaOrigen() {
-		return cuentaOrigen;
-	}
-
-	public void setCuentaOrigen(Cuenta cuentaOrigen) {
-		this.cuentaOrigen = cuentaOrigen;
 	}
 
 	public Cuenta getCuentaDestino() {

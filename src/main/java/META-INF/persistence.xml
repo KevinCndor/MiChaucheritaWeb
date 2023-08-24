@@ -9,6 +9,7 @@
 		<class>modelo.entidades.Egreso</class>
 		<class>modelo.entidades.Transferencia</class>
 		<class>modelo.entidades.Categoria</class>
+		<class>modelo.entidades.Subcategoria</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mychaucherita"/>

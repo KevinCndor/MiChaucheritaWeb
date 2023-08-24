@@ -13,7 +13,7 @@ public class JPACuentaDAO extends JPAGenericDAO<Cuenta, Integer> implements Cuen
 	}
 
 	@Override
-	public List<Cuenta> getTotalizadoPorUsuario(Usuario usuario) {
+	public List<Cuenta> getCuentasUsuario(Usuario usuario) {
 		// TODO Auto-generated method stub
 		return null;
 	}

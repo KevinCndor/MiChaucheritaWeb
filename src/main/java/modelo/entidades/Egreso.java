@@ -1,6 +1,7 @@
 package modelo.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
@@ -18,13 +19,16 @@ public class Egreso extends Movimiento implements Serializable{
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "categoria")
 	private Categoria categoria;
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "subcategoria")
+	private Subcategoria subcategoria;
 	
 	public Egreso() {
 		super();
 	}
 	
-	public Egreso(Categoria categoria) {
-		super();
+	public Egreso(int id, String descripcion, Date date, double valor,Cuenta cuenta, Categoria categoria) {
+		super(id, descripcion, date, valor, cuenta);
 		this.categoria = categoria;
 	}
 

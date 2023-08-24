@@ -1,12 +1,16 @@
 package modelo.entidades;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +24,13 @@ public class Categoria implements Serializable {
 	private int id;
 	@Column(name = "nombre")
 	private String nombre;
+	@Column(name = "tipo")
+	private String tipo;
+	@Column(name = "valor")
+	private double valor;
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "categoriaPadre")
+	private List<Subcategoria> subcategoria = null;
+	
 	
 	public Categoria() {}
 	
@@ -44,4 +55,5 @@ public class Categoria implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 }
