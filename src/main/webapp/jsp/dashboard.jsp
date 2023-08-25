@@ -30,7 +30,7 @@
 			</nav>
 		</header>
 		<section class="sectionBienvenida fondoCelesteDegradado">
-			<h1 class="titulo1">Bienvenido de vuelta, Jean..!</h1>
+			<h1 class="titulo1">Bienvenido de vuelta <c:out value="${sessionScope.usuarioLogeado.nombre}"/>!</h1>
 			<div>
 				<h3>Cuenta de ahorros</h3>
 				<div class="titulo1">$0,00.00</div>
