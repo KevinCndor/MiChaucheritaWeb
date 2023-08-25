@@ -1,7 +1,6 @@
 * {
     margin: 0px;
     box-sizing: border-box;
-
 }
 
 @font-face {
@@ -163,10 +162,10 @@ header {
     align-items: center;
     justify-content: center;
     gap: 50px;
-  }
-  
-  /* Estilos para el input estilizado */
-  .styled-input {
+}
+
+/* Estilos para el input estilizado */
+.styled-input {
     padding: 1px 15px;
     border: 2px solid #3498db;
     border-radius: 5px;
@@ -175,18 +174,149 @@ header {
     width: 600px;
     height: 65px;
 
-  }
-  
-  /* Cambiar el color del borde cuando el input está enfocado */
-  .styled-input:focus {
+}
+
+/* Cambiar el color del borde cuando el input está enfocado */
+.styled-input:focus {
     border-color: #32F9A5;
-  }
+}
 
 /* REGISTRAR */
 
-/* TRANSFERENCIA */
+/*************************************************** TRANSFERENCIA *******************************************/
 
-/* MOVIMIENTO */
+.centrarBotones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.contenedorCuentaTransferencia {
+    background-color: #B6DAFC;
+    border-radius: 15px;
+    width: 400px;
+    height: 100px;
+    align-items: center;
+}
+
+.contenedorcuadrosCuentaTransferencia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0px;
+    gap: 20px;
+}
+
+.contenedorFormTransferencia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 30px;
+    gap: 20px;
+}
+
+.styled-inputTransferencia {
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out;
+    width: 400px;
+    height: 65px;
+}
+
+.styled-inputTransferencia2 {
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out;
+    width: 400px;
+    height: 100px;
+}
+
+.hidden {
+    display: none;
+}
+
+/********************************************* MOVIMIENTO *********************************************/
+
+.seccionMovimiento {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 70px;
+}
+
+
+.contenedorMovimiento {
+    width: 100%;
+    height: 680px;
+    background-color: #837C7C;
+}
+
+
+/* Combo box Meses */
+/* Estilos para el combo box */
+#months {
+    font-size: 16px;      /* Tamaño de la fuente */
+    padding: 8px 12px;    /* Espaciado interno */
+    border: 1px solid #ccc;  /* Borde */
+    border-radius: 4px;   /* Esquinas redondeadas */
+    background-color: #f9f9f9;  /* Color de fondo */
+    color: #333;         /* Color del texto */
+    transition: background-color 0.3s;  /* Transición suave del color de fondo */
+    outline: none;       /* Remover el borde exterior por defecto de algunos navegadores */
+    width: 200px;        /* Ancho */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilo al poner el cursor encima del combo box */
+#months:hover {
+    background-color: #e6e6e6;
+}
+
+/* Estilo cuando el combo box está enfocado (al hacer clic dentro) */
+#months:focus {
+    border-color: #007BFF;  /* Cambia el color del borde a azul */
+    background-color: #e6e6e6;
+}
+
+
+/* Combo box Categoria */
+#categoria {
+    font-size: 16px;      /* Tamaño de la fuente */
+    padding: 8px 12px;    /* Espaciado interno */
+    border: 1px solid #ccc;  /* Borde */
+    border-radius: 4px;   /* Esquinas redondeadas */
+    background-color: #f9f9f9;  /* Color de fondo */
+    color: #333;         /* Color del texto */
+    transition: background-color 0.3s;  /* Transición suave del color de fondo */
+    outline: none;       /* Remover el borde exterior por defecto de algunos navegadores */
+    width: 200px;        /* Ancho */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilo al poner el cursor encima del combo box */
+#categoria:hover {
+    background-color: #e6e6e6;
+}
+
+/* Estilo cuando el combo box está enfocado (al hacer clic dentro) */
+#categoria:focus {
+    border-color: #007BFF;  /* Cambia el color del borde a azul */
+    background-color: #e6e6e6;
+}
+
+.sectionFiltros {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 500px;
+    font-size: large;
+}
+
 
 /* DASHBOARD */
 
@@ -210,7 +340,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1100px;
+    gap: 500px;
     font-size: large;
 }
 
@@ -512,4 +642,28 @@ header {
 .modalEliminarCuenta p {
     opacity: 0.7;
     font-size: 30px;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+.styled-table th, .styled-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.styled-table th {
+    background-color: #f2f2f2;
+}
+
+.styled-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.styled-table tr:hover {
+    background-color: #ddd;
 }
