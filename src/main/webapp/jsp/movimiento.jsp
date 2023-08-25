@@ -22,7 +22,7 @@
                 </ul>
             </nav>
         </header>
-        <section class="sectionBienvenida fondoCelesteDegradado">
+        <section class="sectionBienvenida2 fondoCelesteDegradado">
             <h1 class="titulo1" >Bienvenido de vuelta, Jean..!</h1>
             <div></div>
             <div></div>

@@ -318,6 +318,16 @@ header {
 }
 
 
+.sectionBienvenida2 {
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 500px;
+    font-size: large;
+}
+
+
 /* DASHBOARD */
 
 .MenuHeader {
@@ -340,7 +350,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 500px;
+    gap: 1000px;
     font-size: large;
 }
 
@@ -363,6 +373,10 @@ header {
     height: auto;
 }
 
+
+.borderContenedorMisCuentas {
+    border-left: 2px solid #837C7C;
+}
 .encabezadoSeccionIzquierda {
     display: flex;
     justify-content: space-between;
@@ -379,6 +393,10 @@ header {
     padding-left: 70px;
     padding-right: 70px;
     font-size: 28px;
+    background-color: #B6DAFC;
+    border: none;
+    border-radius: 15px;
+    width: 1000px
 }
 
 .contenedorValoresIngesos {
