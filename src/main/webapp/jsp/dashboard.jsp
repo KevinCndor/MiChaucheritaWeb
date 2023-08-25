@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,10 +20,10 @@
 			</div>
 			<nav class="MenuHeader">
 				<ul>
-					<a href="movimiento.html">
+					<a href="/movimiento.jsp">
 						<li>MOVIMIENTOS</li>
 					</a>
-					<a href="index.html">
+					<a href="/index.html">
 						<li>CERRAR SESIÓN</li>
 					</a>
 				</ul>
@@ -287,7 +288,7 @@
 				<div class="encabezadoSeccionIzquierda"
 					style="padding-bottom: 20px;">
 					<h3>Mis Cuentas</h3>
-					<a href="trasferencia.html"><button
+					<a href="trasferencia.jsp"><button
 							class="botonSectionMisCuentas fondoBotones">Realizar
 							Transferencia</button></a>
 				</div>
@@ -355,34 +356,17 @@
 					</div>
 				</div>
 				<div class="contenedorcuadrosCuenta">
-					<div class="contenedorCuenta">
-						<p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
-						<div class="numCuenta">
-							<p>0123456789</p>
-							<p>$0,000.00</p>
-						</div>
-					</div>
-					<div class="contenedorCuenta">
-						<p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
-						<div class="numCuenta">
-							<p>0123456789</p>
-							<p>$0,000.00</p>
-						</div>
-					</div>
-					<div class="contenedorCuenta">
-						<p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
-						<div class="numCuenta">
-							<p>0123456789</p>
-							<p>$0,000.00</p>
-						</div>
-					</div>
-					<div class="contenedorCuenta">
-						<p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
-						<div class="numCuenta">
-							<p>0123456789</p>
-							<p>$0,000.00</p>
-						</div>
-					</div>
+					<c:forEach items="${cuentas}" var="cuenta">
+						<a href= "movimiento.jsp">
+							<div class="contenedorCuenta">
+								<p style="font-size: 30px; padding-left: 20px;">${cuenta.nombre}</p>
+								<div class="numCuenta">
+									<p>${cuenta.numeronumeroCuenta}</p>
+									<p>${cuenta.saldo}</p>
+								</div>
+							</div>
+						</a>
+					</c:forEach>
 				</div>
 			</div>
 		</section>

@@ -19,7 +19,7 @@
             <div class="divFormularioIngreso fondoInicio">
                 <h3 style="font-size: 50px;">Iniciar Sesión</h3>
                 <div>
-                    <form method="POST" action="AccesoController?ruta=ingresar" class="inputInicio inputInicio-container">
+                    <form method="POST" action="../AccesoController?ruta=ingresar" class="inputInicio inputInicio-container">
                         <div>
                             <p>Usuario</p><input type="text" name="usuario" placeholder=" Ingrese su Usuario" required
                                 class="styled-input">
@@ -28,11 +28,9 @@
                             <p>Contraseña</p><input type="password" name="contrasena"
                                 placeholder="Ingrese su Contraseña" required class="styled-input">
                         </div>
+                        <button type="submit" value="Iniciar" class="botonInicio fondoBotones">Iniciar</button>
                     </form>
                 </div>
-                <a href="dashboard.jsp">
-                    <button type="submit" value="Iniciar" class="botonInicio fondoBotones">Iniciar</button>
-                </a>
                 <p>¿Sin cuenta? ¡Crea una!</p>
                 <a href="registrar.jsp">
                     <button type="submit" value="CrearCuenta" class="botonInicio fondoBotones "> Crear Cuenta</button>

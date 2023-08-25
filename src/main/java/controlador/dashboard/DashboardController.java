@@ -1,8 +1,8 @@
 package controlador.dashboard;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -103,6 +103,8 @@ public class DashboardController extends HttpServlet {
 	}
 	
 	private void guardarMovimiento(HttpServletRequest request, HttpServletResponse response, String tipoMovimiento) throws IOException {
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+		
 		//1. Obtener datos que me envian en la solicitud
 		HttpSession session = request.getSession(false);
 		Usuario usuario = new Usuario();
@@ -116,23 +118,25 @@ public class DashboardController extends HttpServlet {
 		int id = 0;
 		String descripcion = request.getParameter("descripcion");
 		
-		DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/mm/yyyy");		
-		LocalDate fecha = LocalDate.parse(request.getParameter("fecha").formatted(formateador));
+		Date fecha = new Date();
+		try {
+			fecha = formatoFecha.parse(request.getParameter("fecha"));
+		} catch (Exception e) {
+			fecha = null;
+		}
 		
 		Double valor = Double.parseDouble(request.getParameter("valor"));
-		Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getByName(request.getParameter("nombreCuenta"), usuario);
-		Categoria categoria = null; //request.getParameter("categoria");
+		// Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getByName(request.getParameter("nombreCuenta"), usuario);
+		Categoria categoria = null; // request.getParameter("categoria");
 		
 		//2. Llamo al Modelo para obtener datos
 		if (tipoMovimiento.equals("ingreso")) {
-			Ingreso nuevoIngreso = new Ingreso(id, descripcion, null, id, cuenta, categoria);
-			
-			
+			Ingreso nuevoIngreso = new Ingreso();
 			nuevoIngreso.setId(id);
 			nuevoIngreso.setDescripcion(descripcion);
 			nuevoIngreso.setFecha(fecha);
 			nuevoIngreso.setValor(valor);
-			//nuevoIngreso.setCuenta(cuenta);
+			// nuevoIngreso.setCuenta(cuenta);
 			nuevoIngreso.setCategoria(categoria);
 			
 			DAOFactory.getFactory().getIngresoDAO().create(nuevoIngreso);
@@ -142,7 +146,7 @@ public class DashboardController extends HttpServlet {
 			nuevoEgreso.setDescripcion(descripcion);
 			nuevoEgreso.setFecha(null);
 			nuevoEgreso.setValor(valor);
-			//nuevoEgreso.setCuenta(cuenta);
+			// nuevoEgreso.setCuenta(cuenta);
 			nuevoEgreso.setCategoria(categoria);
 			
 			DAOFactory.getFactory().getEgresoDAO().create(nuevoEgreso);
@@ -154,8 +158,10 @@ public class DashboardController extends HttpServlet {
 	
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//1. Obtener datos que me envian en la solicitud
-		
-		int mes = Integer.parseInt(request.getParameter("mes"));
+		int mes = -1;
+		if( mes >= 0) {
+			mes = Integer.parseInt(request.getParameter("mes"));
+		}
 		// REVISAR LA OBTENCION DEL USUARIO !!!
 		HttpSession session = request.getSession();
 		Usuario usuario = new Usuario();
@@ -171,7 +177,7 @@ public class DashboardController extends HttpServlet {
 		List<Egreso> egresosPorCategoria = null;
 		List<Cuenta> misCuentas = null;
 		
-		if (mes != 0) {
+		if (mes != -1) {
 			ingresosPorCategoria = DAOFactory.getFactory().getIngresoDAO().getIngresosPorCategoriaYMes(usuario, mes);
 			egresosPorCategoria = DAOFactory.getFactory().getEgresoDAO().getEgresosPorCategoriaYMes(usuario, mes);
 		} else {

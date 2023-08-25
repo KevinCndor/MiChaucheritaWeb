@@ -2,6 +2,7 @@ package modelo.entidades;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ public class Transferencia extends Movimiento implements Serializable{
 		super();
 	}
 	
-	public Transferencia(int id, String descripcion, LocalDate date, double valor,Cuenta cuenta, Cuenta cuentaDestino) {
+	public Transferencia(int id, String descripcion, Date date, double valor,Cuenta cuenta, Cuenta cuentaDestino) {
 		super(id, descripcion, date, valor, cuenta);
 		this.cuentaDestino = cuentaDestino;
 	}

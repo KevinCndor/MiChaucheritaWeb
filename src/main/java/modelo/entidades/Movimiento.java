@@ -1,7 +1,6 @@
 package modelo.entidades;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -17,6 +16,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Movimiento")
@@ -31,8 +32,9 @@ public class Movimiento implements Serializable{
 	private int id;
 	@Column(name = "descripcion")
 	private String descripcion;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha")
-	private LocalDate fecha;
+	private Date fecha;
 	@Column(name = "valor")
 	private double valor;
 	@ManyToOne(cascade = CascadeType.REFRESH)
@@ -41,7 +43,7 @@ public class Movimiento implements Serializable{
 	
 	public Movimiento() {}
 	
-	public Movimiento(int id, String descripcion, LocalDate date, double valor,Cuenta cuenta) {
+	public Movimiento(int id, String descripcion, Date date, double valor,Cuenta cuenta) {
 		this.id = id;
 		this.descripcion = descripcion;
 		this.fecha = date;
@@ -65,11 +67,11 @@ public class Movimiento implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate date) {
+	public void setFecha(Date date) {
 		this.fecha = date;
 	}
 

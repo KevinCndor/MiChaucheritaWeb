@@ -70,7 +70,7 @@ public class AccesoController extends HttpServlet {
 	private void ingresar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//1. Obtener datos que me envian en la solicitud		
 		String nombre= request.getParameter("usuario");
-		String clave = request.getParameter("password");
+		String clave = request.getParameter("contrasena");
 		
 		//2. Llamo al Modelo para obtener datos		
 		Usuario usuarioAutenticado = DAOFactory.getFactory().getUsuarioDAO().autorizar(nombre, clave);

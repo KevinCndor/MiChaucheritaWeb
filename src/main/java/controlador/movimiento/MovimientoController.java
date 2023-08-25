@@ -65,15 +65,15 @@ public class MovimientoController extends HttpServlet {
 			// List<Egreso> egresosGenerales = DAOFactory.getFactory().getEgresoDAO().getEgresosFecha(usuario, fecha);
 			// List<Transferencia> tranferenciasGenerales = DAOFactory.getFactory().getTranferenciaDAO().getTransferenciasFecha(usuario, fecha);
 		} else {
-			// List<Ingreso> ingresosGenerales = DAOFactory.getFactory().getIngresoDAO().getIngresos(usuario);
-			// List<Egreso> egresosGenerales = DAOFactory.getFactory().getEgresoDAO().getEgresos(usuario);
-			// List<Transferencia> tranferenciasGenerales = DAOFactory.getFactory().getTranferenciaDAO().getTransferencias(usuario);
+			// List<Ingreso> ingresosGenerales = DAOFactory.getFactory().getIngresoDAO().getIngresosPorUsuario(usuario);
+			// List<Egreso> egresosGenerales = DAOFactory.getFactory().getEgresoDAO().getEgresosPorUsuario(usuario);
+			// List<Transferencia> tranferenciasGenerales = DAOFactory.getFactory().getTranferenciaDAO().getTransferenciasPorUsuario(usuario);
 		}
 		
 		//3. Llamo a la Vista
 		request.setAttribute("ingresos", ingresosGenerales);
 		request.setAttribute("egresos", egresosGenerales);
-		request.setAttribute("cuentas", tranferenciasGenerales);
+		request.setAttribute("transferencias", tranferenciasGenerales);
 		request.getRequestDispatcher("jsp/dashboard.jsp").forward(request, response);
 	}
 }

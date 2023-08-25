@@ -1,5 +1,6 @@
 package modelo.jpa;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,22 +22,25 @@ public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements Egre
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Egreso> getEgresosPorCategoria(Usuario usuario) {
-		String sentencia = "SELECT e FROM Egreso e WHERE e.propietario = :usuario";
+		String tipo = "Ingreso";
+		String sentencia = "SELECT m FROM Movimiento m WHERE m.propietario = :usuario AND m.tipo_movimiento = :egreso";
 	    Query query = em.createQuery(sentencia);
 	    
 	    query.setParameter("propietario", usuario);
+	    query.setParameter("egreso", tipo);
 	    
 		List<Egreso> egresosPorCategoria = query.getResultList();
 	    return egresosPorCategoria;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public List<Egreso> getEgresosPorCategoriaYMes(Usuario usuario, int mes) {
 	    List<Egreso> egresosPorCategoria = getEgresosPorCategoria(usuario);
 	    List<Egreso> egresosPorMesYCateg = new ArrayList<Egreso>();
 	    for (Egreso egreso : egresosPorCategoria) {
-	        LocalDate fechaIngreso = egreso.getFecha();
-	        int mesIngreso = fechaIngreso.getMonthValue();
+	        Date fechaIngreso = (Date) egreso.getFecha();
+	        int mesIngreso = fechaIngreso.getMonth();
 	        if (mesIngreso == mes) {
 	        	egresosPorMesYCateg.add(egreso);
 	        }
