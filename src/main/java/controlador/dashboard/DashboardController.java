@@ -159,8 +159,9 @@ public class DashboardController extends HttpServlet {
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//1. Obtener datos que me envian en la solicitud
 		int mes = -1;
-		if( mes >= 0) {
-			mes = Integer.parseInt(request.getParameter("mes"));
+		String filtroMes = request.getParameter("filtromes");
+		if( filtroMes != null) {
+			mes = Integer.parseInt(request.getParameter("months"));
 		}
 		// REVISAR LA OBTENCION DEL USUARIO !!!
 		HttpSession session = request.getSession();
