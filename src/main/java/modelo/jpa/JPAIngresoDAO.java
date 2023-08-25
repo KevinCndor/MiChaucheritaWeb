@@ -1,14 +1,12 @@
 package modelo.jpa;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
 
 import modelo.dao.IngresoDAO;
-import modelo.entidades.Categoria;
 import modelo.entidades.Ingreso;
 import modelo.entidades.Usuario;
 
@@ -45,6 +43,18 @@ public class JPAIngresoDAO extends JPAGenericDAO<Ingreso, Integer> implements In
 	        }
 	    }
 	    return ingresosPorMesYCateg;
+	}
+
+	@Override
+	public List<Ingreso> getIngresosFecha(Usuario usuario, java.util.Date fecha) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Ingreso> getIngresosPorUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
