@@ -16,7 +16,7 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movimiento> getByMonth(int idCuenta, int mes) {
-	    String sentencia = "SELECT m FROM Movimiento m WHERE m.cuenta = :idCuenta AND MONTH(m.fecha) = :mes";
+	    String sentencia = "SELECT m FROM Movimiento m WHERE m.cuenta = :idCuenta ";
 	    Query query = em.createQuery(sentencia);
 	    
 	    query.setParameter("idCuenta", idCuenta);

@@ -30,7 +30,7 @@
 			</nav>
 		</header>
 		<section class="sectionBienvenida fondoCelesteDegradado">
-			<h1 class="titulo1">Bienvenido de vuelta, Jean..!</h1>
+			<h1 class="titulo1">Bienvenido de vuelta <c:out value="${sessionScope.usuarioLogeado.nombre}"/>!</h1>
 			<div>
 				<h3>Cuenta de ahorros</h3>
 				<div class="titulo1">$0,00.00</div>
@@ -140,14 +140,12 @@
 							class="modal-container contenedorModal">
 							<div class="modal">
 								<h3>Nuevo Egreso</h3>
-								<form action="">
+								<form action="" method="">
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 15px;">
 										<p>Categoría</p>
 										<select name="categoriaEgreso" id="" class="styled-combo">
 											<option value="Persona">Persona</option>
-											<option value="Salud">Salud</option>
-											<option value="Educacion">Educacion</option>
 										</select>
 									</div>
 									<div
@@ -190,95 +188,21 @@
 					</div>
 					<div class="extra">
 						<div class=" fondoCuadroInformacion ">
-							<div
-								style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
-								<p>Personales</p>
-								<p>-$00.00</p>
-							</div>
-							<div class="contenedorCategoriaEgresos">
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Peluquería</h5>
+							<c:forEach items="categorias" var="categoria">
+								<div
+									style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
+									<p>${categoria.nombre}</p>
+									<p>-${categoria.valor}</p>
 								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Barberia</h5>
-								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Aseo</h5>
-								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Colasion</h5>
-								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Fiesta</h5>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="extra">
-						<div class=" fondoCuadroInformacion ">
-							<div
-								style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
-								<p>Universidad</p>
-								<p>-$00.00</p>
-							</div>
-							<div class="contenedorCategoriaEgresos">
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Colegiatura</h5>
-								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Matricula</h5>
-								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Talleres</h5>
-								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Libros</h5>
-								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Copias</h5>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="extra">
-						<div class=" fondoCuadroInformacion ">
-							<div
-								style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
-								<p>Salud</p>
-								<p>-$00.00</p>
-							</div>
-							<div class="contenedorCategoriaEgresos">
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Doctor</h5>
-								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Medicinas</h5>
-								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Examenes</h5>
-								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Terapia</h5>
-								</div>
-								<div class="contenedorValoresEgresos">
-									<p>$0,000.00</p>
-									<h5>Vitaminas</h5>
-								</div>
-							</div>
+								<c:forEach items="${categoria.subcategoria}" var="subcategoria">
+									<div class="contenedorCategoriaEgresos">
+										<div class="contenedorValoresEgresos">
+											<p>$ ${subcategoria.valor}</p>
+											<h5>${subcategoria.nombre}</h5>
+										</div>
+									</div>
+								</c:forEach>
+							</c:forEach>
 						</div>
 					</div>
 					<br>
@@ -300,7 +224,7 @@
 						class="modal-container contenedorModal">
 						<div class="modal2">
 							<h3>Agregar Cuenta</h3>
-							<form action="">
+							<form action="" method="">
 								<div
 									style="display: flex; justify-content: space-between; padding: 20px 10px 20px 10px;">
 									<p>Nombre</p>
