@@ -1,7 +1,5 @@
 package modelo.jpa;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -14,19 +12,19 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 	public JPAMovimientoDAO() {
 		super(Movimiento.class);
 	}
-
-	@Override
-	public List<Movimiento> getByDate(int idCuenta, Date fechaInicio, Date fechaFin) {
-		String sentencia = "SELECT m FROM Movimiento m WHERE m.cuenta = :idCuenta AND m.fecha BETWEEN :fechaInicio AND :fechaFin";
-		Query query = em.createQuery(sentencia);
-		
-		// Parametros ...
-		query.setParameter("idCuenta", idCuenta);
-		query.setParameter("fechaInicio", fechaInicio);
-		query.setParameter("fechaFin", fechaFin);
 	
-		List<Movimiento> movimientosxFecha = query.getResultList();
-		return movimientosxFecha;
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Movimiento> getByMonth(int idCuenta, int mes) {
+	    String sentencia = "SELECT m FROM Movimiento m WHERE m.cuenta = :idCuenta AND MONTH(m.fecha) = :mes";
+	    Query query = em.createQuery(sentencia);
+	    
+	    query.setParameter("idCuenta", idCuenta);
+	    query.setParameter("mes", mes);
+	    
+		List<Movimiento> movimientosPorMes = query.getResultList();
+	    return movimientosPorMes;
 	}
+
 
 }
