@@ -1,6 +1,8 @@
 package controlador.movimiento;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.dao.DAOFactory;
 import modelo.entidades.Egreso;
 import modelo.entidades.Ingreso;
 import modelo.entidades.Transferencia;
@@ -45,7 +48,14 @@ public class MovimientoController extends HttpServlet {
 	
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//1. Obtener datos que me envian en la solicitud
-		String fecha = request.getParameter("fecha");
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha = new Date();
+		try {
+			fecha = formatoFecha.parse(request.getParameter("fecha"));
+		} catch (Exception e) {
+			fecha = null;
+		}
+		
 		HttpSession session = request.getSession();
 		Usuario usuario = new Usuario();
 		
@@ -61,13 +71,13 @@ public class MovimientoController extends HttpServlet {
 		List<Transferencia> tranferenciasGenerales = null;
 		
 		if (fecha != null) {
-			// List<Ingreso> ingresosGenerales = DAOFactory.getFactory().getIngresoDAO().getIngresosFecha(usuario, fecha);
-			// List<Egreso> egresosGenerales = DAOFactory.getFactory().getEgresoDAO().getEgresosFecha(usuario, fecha);
-			// List<Transferencia> tranferenciasGenerales = DAOFactory.getFactory().getTranferenciaDAO().getTransferenciasFecha(usuario, fecha);
+			ingresosGenerales = DAOFactory.getFactory().getIngresoDAO().getIngresosFecha(usuario, fecha);
+			egresosGenerales = DAOFactory.getFactory().getEgresoDAO().getEgresosFecha(usuario, fecha);
+			tranferenciasGenerales = DAOFactory.getFactory().getTransferenciaDAO().getTransferenciasFecha(usuario, fecha);
 		} else {
-			// List<Ingreso> ingresosGenerales = DAOFactory.getFactory().getIngresoDAO().getIngresosPorUsuario(usuario);
-			// List<Egreso> egresosGenerales = DAOFactory.getFactory().getEgresoDAO().getEgresosPorUsuario(usuario);
-			// List<Transferencia> tranferenciasGenerales = DAOFactory.getFactory().getTranferenciaDAO().getTransferenciasPorUsuario(usuario);
+			ingresosGenerales = DAOFactory.getFactory().getIngresoDAO().getIngresosPorUsuario(usuario);
+			egresosGenerales = DAOFactory.getFactory().getEgresoDAO().getEgresosPorUsuario(usuario);
+			tranferenciasGenerales = DAOFactory.getFactory().getTransferenciaDAO().getTransferenciasPorUsuario(usuario);
 		}
 		
 		//3. Llamo a la Vista

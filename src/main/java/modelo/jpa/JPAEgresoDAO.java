@@ -1,16 +1,13 @@
 package modelo.jpa;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
 
 import modelo.dao.EgresoDAO;
-import modelo.entidades.Categoria;
 import modelo.entidades.Egreso;
-import modelo.entidades.Ingreso;
 import modelo.entidades.Usuario;
 
 public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements EgresoDAO {
@@ -46,6 +43,18 @@ public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements Egre
 	        }
 	    }
 	    return egresosPorMesYCateg;
+	}
+
+	@Override
+	public List<Egreso> getEgresosFecha(Usuario usuario, java.util.Date fecha) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Egreso> getEgresosPorUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
