@@ -20,10 +20,10 @@
 			</div>
 			<nav class="MenuHeader">
 				<ul>
-					<a href="/movimiento.jsp">
+					<a href="/movimiento.jsp" >
 						<li>MOVIMIENTOS</li>
 					</a>
-					<a href="/index.html">
+					<a href="../index.jsp" >
 						<li>CERRAR SESIÓN</li>
 					</a>
 				</ul>
@@ -31,10 +31,6 @@
 		</header>
 		<section class="sectionBienvenida fondoCelesteDegradado">
 			<h1 class="titulo1">Bienvenido de vuelta <c:out value="${sessionScope.usuarioLogeado.nombre}"/>!</h1>
-			<div>
-				<h3>Cuenta de ahorros</h3>
-				<div class="titulo1">$0,00.00</div>
-			</div>
 		</section>
 		<section class="sectionCentro">
 			<div>
@@ -42,20 +38,24 @@
 					<!-- Combo box de meses -->
 					<div class="encabezadoSeccionIzquierda"
 						style="display: flex; justify-content: center;">
+						<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST">
 						<select name="months" id="months">
-							<option value="1">Enero</option>
-							<option value="2">Febrero</option>
-							<option value="3">Marzo</option>
-							<option value="4">Abril</option>
-							<option value="5">Mayo</option>
-							<option value="6">Junio</option>
-							<option value="7">Julio</option>
-							<option value="8">Agosto</option>
-							<option value="9">Septiembre</option>
-							<option value="10">Octubre</option>
-							<option value="11">Noviembre</option>
-							<option value="12">Diciembre</option>
+					       <option value="-1">Seleccione un mes</option>
+							<option value="0">Enero</option>
+							<option value="1">Febrero</option>
+							<option value="2">Marzo</option>
+							<option value="3">Abril</option>
+							<option value="4">Mayo</option>
+							<option value="5">Junio</option>
+							<option value="6">Julio</option>
+							<option value="7">Agosto</option>
+							<option value="8">Septiembre</option>
+							<option value="9">Octubre</option>
+							<option value="10">Noviembre</option>
+							<option value="11">Diciembre</option>
 						</select>
+						<button type="submit">Visualizar</button>
+						</form>
 					</div>
 					<div class="encabezadoSeccionIzquierda">
 						<h3>Ingresos</h3>
@@ -66,8 +66,7 @@
 							<div class="modal">
 								<h3>Nuevo Ingreso</h3>
 								<form action="">
-									<div
-										style="display: flex; justify-content: space-between; padding-top: 15px;">
+									<div style="display: flex; justify-content: space-between; padding-top: 15px;">
 										<p>Categoría</p>
 										<select name="categoriaIngreso" id="" class="styled-combo">
 											<option value="Nomina">Nomina</option>
@@ -89,7 +88,7 @@
 										<p>Valor</p>
 										<input type="number"
 											placeholder="Introduce el Valor del ingreso" id="valorIngeso"
-											class="styled-combo">
+											class="styled-combo"> 
 									</div>
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 25px;">
@@ -116,18 +115,12 @@
 					<br>
 					<div style="padding-left: 100px;">
 						<div class="contenedorCategoriaIngresos ">
+							<c:forEach items ="${ingresos}" var="ingreso">
 							<div class="contenedorValoresIngesos">
-								<p>$0,000.00</p>
-								<h5>Nomina</h5>
+								<p>$ ${ingreso.valor}</p>
+								<h5>${ingreso.categoria.nombre}</h5>
 							</div>
-							<div class="contenedorValoresIngesos">
-								<p>$0,000.00</p>
-								<h5>Universidad</h5>
-							</div>
-							<div class="contenedorValoresIngesos">
-								<p>$0,000.00</p>
-								<h5>Senecyt</h5>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -146,6 +139,13 @@
 										<p>Categoría</p>
 										<select name="categoriaEgreso" id="" class="styled-combo">
 											<option value="Persona">Persona</option>
+										</select>
+									</div>
+									<div
+										style="display: flex; justify-content: space-between; padding-top: 15px;">
+										<p>Subcategoría</p>
+										<select name="categoriaEgreso" id="" class="styled-combo">
+											<option value="Persona">Peluquería</option>
 										</select>
 									</div>
 									<div
