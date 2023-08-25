@@ -18,8 +18,8 @@
             </div>
             <nav class="MenuHeader">
                 <ul>
-                    <li>MOVIMIENTOS</li>
-                    <li>CERRAR SESIÓN</li>
+                    <a href="movimiento.html">  <li>MOVIMIENTOS</li></a>
+                    <a href="index.html">  <li>CERRAR SESIÓN</li></a>
                 </ul>
             </nav>
         </header>
@@ -28,6 +28,23 @@
             <div>
                 <h3>Cuenta de ahorros</h3>
                 <div class="titulo1">$0,00.00</div>
+            </div>
+            <!-- Combo box de meses -->
+            <div>
+                <select name="months" id="months">
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
             </div>
         </section>
         <section class="sectionCentro">
@@ -104,13 +121,6 @@
                                 <form action="">
                                     <div style="display: flex; justify-content: space-between; padding-top: 15px;">
                                         <p>Categoría</p><select name="categoriaEgreso" id="" class="styled-combo">
-                                            <option value="Personal">Personal</option>
-                                            <option value="Salud">Salud</option>
-                                            <option value="Educacion">Educacion</option>
-                                        </select>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; padding-top: 15px;">
-                                        <p>Subcategoría</p><select name="subcategoriaEgreso" id="" class="styled-combo">
                                             <option value="Persona">Persona</option>
                                             <option value="Salud">Salud</option>
                                             <option value="Educacion">Educacion</option>
@@ -244,7 +254,7 @@
             <div class="fondoMisCuentas MisCuentas">
                 <div class="encabezadoSeccionIzquierda" style="padding-bottom: 20px;">
                     <h3>Mis Cuentas</h3>
-                    <button class="botonSectionMisCuentas fondoBotones">Realizar Transferencia</button>
+                    <a href="trasferencia.html"><button class="botonSectionMisCuentas fondoBotones">Realizar Transferencia</button></a>
                 </div>
                 <div style="display: flex; justify-content: space-between; padding-left: 70px; padding-right: 70px;">
                     <button class="botonSectionMisCuentas fondoBotones" id="openAgregarCuenta">Agregar Cuenta</button>
@@ -325,41 +335,13 @@
                             <p>$0,000.00</p>
                         </div>
                     </div>
-                    <div class="contenedorCuenta">
-                        <p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
-                        <div class="numCuenta">
-                            <p>0123456789</p>
-                            <p>$0,000.00</p>
-                        </div>
-                    </div>
-                    <div class="contenedorCuenta">
-                        <p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
-                        <div class="numCuenta">
-                            <p>0123456789</p>
-                            <p>$0,000.00</p>
-                        </div>
-                    </div>
-                    <div class="contenedorCuenta">
-                        <p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
-                        <div class="numCuenta">
-                            <p>0123456789</p>
-                            <p>$0,000.00</p>
-                        </div>
-                    </div>
-                    <div class="contenedorCuenta">
-                        <p style="font-size: 30px; padding-left: 20px;">Produbanco</p>
-                        <div class="numCuenta">
-                            <p>0123456789</p>
-                            <p>$0,000.00</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
         <footer class="piepagina">
             <div> Desarrollado Por Grupo 5 Aplicaciones Web</div>
             <div>
-                <h5>Sisguenos En</h5>
+                <h5>Síguenos En</h5>
                 <i class="fa-brands fa-facebook fa-xl"></i>
                 <i class="fa-brands fa-x-twitter fa-xl"></i>
                 <i class="fa-brands fa-youtube fa-xl"></i>
