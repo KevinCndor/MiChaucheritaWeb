@@ -19,20 +19,19 @@ public class JPAIngresoDAO extends JPAGenericDAO<Ingreso, Integer> implements In
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Ingreso> getTotalizadoPorCategoria(Usuario usuario, Categoria categoria) {
-		String sentencia = "SELECT i FROM Ingreso i WHERE i.propietario = :usuario AND categoria = :categoria";
+	public List<Ingreso> getIngresosPorCategoria(Usuario usuario) {
+		String sentencia = "SELECT i FROM Ingreso i WHERE i.propietario = :usuario";
 	    Query query = em.createQuery(sentencia);
 	    
 	    query.setParameter("propietario", usuario);
-	    query.setParameter("categoria", categoria);
 	    
 		List<Ingreso> ingresosPorCategoria = query.getResultList();
 	    return ingresosPorCategoria;
 	}
 
 	@Override
-	public List<Ingreso> getTotalizadoPorCategoriaYMes(Usuario usuario, Categoria categoria, int mes) {
-	    List<Ingreso> ingresosPorCategoria = getTotalizadoPorCategoria(usuario, categoria);
+	public List<Ingreso> getIngresosPorCategoriaYMes(Usuario usuario, int mes) {
+	    List<Ingreso> ingresosPorCategoria = getIngresosPorCategoria(usuario);
 	    List<Ingreso> ingresosPorMesYCateg = new ArrayList<Ingreso>();
 	    for (Ingreso ingreso : ingresosPorCategoria) {
 	        LocalDate fechaIngreso = ingreso.getFecha();

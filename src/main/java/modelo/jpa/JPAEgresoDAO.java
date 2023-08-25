@@ -20,20 +20,19 @@ public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements Egre
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Egreso> getTotalizadoPorCategoria(Usuario usuario, Categoria categoria) {
-		String sentencia = "SELECT e FROM Egreso e WHERE e.propietario = :usuario AND categoria = :categoria";
+	public List<Egreso> getEgresosPorCategoria(Usuario usuario) {
+		String sentencia = "SELECT e FROM Egreso e WHERE e.propietario = :usuario";
 	    Query query = em.createQuery(sentencia);
 	    
 	    query.setParameter("propietario", usuario);
-	    query.setParameter("categoria", categoria);
 	    
 		List<Egreso> egresosPorCategoria = query.getResultList();
 	    return egresosPorCategoria;
 	}
 
 	@Override
-	public List<Egreso> getTotalizadoPorCategoriaYMes(Usuario usuario, Categoria categoria, int mes) {
-	    List<Egreso> egresosPorCategoria = getTotalizadoPorCategoria(usuario, categoria);
+	public List<Egreso> getEgresosPorCategoriaYMes(Usuario usuario, int mes) {
+	    List<Egreso> egresosPorCategoria = getEgresosPorCategoria(usuario);
 	    List<Egreso> egresosPorMesYCateg = new ArrayList<Egreso>();
 	    for (Egreso egreso : egresosPorCategoria) {
 	        LocalDate fechaIngreso = egreso.getFecha();
