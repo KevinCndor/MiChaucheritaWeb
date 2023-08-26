@@ -332,7 +332,7 @@
 					<c:forEach items="${cuentas}" var="cuenta">
 						<a href="MovimientoController?ruta=mostrar">
 							<div class="contenedorCuenta">
-								<p style="font-size: 30px; padding-left: 20px;" name="${nombre}">${cuenta.nombre}</p>
+								<p style="font-size: 30px; padding-left: 20px;" name="nombre" value="${cuenta.nombre}">${cuenta.nombre}</p>
 								<div class="numCuenta">
 									<p>${cuenta.numeronumeroCuenta}</p>
 									<p>${cuenta.saldo}</p>
