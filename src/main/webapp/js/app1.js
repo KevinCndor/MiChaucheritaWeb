@@ -1,3 +1,4 @@
+/* Seleccionar cuenta de origen */
 document.addEventListener('DOMContentLoaded', function() {
     var divs = document.querySelectorAll('.clickable-div');
     var showAllButton = document.getElementById('showAll');
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+/* Seleccionar cuenta de destino */
 document.addEventListener('DOMContentLoaded', function() {
     var divs1 = document.querySelectorAll('.clickable-div1');
     var showAllButton1 = document.getElementById('showAll1');
