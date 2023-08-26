@@ -83,7 +83,7 @@
 												una categoria</option>
 											<c:forEach items="${categoriasingreso}"
 												var="categoriaingreso">
-												<option value="${categoriaingreso.nombre}"
+												<option value="${categoriaingreso.id}"
 													${categoriaingreso.nombre==categoriaingreso ? 'selected':''}>${categoriaingreso.nombre}</option>
 											</c:forEach>
 										</select>
@@ -105,7 +105,7 @@
 										<p>Valor</p>
 										<input type="number"
 											placeholder="Introduce el Valor del ingreso" id="valorIngeso"
-											class="styled-combo">
+											class="styled-combo" name="valor">
 									</div>
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 25px;">
