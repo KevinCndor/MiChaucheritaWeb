@@ -81,10 +81,10 @@
 										<select name="categoriaIngreso" id="" class="styled-combo">
 											<option value="default" selected disabled="disabled">Seleccione
 												una categoria</option>
-											<c:forEach items="${categoriasingreso}"
-												var="categoriaingreso">
-												<option value="${categoriaingreso.id}"
-													${categoriaingreso.nombre==categoriaingreso ? 'selected':''}>${categoriaingreso.nombre}</option>
+											<c:forEach items="${categoriasIngreso}"
+												var="categoriaIngreso">
+												<option value="${categoriaIngreso.id}"
+													${categoriaIngreso.nombre==categoriaIngreso ? 'selected':''}>${categoriaIngreso.nombre}</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -156,15 +156,16 @@
 							<div class="modal">
 								<h3>Nuevo Egreso</h3>
 								<form action="MovimientoController?ruta=nuevomovimiento&tipo=Egreso" method="POST">
+									<div>
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 15px;">
 										<p>Categoría</p>
 										<select name="categoriaEgreso" id="" class="styled-combo">
 											<option value="default" selected disabled="disabled">Seleccione
 												una categoria</option>
-											<c:forEach items="${categorias}" var="categoria">
-												<option value="${categoria.nombre}"
-													${categoria.nombre==categoria ? 'selected':''}>${categoria.nombre}</option>
+											<c:forEach items="${categoriasEgresos}" var="categoriaEgresos">
+												<option value="${categoriaEgresos.nombre}"
+													${categoriaEgresos.nombre==categoriaEgresos ? 'selected':''}>${categoriaEgresos.nombre}</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -180,6 +181,7 @@
 												<!--  <option value="Persona">Peluquería</option>-->
 											</c:forEach>
 										</select>
+									</div>
 									</div>
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 25px;">
