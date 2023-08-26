@@ -27,9 +27,15 @@ public class JPACuentaDAO extends JPAGenericDAO<Cuenta, Integer> implements Cuen
 	}
 
 	@Override
-	public Cuenta getByName(String nombre, Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cuenta getPorNombreYUsuario(String nombreCuenta, Usuario usuario) {
+		String sentencia = "SELECT c FROM Cuenta c WHERE c.propietario = :usuario and c.nombre = :nombreCuenta";
+	    Query query = em.createQuery(sentencia);
+	    
+	    query.setParameter("usuario", usuario);
+	    query.setParameter("nombreCuenta", nombreCuenta);
+	    
+		Cuenta cuenta = (Cuenta) query.getSingleResult();
+	    return cuenta;
 	}
 
 }

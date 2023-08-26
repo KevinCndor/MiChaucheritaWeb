@@ -17,7 +17,6 @@ public class JPAUsuarioDAO extends JPAGenericDAO<Usuario, Integer> implements Us
 		String sentencia = "SELECT u FROM Usuario u WHERE u.username = :username AND u.password = :password";
 		Query query = em.createQuery(sentencia);
 
-		// Parametros ...
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 

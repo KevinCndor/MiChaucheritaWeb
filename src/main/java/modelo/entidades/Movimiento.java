@@ -32,6 +32,8 @@ public class Movimiento implements Serializable{
 	private int id;
 	@Column(name = "descripcion")
 	private String descripcion;
+	@Column(name = "tipo_movimiento")
+	private String tipoMovimiento;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha")
 	private Date fecha;
@@ -43,10 +45,9 @@ public class Movimiento implements Serializable{
 	
 	public Movimiento() {}
 	
-	public Movimiento(int id, String descripcion, Date date, double valor,Cuenta cuenta) {
-		this.id = id;
+	public Movimiento(String descripcion, Date fecha, double valor, Cuenta cuenta) {
 		this.descripcion = descripcion;
-		this.fecha = date;
+		this.fecha = fecha;
 		this.valor = valor;
 		this.cuenta = cuenta;
 	}
@@ -83,9 +84,17 @@ public class Movimiento implements Serializable{
 		this.valor = valor;
 	}
 
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
+
 	@Override
 	public String toString() {
-		return id + descripcion + fecha + valor;
+		return id + descripcion + fecha + valor + cuenta;
 	}
 	
 }

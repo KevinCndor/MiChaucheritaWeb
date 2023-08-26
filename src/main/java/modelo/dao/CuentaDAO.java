@@ -8,6 +8,6 @@ import modelo.entidades.Usuario;
 public interface CuentaDAO extends GenericDAO<Cuenta, Integer>{
 	
 	public List<Cuenta> getCuentasUsuario(Usuario usuario);
-	public Cuenta getByName(String nombre, Usuario usuario);
+	public Cuenta getPorNombreYUsuario(String nombreCuenta, Usuario usuario);
 
 }

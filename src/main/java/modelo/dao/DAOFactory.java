@@ -16,5 +16,7 @@ public abstract class DAOFactory {
 	public abstract EgresoDAO getEgresoDAO();
 	public abstract IngresoDAO getIngresoDAO();
 	public abstract TransferenciaDAO getTransferenciaDAO();
+	public abstract CategoriaDAO getCategoriaDAO();
+	public abstract SubcategoriaDAO getSubcategoriaDAO();
 	
 }

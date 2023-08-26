@@ -22,7 +22,7 @@ public class Cuenta implements Serializable{
 	
 	@Id
 	private String numeroCuenta;
-	@Column(name = "nombre")
+	@Column(name = "nombre", unique = true)
 	private String nombre;
 	@Column(name = "saldo")
 	private double saldo;
@@ -35,10 +35,11 @@ public class Cuenta implements Serializable{
 	public Cuenta() {
 	}
 	
-	public Cuenta(String numeroCuenta, String nombre, double saldo) {
+	public Cuenta(String numeroCuenta, String nombre, double saldo, Usuario propietario) {
 		this.numeroCuenta = numeroCuenta;
 		this.nombre = nombre;
 		this.saldo = saldo;
+		this.propietario = propietario;
 	}
 
 	public String getNumeroCuenta() {
@@ -65,9 +66,20 @@ public class Cuenta implements Serializable{
 		this.saldo = saldo;
 	}
 
+	public Usuario getPropietario() {
+		return propietario;
+	}
+
+	public void setPropietario(Usuario propietario) {
+		this.propietario = propietario;
+	}
+
+	public List<Movimiento> getMovimientos() {
+		return movimientos;
+	}
+
 	@Override
 	public String toString() {
-		return numeroCuenta + nombre + saldo;
+		return numeroCuenta + nombre + saldo + propietario;
 	}
-	
 }

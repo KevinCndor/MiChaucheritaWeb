@@ -22,8 +22,8 @@ public class Subcategoria extends Categoria implements Serializable{
 		super();
 	}
 	
-	public Subcategoria(int id, String nombre, Categoria categoriaPadre) {
-		super(id, nombre);
+	public Subcategoria(String nombre, Categoria categoriaPadre, String tipo) {
+		super(nombre, tipo);
 		this.categoriaPadre = categoriaPadre;
 	}
 
@@ -33,6 +33,11 @@ public class Subcategoria extends Categoria implements Serializable{
 
 	public void setCategoriaPadre(Categoria categoriaPadre) {
 		this.categoriaPadre = categoriaPadre;
+	}
+
+	@Override
+	public String toString() {
+		return categoriaPadre + "";
 	}
 
 }
