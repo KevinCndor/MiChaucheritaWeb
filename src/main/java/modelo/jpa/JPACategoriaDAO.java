@@ -16,7 +16,7 @@ public class JPACategoriaDAO extends JPAGenericDAO<Categoria, Integer> implement
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Categoria> getCategoriasPorTipo(String tipo) {
-		String sentencia = "SELECT c FROM Categoria c WHERE c.tipo = :tipo AND c.categoriaPadre IS NULL;";
+		String sentencia = "SELECT c FROM Categoria c WHERE c.tipo = :tipo AND c.categoriaPadre IS NULL";
 
 		Query query = em.createQuery(sentencia);
 	

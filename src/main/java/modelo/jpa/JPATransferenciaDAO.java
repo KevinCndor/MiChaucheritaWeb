@@ -24,15 +24,13 @@ public class JPATransferenciaDAO extends JPAGenericDAO<Transferencia, Integer> i
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Transferencia> getTransferenciasPorMes(Usuario usuario, int mes) {
-		String tipo = "Transferencia";
-		String sentencia = "SELECT m FROM Movimiento m "
-								+ "JOIN Cuenta c ON c.NUMEROCUENTA = m.cuenta "
-								+ "WHERE c.propietario = :propietario AND m.tipo_movimiento = :tipo "
-								+ "AND MONTH(m.fecha) = :mes;";
+		String sentencia = "SELECT t FROM Transferencia t "
+								+ "JOIN Cuenta c ON c.NUMEROCUENTA = t.cuenta "
+								+ "WHERE c.propietario = :propietario "
+								+ "AND MONTH(t.fecha) = :mes";
 	    Query query = em.createQuery(sentencia);
 	    
-	    query.setParameter("propietario", usuario.getId());
-	    query.setParameter("tipo", tipo);
+	    query.setParameter("propietario", usuario);
 	    query.setParameter("mes", mes);
 	    
 		List<Transferencia> transferenciasPorMes = query.getResultList();

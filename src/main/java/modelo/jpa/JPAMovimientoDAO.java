@@ -18,7 +18,7 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movimiento> getByMonth(int idCuenta, int mes) {
-	    String sentencia = "SELECT m FROM Movimiento m WHERE m.cuenta = :idCuenta AND MONTH(m.fecha) = :mes;";
+	    String sentencia = "SELECT m FROM Movimiento m WHERE m.cuenta = :idCuenta AND MONTH(m.fecha) = :mes";
 	    Query query = em.createQuery(sentencia);
 	    
 	    query.setParameter("idCuenta", idCuenta);
@@ -31,7 +31,7 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movimiento> getByType(int idCuenta, String tipo) {
-		String sentencia = "SELECT m FROM Movimiento m WHERE m.cuenta = :idCuenta AND m.tipo_movimiento = :tipo ";
+		String sentencia = "SELECT m FROM Movimiento m WHERE m.cuenta = :idCuenta AND m.tipo_movimiento = :tipo";
 	    Query query = em.createQuery(sentencia);
 	    
 	    query.setParameter("idCuenta", idCuenta);

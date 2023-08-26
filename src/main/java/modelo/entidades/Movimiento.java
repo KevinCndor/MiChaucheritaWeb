@@ -32,6 +32,8 @@ public class Movimiento implements Serializable{
 	private int id;
 	@Column(name = "descripcion")
 	private String descripcion;
+	@Column(name = "tipo_movimiento")
+	private String tipoMovimiento;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha")
 	private Date fecha;

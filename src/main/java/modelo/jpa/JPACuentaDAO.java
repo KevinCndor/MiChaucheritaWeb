@@ -17,10 +17,10 @@ public class JPACuentaDAO extends JPAGenericDAO<Cuenta, Integer> implements Cuen
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cuenta> getCuentasUsuario(Usuario usuario) {
-		String sentencia = "SELECT c FROM Cuenta c WHERE c.propietario = :usuario;";
+		String sentencia = "SELECT c FROM Cuenta c WHERE c.propietario = :usuario";
 	    Query query = em.createQuery(sentencia);
 	    
-	    query.setParameter("usuario", usuario.getId());
+	    query.setParameter("usuario", usuario);
 	    
 		List<Cuenta> cuentasPorUsuario = query.getResultList();
 	    return cuentasPorUsuario;
@@ -31,7 +31,7 @@ public class JPACuentaDAO extends JPAGenericDAO<Cuenta, Integer> implements Cuen
 		String sentencia = "SELECT c FROM Cuenta c WHERE c.propietario = :usuario and c.nombre = :nombreCuenta";
 	    Query query = em.createQuery(sentencia);
 	    
-	    query.setParameter("usuario", usuario.getId());
+	    query.setParameter("usuario", usuario);
 	    query.setParameter("nombreCuenta", nombreCuenta);
 	    
 		Cuenta cuenta = (Cuenta) query.getSingleResult();

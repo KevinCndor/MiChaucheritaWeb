@@ -20,16 +20,14 @@ public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements Egre
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Egreso> getEgresosPorSubcategoria(Usuario usuario) {
-		String tipo = "Egreso";
-		String sentencia = "SELECT m.subcategoria, m, SUM(m.valor) as total_subcategoria "
-							+ "FROM Movimiento m "
-							+ "JOIN Cuenta c ON c.NUMEROCUENTA = m.cuenta "
-							+ "WHERE c.propietario = :propietario AND m.tipo_movimiento = :tipo "
-							+ "GROUP BY m.subcategoria;";
+		String sentencia = "SELECT e.subcategoria, e, SUM(e.valor) as total_subcategoria "
+							+ "FROM Egreso e "
+							+ "JOIN Cuenta c ON c.NUMEROCUENTA = e.cuenta "
+							+ "WHERE c.propietario = :propietario "
+							+ "GROUP BY e.subcategoria ";
 		Query query = em.createQuery(sentencia);
 
-		query.setParameter("propietario", usuario.getId());
-		query.setParameter("tipo", tipo);
+		query.setParameter("propietario", usuario);
 
 		List<Object[]> resultados = query.getResultList();
 		List<Egreso> egresosPorSubcategoria = new ArrayList<>();
@@ -50,16 +48,16 @@ public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements Egre
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Egreso> getEgresosPorCategoria(Usuario usuario) {
-		String tipo = "Egreso";
-		String sentencia = "SELECT m, SUM(m.valor) as total_subcategoria "
-							+ "FROM Movimiento m "
-							+ "JOIN Cuenta c ON c.NUMEROCUENTA = m.cuenta "
-							+ "WHERE c.propietario = :propietario AND m.tipo_movimiento = :tipo "
-							+ "GROUP BY m.categoria;";
-		Query query = em.createQuery(sentencia);
+		String sentencia = "SELECT e, SUM(e.valor) as total_subcategoria "
+                + "FROM Egreso e "
+                + "JOIN FETCH e.categoria "
+                + "JOIN FETCH e.subcategoria "
+                + "JOIN Cuenta c ON c.NUMEROCUENTA = e.cuenta "
+                + "WHERE c.propietario = :propietario "
+                + "GROUP BY e.categoria";
 
-		query.setParameter("propietario", usuario.getId());
-		query.setParameter("tipo", tipo);
+		Query query = em.createQuery(sentencia);
+		query.setParameter("propietario", usuario);
 
 		List<Object[]> resultados = query.getResultList();
 		List<Egreso> egresosPorCategoria = new ArrayList<>();

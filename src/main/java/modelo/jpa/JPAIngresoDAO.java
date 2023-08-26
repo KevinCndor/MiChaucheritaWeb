@@ -19,17 +19,14 @@ public class JPAIngresoDAO extends JPAGenericDAO<Ingreso, Integer> implements In
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Ingreso> getIngresosPorCategoria(Usuario usuario) {
-		String tipo = "Ingreso";
-		String sentencia = "SELECT m, SUM(m.valor) as total_categoria "
-								+ "FROM Movimiento m "
-								+ "JOIN Cuenta c ON c.NUMEROCUENTA = m.cuenta "
-								+ "WHERE c.propietario = :propietario AND m.tipo_movimiento = :tipo "
-								+ "GROUP BY m.categoria;";
+		String sentencia = "SELECT i, SUM(i.valor) as total_categoria "
+							+ "FROM Ingreso i JOIN Cuenta c ON c.NUMEROCUENTA = i.cuenta "
+							+ "WHERE c.propietario = :propietario "
+							+ "GROUP BY i.categoria";
 	
 		Query query = em.createQuery(sentencia);
 
-		query.setParameter("propietario", usuario.getId());
-		query.setParameter("tipo", tipo);
+		query.setParameter("propietario", usuario);
 
 		List<Object[]> resultados = query.getResultList();
 		List<Ingreso> ingresosPorCategoria = new ArrayList<>();
