@@ -155,16 +155,16 @@
 							class="modal-container contenedorModal">
 							<div class="modal">
 								<h3>Nuevo Egreso</h3>
-								<form action=".............." method="POST">
+								<form action="MovimientoController?ruta=nuevomovimiento&tipo=Egreso" method="POST">
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 15px;">
 										<p>Categoría</p>
 										<select name="categoriaEgreso" id="" class="styled-combo">
 											<option value="default" selected disabled="disabled">Seleccione
 												una categoria</option>
-											<c:forEach items="${.........}" var="...........">
-												<option value="${....}"
-													${cuenta.nombre==cuenta ? 'selected':''}>${cuenta.nombre}</option>
+											<c:forEach items="${categorias}" var="categoria">
+												<option value="${categoria.nombre}"
+													${categoria.nombre==categoria ? 'selected':''}>${categoria.nombre}</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -174,9 +174,9 @@
 										<select name="subcategoriaEgreso" id="" class="styled-combo">
 											<option value="default" selected disabled="disabled">Seleccione
 												una subcategoria</option>
-											<c:forEach items="${.........}" var="...........">
-												<option value="${....}"
-													${cuenta.nombre==cuenta ? 'selected':''}>${cuenta.nombre}</option>
+											<c:forEach items="${subcategorias}" var="subcategoria">
+												<option value="${subcateoria.nombre}"
+													${subcateoria.nombre==subcategoria ? 'selected':''}>${subcateoria.nombre}</option>
 												<!--  <option value="Persona">Peluquería</option>-->
 											</c:forEach>
 										</select>
@@ -328,9 +328,9 @@
 				<div class="contenedorcuadrosCuenta">
 				<form action="MovimientoController?ruta=mostrar" method="POST">
 					<c:forEach items="${cuentas}" var="cuenta">
-						<a href="movimiento.jsp">
+						<a href="MovimientoController?ruta=mostrar">
 							<div class="contenedorCuenta">
-								<p style="font-size: 30px; padding-left: 20px;">${cuenta.nombre}</p>
+								<p style="font-size: 30px; padding-left: 20px;" name="${cuenta.nombre}">${cuenta.nombre}</p>
 								<div class="numCuenta">
 									<p>${cuenta.numeronumeroCuenta}</p>
 									<p>${cuenta.saldo}</p>
