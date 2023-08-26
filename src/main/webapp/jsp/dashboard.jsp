@@ -164,7 +164,7 @@
 											<option value="default" selected disabled="disabled">Seleccione
 												una categoria</option>
 											<c:forEach items="${categoriasEgresos}" var="categoriaEgresos">
-												<option value="${categoriaEgresos.nombre}"
+												<option value="${categoriaEgresos.id}"
 													${categoriaEgresos.nombre==categoriaEgresos ? 'selected':''}>${categoriaEgresos.nombre}</option>
 											</c:forEach>
 										</select>
