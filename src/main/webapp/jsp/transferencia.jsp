@@ -19,10 +19,10 @@
 			</div>
 			<nav class="MenuHeader">
 				<ul>
-					<a href="dashboard.html">
+					<a href="DashboardController?ruta=mostrar">
 						<li>REGRESAR</li>
 					</a>
-					<a href="index.html">
+					<a href="AccesoController?ruta=inicio">
 						<li>CERRAR SESIÓN</li>
 					</a>
 				</ul>
@@ -44,8 +44,7 @@
 
 				<!-- Escoger cuenta de origen -->
 				<div class="centrarBotones">
-					<div class="titulo2 seccionMovimiento">1. Elija la cuenta de
-						origen</div>
+					<div class="titulo2 seccionMovimiento">1. Elija la cuenta de origen</div>
 					<div class="contenedorcuadrosCuentaTransferencia">
 
 						<c:forEach items="${cuentas}" var="cuenta">
@@ -60,20 +59,17 @@
 
 					</div>
 					<a href="">
-						<button type="submit" value="regresar"
-							class="botonInicio fondoBotones" style="font-size: 30px;">
-							Regresar</button>
+						<button type="submit" value="regresar" class="botonInicio fondoBotones" style="font-size: 30px;">Regresar</button>
 					</a>
 				</div>
 
 				<!-- Escoger cuenta de destino -->
 				<div class="centrarBotones">
-					<div class="titulo2 seccionMovimiento">2. Elija la cuenta de
-						destino</div>
+					<div class="titulo2 seccionMovimiento">2. Elija la cuenta de destino</div>
 					<div class="contenedorcuadrosCuentaTransferencia">
 
 						<c:forEach items="${cuentas}" var="cuenta">
-							<div class="contenedorCuentaTransferencia clickable-div">
+							<div class="contenedorCuentaTransferencia clickable-div1">
 								<div style="font-size: 30px; padding-left: 20px;">${cuenta.nombre}</div>
 								<div class="numCuenta">
 									<p>${cuenta.numeroCuenta}</p>
@@ -83,19 +79,17 @@
 						</c:forEach>
 
 					</div>
-					<a href="">
-						<button type="submit" value="regresar"
-							class="botonInicio fondoBotones" style="font-size: 30px;">
-							Regresar</button>
-					</a>
+					<!--  <a href=""> -->
+						<button type="submit" value="regresar" class="botonInicio fondoBotones" style="font-size: 30px;">Regresar</button>
+					<!-- </a> -->
 				</div>
 
 				<!-- Info Transferencia -->
 				<div class="centrarBotones">
 					<div class="titulo2 seccionMovimiento">3. Información de transferencia</div>
 					<div class="fondoCuadroInformacion contenedorFormTransferencia">
-						<!-- Cmabiar ruta del form con Jackson *************************************** -->
-						<form class="inputInicio-container" action="" method="POST">
+						
+						<form class="inputInicio-container" action="MovimientoController?ruta=transferencia" method="POST">
 							<div>
 								<div class="titulo2">Monto</div>
 								<input type="text" name="monto" placeholder="$00.00" required class="styled-inputTransferencia">
@@ -105,17 +99,14 @@
 								<input type="text" name="descripcion" required class="styled-inputTransferencia2">
 							</div>
 
-							<a href="">
-								<button type="submit" value="HacerTransferencia"
-									class="botonInicio fondoBotones">Hacer Transferencia</button>
-							</a>
+							<!-- <a href=""> -->
+								<button type="submit" value="HacerTransferencia" class="botonInicio fondoBotones">Hacer Transferencia</button>
+							<!-- </a> -->
 						</form>
 					</div>
 
-<!-- Cambiar ruta del boton cancelar -->
-					<a href="dashboard.html">
-						<button type="submit" value="Cancelar"
-							class="botonInicio fondoBotones ">Cancelar</button>
+					<a href="DashboardController?ruta=mostrar">
+						<button type="submit" value="Cancelar" class="botonInicio fondoBotones ">Cancelar</button>
 					</a>
 				</div>
 

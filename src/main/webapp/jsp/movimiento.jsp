@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,10 +17,10 @@
 			</div>
 			<nav class="MenuHeader">
 				<ul>
-					<a href="/dashboard.jsp">
+					<a href="DashboardController?ruta=mostrar">
 						<li>REGRESAR</li>
 					</a>
-					<a href="/index.jsp">
+					<a href="AccesoController?ruta=inicio">
 						<li>CERRAR SESIÓN</li>
 					</a>
 				</ul>
@@ -39,11 +38,10 @@
 		<section class="contenedorMovimiento">
 			<div class="sectionFiltros">
 				<h3 class="seccionMovimiento">Movimientos</h3>
-				<!-- Esto hay que cambiar la ruta ******************************************************* -->
-				<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST">
+				
+				<form action="MovimientoController?ruta=mostrar&filtromes=mes&filtrotipo=tipo" method="POST">
 					<select name="months" id="months">
-						<option value="-1" selected disabled="disabled">Seleccione
-							un mes</option>
+						<option value="-1" selected disabled="disabled">Seleccione un mes</option>
 						<option value="0">Enero</option>
 						<option value="1">Febrero</option>
 						<option value="2">Marzo</option>
@@ -57,9 +55,6 @@
 						<option value="10">Noviembre</option>
 						<option value="11">Diciembre</option>
 					</select>
-
-
-					<!-- Aqui hay otro cambio de filtro de categoria************************ -->
 					
 					<select name="categoria" id="categoria">
 						<option value="-1" selected disabled="disabled">Seleccione una opcion</option>
@@ -87,19 +82,17 @@
 						<th>Cuenta Destino</th>
 					</tr>
 					
-					<!-- Ver como  pasa Jackson ********************************************* -->
-					<c:forEach items="${}" var="">
+					<c:forEach items="${movimientos}" var="movimiento">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${movimiento.id}</td>
+						<td>${movimiento.cuenta}</td>
+						<td>${movimiento.categoria}</td>
+						<td>${movimiento.subcategoria}</td>
+						<td>${movimiento.tipo_movimiento}</td>
+						<td>${movimiento.valor}</td>
+						<td>${movimiento.descripcion}</td>
+						<td>${movimiento.fecha}</td>
+						<td>${movimiento.cuentaDestino}</td>
 					</tr>
 					</c:forEach>
 				</table>
@@ -116,10 +109,7 @@
 			</div>
 		</footer>
 	</main>
-	<script src="${pageContext.request.contextPath}/js/app.js">
-		
-	</script>
-	<script src="https://kit.fontawesome.com/85e6f64c7f.js"
-		crossorigin="anonymous"></script>
+	<script src="${pageContext.request.contextPath}/js/app.js"></script>
+	<script src="https://kit.fontawesome.com/85e6f64c7f.js" crossorigin="anonymous"></script>
 </body>
 </html>
