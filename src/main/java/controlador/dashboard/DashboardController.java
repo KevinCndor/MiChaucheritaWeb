@@ -1,6 +1,7 @@
 package controlador.dashboard;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.dao.DAOFactory;
+import modelo.entidades.Categoria;
 import modelo.entidades.Cuenta;
 import modelo.entidades.Egreso;
 import modelo.entidades.Ingreso;
+import modelo.entidades.Subcategoria;
 import modelo.entidades.Usuario;
 
 @WebServlet("/DashboardController")
@@ -91,32 +94,56 @@ public class DashboardController extends HttpServlet {
 		//2. Llamo al Modelo para obtener datos
 		List<Ingreso> ingresosPorCategoria = null;
 		List<Egreso> egresosPorCategoria = null;
-		// List<Subcategoria> egresosPorSubcategoria = null;
+		List<Egreso> egresosPorSubcategoria = null;
 		List<Cuenta> misCuentas = null;
 		
 		if (mes != -1) {
 			ingresosPorCategoria = DAOFactory.getFactory().getIngresoDAO().getIngresosPorCategoriaYMes(usuario, mes);
 			egresosPorCategoria = DAOFactory.getFactory().getEgresoDAO().getEgresosPorCategoriaYMes(usuario, mes);
-			// egresosPorSubcategoria = DAOFactory.getFactory().getEgresoDAO().getEgresosPorSubcategoriaYMes(usuario, mes);
+			egresosPorSubcategoria = DAOFactory.getFactory().getEgresoDAO().getEgresosPorSubCatYMes(usuario, mes);
 		} else {
 			ingresosPorCategoria = DAOFactory.getFactory().getIngresoDAO().getIngresosPorCategoria(usuario);
 			egresosPorCategoria = DAOFactory.getFactory().getEgresoDAO().getEgresosPorCategoria(usuario);
-			// egresosPorSubcategoria = DAOFactory.getFactory().getEgresoDAO().getEgresosPorSubcategoria(usuario);
+			egresosPorSubcategoria = DAOFactory.getFactory().getEgresoDAO().getEgresosPorSubcategoria(usuario);
 		}
 		
-		misCuentas = DAOFactory.getFactory().getCuentaDAO().getCuentasUsuario(usuario);		
-		// List<Categoria> categoriasIngresos = DAOFactory.getFactory().getCateogriasDAO().getByTipo("Ingreso");
-		// List<Categoria> categoriasEgresos = DAOFactory.getFactory().getCateogriasDAO().getByTipo("Egreso");
-		// List<Subcategoria> subcategoriasEgresos = DAOFactory.getFactory().getSubcateogriasDAO().getAll();
+		misCuentas = DAOFactory.getFactory().getCuentaDAO().getCuentasUsuario(usuario);
+		List<Categoria> categoriasIngresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Ingreso");		
+		List<Categoria> categoriasEgresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Egreso");
+		List<Subcategoria> subcategoriasEgresos = null;
+		
+		Categoria catParaSubcat = null;
+		
+		if (request.getParameter("filtrosubcat") != null) {
+			String catSelected = request.getParameter("categoriaEgreso");
+			catParaSubcat = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(catSelected));			
+			subcategoriasEgresos = DAOFactory.getFactory().getSubcategoriaDAO().getSubcategoriasPorCategoria(catParaSubcat);
+			
+			response.setContentType("application/json");
+	        PrintWriter out = response.getWriter();
+	        out.print("[");
+	        for (int i = 0; i < subcategoriasEgresos.size(); i++) {
+	            Subcategoria subcategoria = subcategoriasEgresos.get(i);
+	            out.print("{");
+	            out.print("\"id\": \"" + subcategoria.getId() + "\",");
+	            out.print("\"nombre\": \"" + subcategoria.getNombre() + "\"");
+	            out.print("}");
+	            if (i < subcategoriasEgresos.size() - 1) {
+	                out.print(",");
+	            }
+	        }
+	        out.print("]");
+	        out.close();
+		}	
 		
 		//3. Llamo a la Vista
 		request.setAttribute("ingresos", ingresosPorCategoria);
 		request.setAttribute("egresos", egresosPorCategoria);
-		// request.setAttribute("egresosSubcateogria", egresosPorSubcategoria);
+		request.setAttribute("egresosSubcateogria", egresosPorSubcategoria);
 		request.setAttribute("cuentas", misCuentas);
-		// request.setAttribute("categoriasIngresos", categoriasIngresos);
-		// request.setAttribute("categoriasEgresos", categoriasEgresos);
-		// request.setAttribute("subcategoriasEgresos", subcategoriasEgresos);
+		request.setAttribute("categoriasIngresos", categoriasIngresos);
+		request.setAttribute("categoriasEgresos", categoriasEgresos);
+		request.setAttribute("subcategoriasEgresos", subcategoriasEgresos);
 		request.getRequestDispatcher("jsp/dashboard.jsp").forward(request, response);
 	}
 

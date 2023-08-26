@@ -140,10 +140,9 @@ public class MovimientoController extends HttpServlet {
 		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
 		
 		//1. Obtener datos que me envian en la solicitud
-		String tipoMovimiento = request.getParameter("tipo");
 		Usuario usuario = getSession(request);
 		
-		int id = 0;
+		String tipoMovimiento = request.getParameter("tipo");
 		String descripcion = request.getParameter("descripcion");
 		
 		Date fecha = new Date();
@@ -175,6 +174,11 @@ public class MovimientoController extends HttpServlet {
 	
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//1. Obtener datos que me envian en la solicitud
+		String verGeneral = null;
+		if (request.getParameter("general") != null) {
+			verGeneral = request.getParameter("general");
+		}
+		
 		int mes = -1;
 		String filtroMes = request.getParameter("filtromes");
 		if( filtroMes != null) {
@@ -192,17 +196,25 @@ public class MovimientoController extends HttpServlet {
 		//2. Llamo al Modelo para obtener datos		
 		List<Movimiento> movimientos = null;
 		
-		if (mes >= 0)  {
-			if (tipo != null) {
-				// movimientos = DAOFactory.getFactory().getMovimientoDAO().getByMothAndType(idCuenta, mes, filtroTipo);
-			} else {
-				// movimientos = DAOFactory.getFactory().getMovimientoDAO().getByMonth(idCuenta, mes);
-			}
+		if (verGeneral != null) {
+			// FALTA IMPLEMENTAR !!!
+			// movimientos = DAOFactory.getFactory().getMovimientoDAO().getUserMovements(usuario);
 		} else {
-			if (tipo != null) {
-				// movimientos = DAOFactory.getFactory().getMovimientoDAO().getByType(idCuenta, tipo);
+			String nombreCuenta = request.getParameter("nombre");
+			DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(nombreCuenta, usuario);
+			
+			if (mes >= 0)  {
+				if (tipo != null) {
+					// movimientos = DAOFactory.getFactory().getMovimientoDAO().getByMothAndType(idCuenta, mes, filtroTipo);
+				} else {
+					// movimientos = DAOFactory.getFactory().getMovimientoDAO().getByMonth(idCuenta, mes);
+				}
 			} else {
-				// movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByUser(idCuenta);
+				if (tipo != null) {
+					// movimientos = DAOFactory.getFactory().getMovimientoDAO().getByType(idCuenta, tipo);
+				} else {
+					// movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByUser(idCuenta);
+				}
 			}
 		}
 		
