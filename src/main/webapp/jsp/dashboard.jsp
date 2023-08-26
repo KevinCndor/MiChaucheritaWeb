@@ -328,9 +328,9 @@
 				<div class="contenedorcuadrosCuenta">
 				<form action="MovimientoController?ruta=mostrar" method="POST">
 					<c:forEach items="${cuentas}" var="cuenta">
-						<a href="movimiento.jsp">
+						<a href="MovimientoController?ruta=mostrar">
 							<div class="contenedorCuenta">
-								<p style="font-size: 30px; padding-left: 20px;">${cuenta.nombre}</p>
+								<p style="font-size: 30px; padding-left: 20px;" name="${cuenta.nombre}">${cuenta.nombre}</p>
 								<div class="numCuenta">
 									<p>${cuenta.numeronumeroCuenta}</p>
 									<p>${cuenta.saldo}</p>
