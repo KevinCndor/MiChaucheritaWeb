@@ -45,3 +45,30 @@ openEliminarCuenta.addEventListener('click', () => {
 closeEliminarCuenta.addEventListener('click', () => {
     modal_container_EliminarCuenta.classList.remove('show');
 });
+
+
+$(document).ready(function () {
+    $('#categoriaEgreso').change(function () {
+        var selectedCategoria = $(this).val();
+        
+        // Llamada AJAX para obtener las subcategorías en función de la categoría
+        $.ajax({
+            url: 'ObtenerSubcategoriasServlet', // Nombre del servlet
+            type: 'GET',
+            data: { categoria: selectedCategoria },
+            success: function (subcategorias) {
+                var subcategoriaCombo = $('#subcategoriaEgreso');
+                subcategoriaCombo.empty();
+                $.each(subcategorias, function (index, subcategoria) {
+                    subcategoriaCombo.append($('<option>', {
+                        value: subcategoria.id, // Supongamos que "id" es un atributo de Subcategoria
+                        text: subcategoria.nombre // Supongamos que "nombre" es un atributo de Subcategoria
+                    }));
+                });
+            },
+            error: function () {
+                console.log('Error al obtener las subcategorías');
+            }
+        });
+    });
+});

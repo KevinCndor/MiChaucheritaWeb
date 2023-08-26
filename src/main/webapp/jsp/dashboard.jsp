@@ -332,7 +332,7 @@
 					<c:forEach items="${cuentas}" var="cuenta">
 						<a href="MovimientoController?ruta=mostrar">
 							<div class="contenedorCuenta">
-								<p style="font-size: 30px; padding-left: 20px;" name="${cuenta.nombre}">${cuenta.nombre}</p>
+								<p style="font-size: 30px; padding-left: 20px;" name="${nombre}">${cuenta.nombre}</p>
 								<div class="numCuenta">
 									<p>${cuenta.numeronumeroCuenta}</p>
 									<p>${cuenta.saldo}</p>
@@ -359,6 +359,7 @@
 	</script>
 	<script src="https://kit.fontawesome.com/85e6f64c7f.js"
 		crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>
