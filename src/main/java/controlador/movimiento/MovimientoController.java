@@ -114,8 +114,8 @@ public class MovimientoController extends HttpServlet {
 		
 		double valor = Double.parseDouble(request.getParameter("monto"));
 		// En el jsp donde esta el div que muestra el nombre del banco, poner name="cuentaOrigen" o "cuentaDestino" !!!
-		Cuenta cuentaOrigen = DAOFactory.getFactory().getCuentaDAO().getByName(request.getParameter("cuentaOrigen"), usuario);
-		Cuenta cuentaDestino = DAOFactory.getFactory().getCuentaDAO().getByName(request.getParameter("cuentaDestino"), usuario);
+		Cuenta cuentaOrigen = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(request.getParameter("cuentaOrigen"), usuario);
+		Cuenta cuentaDestino = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(request.getParameter("cuentaDestino"), usuario);
 		
 		//2. Llamo al Modelo para obtener datos
 		Transferencia nuevaTransferencia = new Transferencia(descripcion, fecha, valor, cuentaOrigen, cuentaDestino);
@@ -154,11 +154,11 @@ public class MovimientoController extends HttpServlet {
 		}
 		
 		Double valor = Double.parseDouble(request.getParameter("valor"));
-		Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getByName(request.getParameter("nombreCuenta"), usuario);
+		Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(request.getParameter("nombreCuenta"), usuario);
 		Categoria categoria = new Categoria();
 		
 		//2. Llamo al Modelo para obtener datos
-		if (tipoMovimiento.equals("ingreso")) {
+		if (tipoMovimiento.equals("Ingreso")) {
 			categoria = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(request.getParameter("categoriaIngreso")));
 			Ingreso nuevoIngreso = new Ingreso(descripcion, fecha, valor, cuenta, categoria);			
 			DAOFactory.getFactory().getIngresoDAO().create(nuevoIngreso);
