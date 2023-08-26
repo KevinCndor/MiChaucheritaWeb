@@ -29,15 +29,14 @@ public class Categoria implements Serializable {
 	@Column(name = "valor")
 	private double valor;
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "categoriaPadre")
-	private List<Subcategoria> subcategoria = null;
+	private List<Subcategoria> subcategoria;
 	
 	
 	public Categoria() {}
 	
-	public Categoria(int id, String nombre) {
-		super();
-		this.id = id;
+	public Categoria(String nombre, String tipo) {
 		this.nombre = nombre;
+		this.tipo = tipo;
 	}
 
 	public int getId() {
@@ -55,5 +54,32 @@ public class Categoria implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public List<Subcategoria> getSubcategorias() {
+		return subcategoria;
+	}
+
+	@Override
+	public String toString() {
+		return id + nombre + tipo + valor;
+	}
+	
+	
 	
 }
