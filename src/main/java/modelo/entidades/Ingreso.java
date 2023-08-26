@@ -1,17 +1,14 @@
 package modelo.entidades;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Ingreso")
 public class Ingreso extends Movimiento implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -23,8 +20,8 @@ public class Ingreso extends Movimiento implements Serializable{
 		super();
 	}
 	
-	public Ingreso(int id, String descripcion, Date date, double valor,Cuenta cuenta, Categoria categoria) {
-		super(id, descripcion, date, valor, cuenta);
+	public Ingreso(String descripcion, Date date, double valor,Cuenta cuenta, Categoria categoria) {
+		super(descripcion, date, valor, cuenta);
 		this.categoria = categoria;
 	}
 
@@ -34,6 +31,11 @@ public class Ingreso extends Movimiento implements Serializable{
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	@Override
+	public String toString() {
+		return categoria + "";
 	}
 	
 }

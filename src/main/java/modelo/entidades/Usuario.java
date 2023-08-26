@@ -34,8 +34,7 @@ public class Usuario implements Serializable{
 	
 	public Usuario() {}
 	
-	public Usuario(int id, String nombre, String apellido, String username, String password) {
-		this.id = id;
+	public Usuario(String nombre, String apellido, String username, String password) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.username = username;
@@ -82,11 +81,12 @@ public class Usuario implements Serializable{
 		this.password = password;
 	}
 
+	public List<Cuenta> getCuentas() {
+		return cuentas;
+	}
+
 	@Override
 	public String toString() {
 		return id + nombre + apellido + username + password;
 	}
-	
-	
-	
 }

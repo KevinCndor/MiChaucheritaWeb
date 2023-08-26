@@ -1,17 +1,14 @@
 package modelo.entidades;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Transferencia")
 public class Transferencia extends Movimiento implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -24,8 +21,8 @@ public class Transferencia extends Movimiento implements Serializable{
 		super();
 	}
 	
-	public Transferencia(int id, String descripcion, Date date, double valor,Cuenta cuenta, Cuenta cuentaDestino) {
-		super(id, descripcion, date, valor, cuenta);
+	public Transferencia(String descripcion, Date date, double valor,Cuenta cuenta, Cuenta cuentaDestino) {
+		super(descripcion, date, valor, cuenta);
 		this.cuentaDestino = cuentaDestino;
 	}
 
@@ -35,6 +32,11 @@ public class Transferencia extends Movimiento implements Serializable{
 
 	public void setCuentaDestino(Cuenta cuentaDestino) {
 		this.cuentaDestino = cuentaDestino;
+	}
+
+	@Override
+	public String toString() {
+		return cuentaDestino + "";
 	}
 	
 }
