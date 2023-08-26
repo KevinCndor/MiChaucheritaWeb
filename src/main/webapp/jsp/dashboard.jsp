@@ -65,7 +65,7 @@
 					</div>
 					<div class="encabezadoSeccionIzquierda">
 						<h3>Ingresos</h3>
-						<form action="MovimientoController?ruta=categoriaingreso"
+						<form action="MovimientoController?ruta=movimiento&tipo=Ingreso"
 							method="POST">
 							<button class="botonSectionIzquierda fondoBotones"
 								id="openIngreso">Nuevo Ingreso</button>
@@ -147,8 +147,10 @@
 				<div class="fondoGrisClaro Egresos ">
 					<div class="encabezadoSeccionIzquierda">
 						<h3>Egresos</h3>
+						<form action="MovimientoController?ruta=movimiento&tipo=Egreso">
 						<button class="botonSectionIzquierda fondoBotones" id="openEgreso">Nuevo
 							Egreso</button>
+							</form>
 						<div id="modal_container_Egreso"
 							class="modal-container contenedorModal">
 							<div class="modal">
