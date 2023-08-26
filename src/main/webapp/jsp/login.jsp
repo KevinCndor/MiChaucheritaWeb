@@ -32,7 +32,7 @@
                     </form>
                 </div>
                 <p>¿Sin cuenta? ¡Crea una!</p>
-                <a href="registrar.jsp">
+                <a href="../AccesoController?ruta=registrar">
                     <button type="submit" value="CrearCuenta" class="botonInicio fondoBotones "> Crear Cuenta</button>
                 </a>
                 <br>
