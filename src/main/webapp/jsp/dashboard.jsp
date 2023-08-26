@@ -111,13 +111,13 @@
 										style="display: flex; justify-content: space-between; padding-top: 25px;">
 										<p>Fecha</p>
 										<input type="date" min="2023-08-22" max="2030-08-22"
-											class="styled-combo">
+											class="styled-combo" name="fecha">
 									</div>
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 25px;">
 										<p>Descripción</p>
 										<input type="text" placeholder="Introduce una Descripción "
-											id="valorIngreso" class="styled-combo">
+											id="valorIngreso" class="styled-combo" name="descripcion">
 									</div>
 
 									<div class="contenedorBotonesModal">
@@ -197,19 +197,19 @@
 										<p>Valor</p>
 										<input type="number"
 											placeholder="Introduce el Valor del egreso" id="valorEgreso"
-											class="styled-combo">
+											class="styled-combo" name="valor">
 									</div>
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 25px;">
 										<p>Fecha</p>
 										<input type="date" min="2023-08-22" max="2030-08-22"
-											class="styled-combo">
+											class="styled-combo" name="fecha">
 									</div>
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 25px;">
 										<p>Descripción</p>
 										<input type="text" placeholder="Introduce una Descripción "
-											id="descripcionEgreso" class="styled-combo">
+											id="descripcionEgreso" class="styled-combo" name="descripcion">
 									</div>
 									<div class="contenedorBotonesModal">
 										<button id="guardarEgreso"
@@ -268,21 +268,21 @@
 									<p>Nombre</p>
 									<input type="text"
 										placeholder="Introduce el nombre de la cuenta"
-										id="nombreCuenta" class="styled-combo2">
+										id="nombreCuenta" class="styled-combo2" name="nombre">
 								</div>
 								<div
 									style="display: flex; justify-content: space-between; padding: 20px 10px 20px 10px;">
 									<p>Número</p>
 									<input type="number"
 										placeholder="Introduce el número de la cuenta"
-										id="numeroCuenta" class="styled-combo2">
+										id="numeroCuenta" class="styled-combo2" name="numero">
 								</div>
 								<div
 									style="display: flex; justify-content: space-between; padding: 20px 10px 20px 10px;">
 									<p>Saldo</p>
 									<input type="number"
 										placeholder="Introduce el saldo en la cuenta" id="SaldoCuenta"
-										class="styled-combo2">
+										class="styled-combo2" name="saldo">
 								</div>
 
 								<div class="contenedorBotonesModal">
