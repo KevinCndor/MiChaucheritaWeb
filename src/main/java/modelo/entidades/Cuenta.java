@@ -22,7 +22,7 @@ public class Cuenta implements Serializable{
 	
 	@Id
 	private String numeroCuenta;
-	@Column(name = "nombre")
+	@Column(name = "nombre", unique = true)
 	private String nombre;
 	@Column(name = "saldo")
 	private double saldo;
