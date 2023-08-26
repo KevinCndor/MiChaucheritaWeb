@@ -326,6 +326,7 @@
 					</div>
 				</div>
 				<div class="contenedorcuadrosCuenta">
+				<form action="MovimientoController?ruta=mostrar" method="POST">
 					<c:forEach items="${cuentas}" var="cuenta">
 						<a href="movimiento.jsp">
 							<div class="contenedorCuenta">
@@ -337,6 +338,7 @@
 							</div>
 						</a>
 					</c:forEach>
+					</form>
 				</div>
 			</div>
 		</section>
