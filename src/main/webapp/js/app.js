@@ -53,7 +53,7 @@ $(document).ready(function () {
         
         // Llamada AJAX para obtener las subcategorías en función de la categoría
         $.ajax({
-            url: 'ObtenerSubcategoriasServlet', // Nombre del servlet
+            url: 'DashboardController?ruta=mostrar&filtrosubcat=categoria', // Nombre del servlet
             type: 'GET',
             data: { categoria: selectedCategoria },
             success: function (subcategorias) {
