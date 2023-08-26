@@ -27,12 +27,12 @@ public class JPACuentaDAO extends JPAGenericDAO<Cuenta, Integer> implements Cuen
 	}
 
 	@Override
-	public Cuenta getPorIdYUsuario(int idCuenta, Usuario usuario) {
-		String sentencia = "SELECT c FROM Cuenta c WHERE c.propietario = :usuario and c.numeroCuenta = :idCuenta";
+	public Cuenta getPorNombreYUsuario(String nombreCuenta, Usuario usuario) {
+		String sentencia = "SELECT c FROM Cuenta c WHERE c.propietario = :usuario and c.nombre = :nombreCuenta";
 	    Query query = em.createQuery(sentencia);
 	    
 	    query.setParameter("usuario", usuario.getId());
-	    query.setParameter("idCuenta", idCuenta);
+	    query.setParameter("nombreCuenta", nombreCuenta);
 	    
 		Cuenta cuenta = (Cuenta) query.getSingleResult();
 	    return cuenta;
