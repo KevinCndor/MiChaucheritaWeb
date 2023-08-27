@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,37 +89,33 @@
 				<div class="fondoGrisClaro Egresos ">
 					<div class="encabezadoSeccionIzquierda">
 						<h3>Egresos</h3>
-						<form action="MovimientoController?ruta=movimiento&tipo=Egreso">
-							<button class="botonSectionIzquierda fondoBotones"
-								id="openEgreso">Nuevo Egreso</button>
+						<form action="MovimientoController?ruta=movimiento&tipo=Egreso" method = "GET">
+							<button class="botonSectionIzquierda fondoBotones" id="openEgreso">Nuevo Egreso</button>
 						</form>
 						<%@ include file='../templates/egresotemplate.jsp'%>
 					</div>
-					<div class="extra" id="contenedorEgresosTotal">
-						<div class=" fondoCuadroInformacion ">
-							<c:forEach items="${egresos}" var="egreso">
+					<c:forEach items="${egresos}" var="egreso">
+						<div class="extra" id="contenedorEgresosTotal">
+							<div class=" fondoCuadroInformacion ">
 								<div
 									style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
 									<p>${egreso.categoria.nombre}</p>
 									<p>-${egreso.categoria.valor}</p>
 								</div>
-								<c:forEach items="${egresosSubcategoria}" var="esubcategoria">
-									<div class="contenedorCategoriaEgresos">
+								<div class="contenedorCategoriaEgresos">
+										<c:forEach items="${egresosSubcategoria}" var="egresosSub">
+										<c:if test="${egreso.categoria.id == egresosSub.categoria.id}">
 										<div class="contenedorValoresEgresos">
-											<c:if test="${egreso.categoria==esubcategoria.subcategoria.categoriaPadre}">
-												<p>$ ${esubcategoria.valor}</p>
-												<h5>${esubcategoria.nombre}</h5>
-											</c:if>
-											<c:if test="${egreso.categoria==null}">
-												<p></p>
-												<h5></h5>
-											</c:if>
+												<p>$ ${egresosSub.subcategoria.valor}</p>
+												<h5>${egresosSub.subcategoria.nombre}</h5>
 										</div>
-									</div>
-								</c:forEach>
-							</c:forEach>
+										</c:if>
+										</c:forEach>
+								</div>
+
+							</div>
 						</div>
-					</div>
+					</c:forEach>
 					<br>
 				</div>
 			</div>
