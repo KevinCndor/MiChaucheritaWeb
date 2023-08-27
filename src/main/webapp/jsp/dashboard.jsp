@@ -44,7 +44,7 @@
 					<!-- Combo box de meses -->
 					<div class="encabezadoSeccionIzquierda"
 						style="display: flex; justify-content: center;">
-						<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST">
+						<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST" style="padding-right: 200px">
 							<select name="months" id="months">
 								<option value="-1" selected disabled="disabled">Seleccione un mes</option>
 								<option value="0">Enero</option>
@@ -60,7 +60,7 @@
 								<option value="10">Noviembre</option>
 								<option value="11">Diciembre</option>
 							</select>
-							<button type="submit">Visualizar</button>
+							<button type="submit" class="botonSectionMisCuentas fondoBotones" style="padding-left: 15px">Visualizar</button>
 						</form>
 					</div>
 					<div class="encabezadoSeccionIzquierda">

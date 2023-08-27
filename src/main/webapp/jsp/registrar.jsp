@@ -20,7 +20,7 @@
 			<div class="divFormularioIngreso fondoInicio">
 				<h3 style="font-size: 50px;">Crear Una Cuenta</h3>
 				<div>
-					<form method="POST" action="AccesoController?ruta=crearusuario"
+					<form method="POST" action="../AccesoController?ruta=crearusuario"
 						class="inputInicio inputInicio-container">
 						<div>
 							<p>Nombre</p>
@@ -50,7 +50,7 @@
 				</div>
 
 				<p>¿Tienes una cuenta? ¡Inicia Sesión!</p>
-				<a href="AccesoController?ruta=inicio">
+				<a href="../AccesoController?ruta=inicio">
 					<button type="submit" value="CrearCuenta"
 						class="botonRegistrar fondoBotones ">Regresar</button>
 				</a>
