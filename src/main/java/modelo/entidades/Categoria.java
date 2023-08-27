@@ -30,7 +30,7 @@ public class Categoria implements Serializable{
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "tipo_categoria")
-	private String tipoSubCategoria;
+	private String tipoSubcategoria;
 	@Column(name = "tipo")
 	private String tipo;
 	@Column(name = "valor")
@@ -86,9 +86,17 @@ public class Categoria implements Serializable{
 		this.subcategoria = subcategoria;
 	}
 
+	public String getTipoSubcategoria() {
+		return tipoSubcategoria;
+	}
+
+	public void setTipoSubategoria(String tipoSubcategoria) {
+		this.tipoSubcategoria = tipoSubcategoria;
+	}
+
 	@Override
 	public String toString() {
-		return + id + nombre + tipo +valor;
+		return + id + nombre + tipo + tipoSubcategoria + valor;
 	}
 	
 	

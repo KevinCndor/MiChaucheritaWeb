@@ -1,7 +1,8 @@
 package modelo.jpa;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -33,8 +34,8 @@ public class JPAIngresoDAO extends JPAGenericDAO<Ingreso, Integer> implements In
 
 		for (Object[] resultado : resultados) {
 		    Ingreso movimiento = (Ingreso) resultado[0];
-		    double totalCategoria = (double) resultado[1];
-		    Ingreso ingreso = new Ingreso(movimiento.getDescripcion(), movimiento.getFecha(),
+		    double totalCategoria = ((Number) resultado[1]).doubleValue();
+		    Ingreso ingreso = new Ingreso(movimiento.getDescripcion(), movimiento.getTipoMovimiento(), movimiento.getFecha(),
 		    							movimiento.getValor(), movimiento.getCuenta(), movimiento.getCategoria());
 		    movimiento.getCategoria().setValor(totalCategoria);
 		    ingresosPorCategoria.add(ingreso);
@@ -42,21 +43,24 @@ public class JPAIngresoDAO extends JPAGenericDAO<Ingreso, Integer> implements In
 		return ingresosPorCategoria;
 	}
 	
-
-	@SuppressWarnings("deprecation")
 	@Override
 	public List<Ingreso> getIngresosPorCategoriaYMes(Usuario usuario, int mes) {
 	    List<Ingreso> ingresosPorCategoria = getIngresosPorCategoria(usuario);
 	    List<Ingreso> ingresosPorMesYCateg = new ArrayList<Ingreso>();
+	    
 	    for (Ingreso ingreso : ingresosPorCategoria) {
-	        Date fechaIngreso = (Date) ingreso.getFecha();
-	        int mesIngreso = fechaIngreso.getMonth();
+	        Date fechaIngreso =  ingreso.getFecha();  
+	        Calendar calendar = Calendar.getInstance();
+	        calendar.setTime(fechaIngreso);
+	        int mesIngreso = calendar.get(Calendar.MONTH);
+
 	        if (mesIngreso == mes) {
 	            ingresosPorMesYCateg.add(ingreso);
 	        }
 	    }   
 	    return ingresosPorMesYCateg;
 	}
+
 	
 	
 	

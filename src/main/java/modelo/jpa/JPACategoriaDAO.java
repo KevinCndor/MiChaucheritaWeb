@@ -16,11 +16,13 @@ public class JPACategoriaDAO extends JPAGenericDAO<Categoria, Integer> implement
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Categoria> getCategoriasPorTipo(String tipo) {
-		String sentencia = "SELECT c FROM Categoria c WHERE c.tipo = :tipo";
+		String tipoCategoria = "Categoria";
+		String sentencia = "SELECT c FROM Categoria c WHERE c.tipo = :tipo AND c.tipoSubcategoria = :tipoCategoria";
 
 		Query query = em.createQuery(sentencia);
 	
 		query.setParameter("tipo", tipo);
+		query.setParameter("tipoCategoria", tipoCategoria);
 
 		List<Categoria> categoriasPorTipo = query.getResultList();
 		

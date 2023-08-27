@@ -23,11 +23,6 @@ public class JPAGenericDAO<T,ID> implements GenericDAO<T,ID> {
 	}
 
 	@Override
-	public List<T> getAll() {
-		return null;
-	}
-
-	@Override
 	public void create(T entity) {
 		em.getTransaction().begin();
 		try {
@@ -76,6 +71,12 @@ public class JPAGenericDAO<T,ID> implements GenericDAO<T,ID> {
 		if(entity != null) {
 			this.delete(entity);
 		}
+	}
+
+	@Override
+	public List<T> getAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

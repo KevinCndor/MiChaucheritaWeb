@@ -25,8 +25,8 @@ public class Egreso extends Movimiento implements Serializable{
 		super();
 	}
 	
-	public Egreso(String descripcion, Date date, double valor, Cuenta cuenta, Categoria categoria, Subcategoria subcategoria) {
-		super(descripcion, date, valor, cuenta);
+	public Egreso(String descripcion, Date date, double valor, Cuenta cuenta, Categoria categoria, Subcategoria subcategoria, String tipoMov) {
+		super(descripcion, tipoMov, date, valor, cuenta);
 		this.categoria = categoria;
 		this.subcategoria = subcategoria;
 	}

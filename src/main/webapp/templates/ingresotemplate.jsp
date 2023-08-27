@@ -13,7 +13,7 @@
 		class="modal-container contenedorModal">
 		<div class="modal">
 			<h3>Nuevo Ingreso</h3>
-			<form action="MovimientoController?ruta=movimiento&tipo=Ingreso"
+			<form action="MovimientoController?ruta=nuevomovimiento&tipo=Ingreso"
 				method="POST">
 				<div
 					style="display: flex; justify-content: space-between; padding-top: 15px;">

@@ -20,8 +20,8 @@ public class Ingreso extends Movimiento implements Serializable{
 		super();
 	}
 	
-	public Ingreso(String descripcion, Date date, double valor,Cuenta cuenta, Categoria categoria) {
-		super(descripcion, date, valor, cuenta);
+	public Ingreso(String descripcion, String tipoMov,Date date, double valor,Cuenta cuenta, Categoria categoria) {
+		super(descripcion, tipoMov,date, valor, cuenta);
 		this.categoria = categoria;
 	}
 

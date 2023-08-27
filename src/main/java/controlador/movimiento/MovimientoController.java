@@ -2,6 +2,7 @@ package controlador.movimiento;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -42,7 +43,7 @@ public class MovimientoController extends HttpServlet {
 	}
 
 	private void ruteador(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String ruta = (request.getParameter("ruta") == null) ? "mostrar" : request.getParameter("ruta");
+		String ruta = (request.getParameter("ruta") == null) ? "" : request.getParameter("ruta");
 		
 		switch(ruta) {
 		case "mostrar":
@@ -54,63 +55,50 @@ public class MovimientoController extends HttpServlet {
 		case "transferencia":
 			this.realizarTransferencia(request, response);
 			break;
-		case "movimiento":
-			this.movimiento(request, response);
+		case "nuevatransferencia":
+			this.nuevaTransferencia(request, response);
 			break;
 		case "subcategoria":
 			this.mostrarSubcategoria(request, response);
+			break;
+		case "filtrar":
+			this.filtrar(request, response);
 			break;
 		default:
 			break;
 		}
 	}
-	
-	private void mostrarSubcategoria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Subcategoria> subcategoriasEgresos = null;		
-		Categoria catParaSubcat = null;
+
+		private void nuevaTransferencia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//1. Obtener datos que me envian en la solicitud
+		Usuario usuario = getSession(request);
+		List<Cuenta> cuentas = DAOFactory.getFactory().getCuentaDAO().getCuentasUsuario(usuario);
 		
-		String catSelected = request.getParameter("categoriaEgreso");
-		catParaSubcat = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(catSelected));			
-		subcategoriasEgresos = DAOFactory.getFactory().getSubcategoriaDAO().getSubcategoriasPorCategoria(catParaSubcat);
+		request.setAttribute("cuentas", cuentas);
 		
-		response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
-        out.print("[");
-        for (int i = 0; i < subcategoriasEgresos.size(); i++) {
-            Subcategoria subcategoria = subcategoriasEgresos.get(i);
-            out.print("{");
-            out.print("\"id\": \"" + subcategoria.getId() + "\",");
-            out.print("\"nombre\": \"" + subcategoria.getNombre() + "\"");
-            out.print("}");
-            if (i < subcategoriasEgresos.size() - 1) {
-                out.print(",");
-            }
-        }
-        out.print("]");
-        out.close();
+		request.getRequestDispatcher("jsp/transferencia.jsp").forward(request, response);	
 	}
 
-	private void movimiento(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		//1. Obtener datos que me envian en la solicitud
-		String tipo = request.getParameter("tipo");
-		Usuario usuario = getSession(request);
-		
-		//2. Llamo al Modelo para obtener datos		
-		if (tipo.equals("Ingreso")) {
-			//2. Llamo al Modelo para obtener datos	
-			List<Categoria> categoriasIngresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Ingreso");
-			
-			//3. Llamo a la Vista
-			request.setAttribute("categoriasIngreso", categoriasIngresos);
-			request.getRequestDispatcher("templates/ingresotemplate.jsp").forward(request, response);			
-		} else {
-			//2. Llamo al Modelo para obtener datos	
-			List<Categoria> categoriasEgresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Egreso");
-			
-			//3. Llamo a la Vista
-			request.setAttribute("categoriasEgreso", categoriasEgresos);
-			request.getRequestDispatcher("templates/egresotemplate.jsp").forward(request, response);
-		}
+	private void mostrarSubcategoria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Subcategoria> subcategoriasEgresos = null;
+        Categoria catParaSubcat = null;
+
+        String catSelected = request.getParameter("categoriaEgreso");
+        catParaSubcat = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(catSelected));
+        System.out.println(catSelected);
+        subcategoriasEgresos = DAOFactory.getFactory().getSubcategoriaDAO().getSubcategoriasPorCategoria(catParaSubcat);
+
+        StringBuilder subcategoriasTexto = new StringBuilder();
+        for (Subcategoria subcategoria : subcategoriasEgresos) {
+            subcategoriasTexto.append(subcategoria.getNombre()).append("\n");
+        }
+
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+
+        PrintWriter out = response.getWriter();
+        out.write(subcategoriasTexto.toString());
+        out.close();
 	}
 	
 	private void realizarTransferencia(HttpServletRequest request, HttpServletResponse response) throws IOException {	
@@ -130,16 +118,15 @@ public class MovimientoController extends HttpServlet {
 		}
 		
 		double valor = Double.parseDouble(request.getParameter("monto"));
-		// En el jsp donde esta el div que muestra el nombre del banco, poner name="cuentaOrigen" o "cuentaDestino" !!!
 		Cuenta cuentaOrigen = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(request.getParameter("cuentaOrigen"), usuario);
 		Cuenta cuentaDestino = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(request.getParameter("cuentaDestino"), usuario);
 		
 		//2. Llamo al Modelo para obtener datos
-		Transferencia nuevaTransferencia = new Transferencia(descripcion, fecha, valor, cuentaOrigen, cuentaDestino);
+		Transferencia nuevaTransferencia = new Transferencia(descripcion, "Trasnferencia", fecha, valor, cuentaOrigen, cuentaDestino);
 		DAOFactory.getFactory().getTransferenciaDAO().create(nuevaTransferencia);
 		
 		//3. Llamo a la Vista
-		response.sendRedirect("jsp/dashboard.jsp");
+		response.sendRedirect("DashboardController?ruta=mostrar");
 	}
 
 	private Usuario getSession(HttpServletRequest request) {
@@ -154,7 +141,6 @@ public class MovimientoController extends HttpServlet {
 	}
 	
 	private void guardarMovimiento(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
 		
 		//1. Obtener datos que me envian en la solicitud
 		Usuario usuario = getSession(request);
@@ -162,81 +148,97 @@ public class MovimientoController extends HttpServlet {
 		String tipoMovimiento = request.getParameter("tipo");
 		String descripcion = request.getParameter("descripcion");
 		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date fecha = new Date();
 		try {
-			fecha = formatoFecha.parse(request.getParameter("fecha"));
-		} catch (Exception e) {
-			fecha = null;
+			fecha = dateFormat.parse(request.getParameter("fecha"));
+		} catch (ParseException e) {
 		}
 		
 		Double valor = Double.parseDouble(request.getParameter("valor"));
-		Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(request.getParameter("nombreCuenta"), usuario);
+		Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(request.getParameter("cuenta"), usuario);
 		Categoria categoria = new Categoria();
 		
 		//2. Llamo al Modelo para obtener datos
 		if (tipoMovimiento.equals("Ingreso")) {
 			categoria = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(request.getParameter("categoriaIngreso")));
-			Ingreso nuevoIngreso = new Ingreso(descripcion, fecha, valor, cuenta, categoria);			
+			Ingreso nuevoIngreso = new Ingreso(descripcion, tipoMovimiento, fecha, valor, cuenta, categoria);			
 			DAOFactory.getFactory().getIngresoDAO().create(nuevoIngreso);
 		} else  {
 			categoria = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(request.getParameter("categoriaEgreso")));
-			Subcategoria subcategoria = DAOFactory.getFactory().getSubcategoriaDAO().getById(Integer.parseInt(request.getParameter("subcategoriaEgreso")));
-			Egreso nuevoEgreso = new Egreso(descripcion, fecha, valor, cuenta, categoria, subcategoria);
+			Subcategoria subcategoria = DAOFactory.getFactory().getSubcategoriaDAO().getByName(request.getParameter("subcategoriaEgreso"));
+			Egreso nuevoEgreso = new Egreso(descripcion, fecha, valor, cuenta, categoria, subcategoria, tipoMovimiento);
 			DAOFactory.getFactory().getEgresoDAO().create(nuevoEgreso);
 		}
 		
 		//3. Llamo a la Vista
-		response.sendRedirect("jsp/dashboard.jsp");	
+		response.sendRedirect("DashboardController?ruta=mostrar");	
 	}
 	
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//1. Obtener datos que me envian en la solicitud
-		String verGeneral = null;
-		if (request.getParameter("general") != null) {
-			verGeneral = request.getParameter("general");
-		}
-		
-		int mes = -1;
-		String filtroMes = request.getParameter("filtromes");
-		if( filtroMes != null) {
-			mes = Integer.parseInt(request.getParameter("months"));
-		}
-		
-		String tipo = null;
-		String filtroTipo = request.getParameter("filtrotipo");
-		if (filtroTipo != null) {
-			tipo = request.getParameter("filtrotipo");
-		}
-		
+		String nombreCuenta = request.getParameter("nombre");
+		String numCuenta = null;
 		Usuario usuario = getSession(request);
-		
-		//2. Llamo al Modelo para obtener datos		
 		List<Movimiento> movimientos = null;
-		
-		if (verGeneral != null) {
-			// FALTA IMPLEMENTAR !!!
-			// movimientos = DAOFactory.getFactory().getMovimientoDAO().getUserMovements(usuario);
-		} else {
-			String nombreCuenta = request.getParameter("nombre");
-			DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(nombreCuenta, usuario);
-			
-			if (mes >= 0)  {
-				if (tipo != null) {
-					// movimientos = DAOFactory.getFactory().getMovimientoDAO().getByMothAndType(idCuenta, mes, filtroTipo);
-				} else {
-					// movimientos = DAOFactory.getFactory().getMovimientoDAO().getByMonth(idCuenta, mes);
-				}
-			} else {
-				if (tipo != null) {
-					// movimientos = DAOFactory.getFactory().getMovimientoDAO().getByType(idCuenta, tipo);
-				} else {
-					// movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByUser(idCuenta);
-				}
-			}
+		if(nombreCuenta != null){
+			HttpSession session = request.getSession();
+			session.setAttribute("cuenta", DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(nombreCuenta, usuario));
+			numCuenta = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(nombreCuenta, usuario).getNumeroCuenta();
+			movimientos = DAOFactory.getFactory().getMovimientoDAO().getByCuenta(numCuenta, usuario);
+		}else {
+			movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByUser(usuario);
 		}
-		
 		//3. Llamo a la Vista
 		request.setAttribute("movimientos", movimientos);
 		request.getRequestDispatcher("jsp/movimiento.jsp").forward(request, response);
 	}
+	
+	private void filtrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Cuenta cuenta = (Cuenta) session.getAttribute("cuenta");
+		Usuario usuario = getSession(request);
+		int mes = -1;
+		if(request.getParameter("months") != null) {
+			mes = Integer.parseInt(request.getParameter("months"));
+		}
+		
+		String tipo = request.getParameter("tipo");
+		List<Movimiento> movimientos = null;
+		if(cuenta == null) {
+			if(mes != -1) {
+				if(tipo == null) {
+					movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByMonth(usuario, mes);
+				}else {
+					movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByMonthAndType(usuario, mes, tipo);
+				}
+			}else {
+				if(tipo != null) {
+					movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByType(usuario, tipo);
+				}else {
+					movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByUser(usuario);
+				}
+			}
+		}else {
+			if(mes != -1) {
+				if(tipo == null) {
+					movimientos = DAOFactory.getFactory().getMovimientoDAO().getByMonth(cuenta.getNumeroCuenta(), mes);
+				}else {
+					movimientos = DAOFactory.getFactory().getMovimientoDAO().getByMothAndType(cuenta.getNumeroCuenta(), mes, tipo);
+				}
+			}else {
+				if(tipo != null) {
+					movimientos = DAOFactory.getFactory().getMovimientoDAO().getByType(cuenta.getNumeroCuenta(), tipo);
+				}else {
+					movimientos = DAOFactory.getFactory().getMovimientoDAO().getByCuenta(cuenta.getNumeroCuenta(), usuario);
+				}
+			}
+		}
+		
+		request.setAttribute("movimientos", movimientos);
+		request.getRequestDispatcher("jsp/movimiento.jsp").forward(request, response);
+	}
+	
 }
+
+
