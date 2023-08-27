@@ -10,7 +10,7 @@
 <title>Dashboard</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/estilos.css" />
-	
+
 </head>
 
 <body>
@@ -89,24 +89,31 @@
 					<div class="encabezadoSeccionIzquierda">
 						<h3>Egresos</h3>
 						<form action="MovimientoController?ruta=movimiento&tipo=Egreso">
-						<button class="botonSectionIzquierda fondoBotones" id="openEgreso">Nuevo
-							Egreso</button>
-							</form>
-							<%@ include file='../templates/egresotemplate.jsp' %>
+							<button class="botonSectionIzquierda fondoBotones"
+								id="openEgreso">Nuevo Egreso</button>
+						</form>
+						<%@ include file='../templates/egresotemplate.jsp' %>
 					</div>
 					<div class="extra" id="contenedorEgresosTotal">
 						<div class=" fondoCuadroInformacion ">
-							<c:forEach items="categoriasEgresos" var="categoriaEgresos">
+							<c:forEach items="${egresos}" var="egresos">
 								<div
 									style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
-									<p>${categoriaEgresos.nombre}</p>
-									<p>-${categoriaEgresos.valor}</p>
+									<p>${egresos.nombre}</p>
+									<p>-${egresos.valor}</p>
 								</div>
-								<c:forEach items="${categoriaEgresos.subcategoria}" var="subcategoria">
+								<c:forEach items="${egresosSubcategoria}" var="subcategoria">
 									<div class="contenedorCategoriaEgresos">
 										<div class="contenedorValoresEgresos">
-											<p>$ ${subcategoria.valor}</p>
-											<h5>${subcategoria.nombre}</h5>
+											<c:if
+												test="${egresos.categoria==subcategoria.categoriaPadre}">
+												<p>$ ${subcategoria.valor}</p>
+												<h5>${subcategoria.nombre}</h5>
+											</c:if>
+											<c:if test="${egresos.categoria==null}">
+												<p></p>
+												<h5></h5>
+											</c:if>
 										</div>
 									</div>
 								</c:forEach>
@@ -195,18 +202,19 @@
 					</div>
 				</div>
 				<div class="contenedorcuadrosCuenta">
-				<form action="MovimientoController?ruta=mostrar" method="POST">
-					<c:forEach items="${cuentas}" var="cuenta">
-						<a href="MovimientoController?ruta=mostrar">
-							<div class="contenedorCuenta">
-								<p style="font-size: 30px; padding-left: 20px;" name="nombre" value="${cuenta.nombre}">${cuenta.nombre}</p>
-								<div class="numCuenta">
-									<p>${cuenta.numeroCuenta}</p>
-									<p>${cuenta.saldo}</p>
+					<form action="MovimientoController?ruta=mostrar" method="POST">
+						<c:forEach items="${cuentas}" var="cuenta">
+							<a href="MovimientoController?ruta=mostrar">
+								<div class="contenedorCuenta">
+									<p style="font-size: 30px; padding-left: 20px;" name="nombre"
+										value="${cuenta.nombre}">${cuenta.nombre}</p>
+									<div class="numCuenta">
+										<p>${cuenta.numeroCuenta}</p>
+										<p>${cuenta.saldo}</p>
+									</div>
 								</div>
-							</div>
-						</a>
-					</c:forEach>
+							</a>
+						</c:forEach>
 					</form>
 				</div>
 			</div>
@@ -226,7 +234,7 @@
 	</script>
 	<script src="https://kit.fontawesome.com/85e6f64c7f.js"
 		crossorigin="anonymous"></script>
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>
