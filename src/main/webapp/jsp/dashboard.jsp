@@ -229,13 +229,13 @@
 					</div>
 					<div class="extra" id="contenedorEgresosTotal">
 						<div class=" fondoCuadroInformacion ">
-							<c:forEach items="categorias" var="categoria">
+							<c:forEach items="categoriasEgresos" var="categoriaEgresos">
 								<div
 									style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
-									<p>${categoria.nombre}</p>
-									<p>-${categoria.valor}</p>
+									<p>${categoriaEgresos.nombre}</p>
+									<p>-${categoriaEgresos.valor}</p>
 								</div>
-								<c:forEach items="${categoria.subcategoria}" var="subcategoria">
+								<c:forEach items="${categoriaEgresos.subcategoria}" var="subcategoria">
 									<div class="contenedorCategoriaEgresos">
 										<div class="contenedorValoresEgresos">
 											<p>$ ${subcategoria.valor}</p>
