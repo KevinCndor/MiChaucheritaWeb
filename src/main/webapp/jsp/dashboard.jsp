@@ -102,12 +102,12 @@
 									<p>${egreso.categoria.nombre}</p>
 									<p>-${egreso.categoria.valor}</p>
 								</div>
-								<c:forEach items="${egresosSubcategoria}" var="subcategoria">
+								<c:forEach items="${egresosSubcategoria}" var="esubcategoria">
 									<div class="contenedorCategoriaEgresos">
 										<div class="contenedorValoresEgresos">
-											<c:if test="${egreso.categoria.nombre==subcategoria.categoriaPadre.nombre}">
-												<p>$ ${subcategoria.valor}</p>
-												<h5>${subcategoria.nombre}</h5>
+											<c:if test="${egreso.categoria==esubcategoria.subcategoria.categoriaPadre}">
+												<p>$ ${esubcategoria.valor}</p>
+												<h5>${esubcategoria.nombre}</h5>
 											</c:if>
 											<c:if test="${egreso.categoria==null}">
 												<p></p>
