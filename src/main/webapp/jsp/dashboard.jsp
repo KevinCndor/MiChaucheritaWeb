@@ -32,7 +32,7 @@
 		</header>
 		<section class="sectionBienvenida fondoCelesteDegradado">
 			<h1 class="titulo1">
-				Bienvenido de vuelta
+				Bienvenido de vuelta,
 				<c:out value="${sessionScope.usuarioLogeado.nombre}" />
 				!
 			</h1>
@@ -45,7 +45,7 @@
 					<div class="encabezadoSeccionIzquierda"
 						style="display: flex; justify-content: center;">
 						<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST">
-							<select name="months" id="months">
+							<select name="months" id="months" class="comboBox">
 								<option value="-1" selected disabled="disabled">Seleccione un mes</option>
 								<option value="0">Enero</option>
 								<option value="1">Febrero</option>
