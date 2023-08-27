@@ -109,42 +109,12 @@ public class DashboardController extends HttpServlet {
 		}
 		
 		misCuentas = DAOFactory.getFactory().getCuentaDAO().getCuentasUsuario(usuario);
-		List<Categoria> categoriasIngresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Ingreso");		
-		List<Categoria> categoriasEgresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Egreso");
-		List<Subcategoria> subcategoriasEgresos = null;
-		
-		Categoria catParaSubcat = null;
-		
-		if (request.getParameter("filtrosubcat") != null) {
-			String catSelected = request.getParameter("categoriaEgreso");
-			catParaSubcat = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(catSelected));			
-			subcategoriasEgresos = DAOFactory.getFactory().getSubcategoriaDAO().getSubcategoriasPorCategoria(catParaSubcat);
-			
-			response.setContentType("application/json");
-	        PrintWriter out = response.getWriter();
-	        out.print("[");
-	        for (int i = 0; i < subcategoriasEgresos.size(); i++) {
-	            Subcategoria subcategoria = subcategoriasEgresos.get(i);
-	            out.print("{");
-	            out.print("\"id\": \"" + subcategoria.getId() + "\",");
-	            out.print("\"nombre\": \"" + subcategoria.getNombre() + "\"");
-	            out.print("}");
-	            if (i < subcategoriasEgresos.size() - 1) {
-	                out.print(",");
-	            }
-	        }
-	        out.print("]");
-	        out.close();
-		}	
 		
 		//3. Llamo a la Vista
 		request.setAttribute("ingresos", ingresosPorCategoria);
 		request.setAttribute("egresos", egresosPorCategoria);
-		request.setAttribute("egresosSubcateogria", egresosPorSubcategoria);
+		request.setAttribute("egresosSubcategoria", egresosPorSubcategoria);
 		request.setAttribute("cuentas", misCuentas);
-		request.setAttribute("categoriasIngresos", categoriasIngresos);
-		request.setAttribute("categoriasEgresos", categoriasEgresos);
-		request.setAttribute("subcategoriasEgresos", subcategoriasEgresos);
 		request.getRequestDispatcher("jsp/dashboard.jsp").forward(request, response);
 	}
 
