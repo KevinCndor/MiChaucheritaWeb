@@ -36,7 +36,9 @@ public class Subcategoria extends Categoria implements Serializable{
 
 	@Override
 	public String toString() {
-		return  this.getNombre();
+		return categoriaPadre + "";
 	}
+	
+	
 
 }

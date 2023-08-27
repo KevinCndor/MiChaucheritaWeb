@@ -21,8 +21,8 @@ public class Transferencia extends Movimiento implements Serializable{
 		super();
 	}
 	
-	public Transferencia(String descripcion, Date date, double valor,Cuenta cuenta, Cuenta cuentaDestino) {
-		super(descripcion, date, valor, cuenta);
+	public Transferencia(String descripcion, String tipoMov ,Date date, double valor,Cuenta cuenta, Cuenta cuentaDestino) {
+		super(descripcion, tipoMov, date, valor, cuenta);
 		this.cuentaDestino = cuentaDestino;
 	}
 

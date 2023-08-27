@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import modelo.dao.EgresoDAO;
+import modelo.entidades.Categoria;
 import modelo.entidades.Egreso;
 import modelo.entidades.Movimiento;
 import modelo.entidades.Subcategoria;
@@ -20,14 +21,15 @@ public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements Egre
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Egreso> getEgresosPorSubcategoria(Usuario usuario) {
-		String sentencia = "SELECT e.subcategoria, e, SUM(e.valor) as total_subcategoria "
-							+ "FROM Egreso e "
-							+ "JOIN Cuenta c ON c.NUMEROCUENTA = e.cuenta "
-							+ "WHERE c.propietario = :propietario "
-							+ "GROUP BY e.subcategoria ";
+		String sentencia = "SELECT e.subcategoria, e, e.subcategoria.categoriaPadre, SUM(e.valor) as total_subcategoria "
+						+ "FROM Egreso e "
+						+ "JOIN e.cuenta c "
+						+ "JOIN c.propietario u "
+						+ "WHERE u.id = :userId "
+						+ "GROUP BY e.subcategoria";
 		Query query = em.createQuery(sentencia);
 
-		query.setParameter("propietario", usuario);
+		query.setParameter("userId", usuario.getId());
 
 		List<Object[]> resultados = query.getResultList();
 		List<Egreso> egresosPorSubcategoria = new ArrayList<>();
@@ -35,10 +37,12 @@ public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements Egre
 		for (Object[] resultado : resultados) {
 		    Subcategoria subcategoria = (Subcategoria) resultado[0];
 		    Movimiento movimiento = (Movimiento) resultado[1];
-		    double totalSubcategoria = ((Number) resultado[2]).doubleValue();
+		    Categoria categoria = (Categoria) resultado[2];
+		    double totalSubcategoria = ((Number) resultado[3]).doubleValue();
 		    Egreso egreso = new Egreso(movimiento.getDescripcion(), movimiento.getFecha(),
-		                               movimiento.getValor(), movimiento.getCuenta(), subcategoria.getCategoriaPadre(), 
-		                               subcategoria);
+		                               movimiento.getValor(), movimiento.getCuenta(), categoria, 
+		                               subcategoria, movimiento.getTipoMovimiento());
+			
 		    subcategoria.setValor(totalSubcategoria);
 		    egresosPorSubcategoria.add(egreso);
 		}
@@ -48,10 +52,8 @@ public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements Egre
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Egreso> getEgresosPorCategoria(Usuario usuario) {
-		String sentencia = "SELECT e, SUM(e.valor) as total_subcategoria "
+		String sentencia = "SELECT e, SUM(e.valor) as total_categoria "
                 + "FROM Egreso e "
-                + "JOIN FETCH e.categoria "
-                + "JOIN FETCH e.subcategoria "
                 + "JOIN Cuenta c ON c.NUMEROCUENTA = e.cuenta "
                 + "WHERE c.propietario = :propietario "
                 + "GROUP BY e.categoria";
@@ -67,7 +69,7 @@ public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements Egre
 		    double totalCategoria = ((Number) resultado[1]).doubleValue();
 		    Egreso egreso = new Egreso(movimiento.getDescripcion(), movimiento.getFecha(),
 		    							movimiento.getValor(), movimiento.getCuenta(), movimiento.getCategoria(), 
-		    							movimiento.getSubcategoria());
+		    							movimiento.getSubcategoria(), movimiento.getTipoMovimiento());
 		    movimiento.getCategoria().setValor(totalCategoria);
 		    egresosPorCategoria.add(egreso);
 		}

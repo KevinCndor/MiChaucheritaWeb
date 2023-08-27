@@ -1,7 +1,6 @@
 package controlador.dashboard;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,7 +15,6 @@ import modelo.entidades.Categoria;
 import modelo.entidades.Cuenta;
 import modelo.entidades.Egreso;
 import modelo.entidades.Ingreso;
-import modelo.entidades.Subcategoria;
 import modelo.entidades.Usuario;
 
 @WebServlet("/DashboardController")
@@ -60,10 +58,10 @@ public class DashboardController extends HttpServlet {
 		//2. Llamo al Modelo para obtener datos
 		
 		// REVISAR el metodo porque en la BD el ID es String !!!
-		DAOFactory.getFactory().getCuentaDAO().deleteById(Integer.parseInt(numeroCuenta));
+		DAOFactory.getFactory().getCuentaDAO().deleteById(numeroCuenta);
 		
 		//3. Llamo a la Vista
-		response.sendRedirect("jsp/dashboard.jsp");
+		response.sendRedirect("DashboardController?ruta=mostrar");
 	}
 	
 	private void guardarCuenta(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -78,7 +76,7 @@ public class DashboardController extends HttpServlet {
 		DAOFactory.getFactory().getCuentaDAO().create(nuevaCuenta);
 		
 		//3. Llamo a la Vista
-		response.sendRedirect("jsp/dashboard.jsp");
+		response.sendRedirect("DashboardController?ruta=mostrar");
 	}
 	
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -108,42 +106,15 @@ public class DashboardController extends HttpServlet {
 		}
 		
 		misCuentas = DAOFactory.getFactory().getCuentaDAO().getCuentasUsuario(usuario);
-		List<Categoria> categoriasIngresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Ingreso");		
+		List<Categoria> categoriasIngresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Ingreso");
 		List<Categoria> categoriasEgresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Egreso");
-		List<Subcategoria> subcategoriasEgresos = null;
-		
-		Categoria catParaSubcat = null;
-		
-		if (request.getParameter("filtrosubcat") != null) {
-			String catSelected = request.getParameter("categoriaEgreso");
-			catParaSubcat = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(catSelected));			
-			subcategoriasEgresos = DAOFactory.getFactory().getSubcategoriaDAO().getSubcategoriasPorCategoria(catParaSubcat);
-			
-			response.setContentType("application/json");
-	        PrintWriter out = response.getWriter();
-	        out.print("[");
-	        for (int i = 0; i < subcategoriasEgresos.size(); i++) {
-	            Subcategoria subcategoria = subcategoriasEgresos.get(i);
-	            out.print("{");
-	            out.print("\"id\": \"" + subcategoria.getId() + "\",");
-	            out.print("\"nombre\": \"" + subcategoria.getNombre() + "\"");
-	            out.print("}");
-	            if (i < subcategoriasEgresos.size() - 1) {
-	                out.print(",");
-	            }
-	        }
-	        out.print("]");
-	        out.close();
-		}	
-		
-		//3. Llamo a la Vista
+
+		request.setAttribute("categoriasEgreso", categoriasEgresos);
+		request.setAttribute("categoriasIngreso", categoriasIngresos);
 		request.setAttribute("ingresos", ingresosPorCategoria);
 		request.setAttribute("egresos", egresosPorCategoria);
-		request.setAttribute("egresosSubcateogria", egresosPorSubcategoria);
+		request.setAttribute("egresosSubcategoria", egresosPorSubcategoria);
 		request.setAttribute("cuentas", misCuentas);
-		request.setAttribute("categoriasIngresos", categoriasIngresos);
-		request.setAttribute("categoriasEgresos", categoriasEgresos);
-		request.setAttribute("subcategoriasEgresos", subcategoriasEgresos);
 		request.getRequestDispatcher("jsp/dashboard.jsp").forward(request, response);
 	}
 

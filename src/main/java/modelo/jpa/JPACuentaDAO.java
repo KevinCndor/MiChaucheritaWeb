@@ -8,7 +8,7 @@ import modelo.dao.CuentaDAO;
 import modelo.entidades.Cuenta;
 import modelo.entidades.Usuario;
 
-public class JPACuentaDAO extends JPAGenericDAO<Cuenta, Integer> implements CuentaDAO {
+public class JPACuentaDAO extends JPAGenericDAO<Cuenta, String> implements CuentaDAO {
 
 	public JPACuentaDAO() {
 		super(Cuenta.class);
@@ -33,6 +33,17 @@ public class JPACuentaDAO extends JPAGenericDAO<Cuenta, Integer> implements Cuen
 	    
 	    query.setParameter("usuario", usuario);
 	    query.setParameter("nombreCuenta", nombreCuenta);
+	    
+		Cuenta cuenta = (Cuenta) query.getSingleResult();
+	    return cuenta;
+	}
+
+	@Override
+	public Cuenta getByNumCuenta(String idCuenta) {
+		String sentencia = "SELECT c FROM Cuenta c WHERE c.numeroCuenta = :idcuenta";
+	    Query query = em.createQuery(sentencia);
+	    
+	    query.setParameter("idcuenta", idCuenta);
 	    
 		Cuenta cuenta = (Cuenta) query.getSingleResult();
 	    return cuenta;

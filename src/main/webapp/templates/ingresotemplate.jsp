@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +13,7 @@
 		class="modal-container contenedorModal">
 		<div class="modal">
 			<h3>Nuevo Ingreso</h3>
-			<form action="MovimientoController?ruta=movimiento&tipo=Ingreso"
+			<form action="MovimientoController?ruta=nuevomovimiento&tipo=Ingreso"
 				method="POST">
 				<div
 					style="display: flex; justify-content: space-between; padding-top: 15px;">
@@ -68,8 +68,6 @@
 			</div>
 		</div>
 	</div>
-		<script src="${pageContext.request.contextPath}/js/app.js">
-		
-	</script>
+	<script src="${pageContext.request.contextPath}/js/app.js"></script>
 </body>
 </html>

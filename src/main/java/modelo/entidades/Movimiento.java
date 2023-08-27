@@ -45,11 +45,12 @@ public class Movimiento implements Serializable{
 	
 	public Movimiento() {}
 	
-	public Movimiento(String descripcion, Date fecha, double valor, Cuenta cuenta) {
+	public Movimiento(String descripcion, String tipoMov ,Date fecha, double valor, Cuenta cuenta) {
 		this.descripcion = descripcion;
 		this.fecha = fecha;
 		this.valor = valor;
 		this.cuenta = cuenta;
+		this.tipoMovimiento = tipoMov;
 	}
 
 	public int getId() {
@@ -92,9 +93,17 @@ public class Movimiento implements Serializable{
 		this.cuenta = cuenta;
 	}
 
+	public String getTipoMovimiento() {
+		return tipoMovimiento;
+	}
+
+	public void setTipoMovimiento(String tipoMovimiento) {
+		this.tipoMovimiento = tipoMovimiento;
+	}
+
 	@Override
 	public String toString() {
-		return id + descripcion + fecha + valor + cuenta;
+		return id + tipoMovimiento + descripcion + fecha + valor + cuenta;
 	}
 	
 }

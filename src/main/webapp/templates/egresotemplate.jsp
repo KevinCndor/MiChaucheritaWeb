@@ -87,7 +87,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/js/app.js">
-	</script>
+	<script src="${pageContext.request.contextPath}/js/app.js">	</script>
+
 </body>
 </html>
