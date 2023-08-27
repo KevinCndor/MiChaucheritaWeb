@@ -96,7 +96,7 @@
 					</div>
 					<div class="extra" id="contenedorEgresosTotal">
 						<div class=" fondoCuadroInformacion ">
-							<c:forEach items="categoriasEgresos" var="categoriaEgresos">
+							<c:forEach items="${categoriasEgresos}" var="categoriaEgresos">
 								<div
 									style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
 									<p>${categoriaEgresos.nombre}</p>
