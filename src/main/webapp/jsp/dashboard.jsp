@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,7 @@
 						<li>MOVIMIENTOS</li>
 					</a>
 					<a href="../index.jsp">
-						<li>CERRAR SESIÓN</li>
+						<li>CERRAR SESIÃ“N</li>
 					</a>
 				</ul>
 			</nav>
@@ -150,9 +150,9 @@
 								</div>
 								<div
 									style="display: flex; justify-content: space-between; padding: 20px 10px 20px 10px;">
-									<p>Número</p>
+									<p>NÃºmero</p>
 									<input type="number"
-										placeholder="Introduce el número de la cuenta"
+										placeholder="Introduce el nÃºmero de la cuenta"
 										id="numeroCuenta" class="styled-combo2" name="numero">
 								</div>
 								<div
@@ -183,9 +183,9 @@
 							<form action="........DashboardController" method="POST">
 								<div
 									style="display: flex; justify-content: space-between; padding: 20px 10px 20px 10px;">
-									<p>Número</p>
+									<p>NÃºmero</p>
 									<input type="number"
-										placeholder="Introduce el número de la cuenta"
+										placeholder="Introduce el nÃºmero de la cuenta"
 										id="numeroCuenta" class="styled-combo2">
 								</div>
 
@@ -222,7 +222,7 @@
 		<footer class="piepagina">
 			<div>Desarrollado Por Grupo 5 Aplicaciones Web</div>
 			<div>
-				<h5>Síguenos En</h5>
+				<h5>SÃ­guenos En</h5>
 				<i class="fa-brands fa-facebook fa-xl"></i> <i
 					class="fa-brands fa-x-twitter fa-xl"></i> <i
 					class="fa-brands fa-youtube fa-xl"></i>
