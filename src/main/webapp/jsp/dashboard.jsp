@@ -96,21 +96,21 @@
 					</div>
 					<div class="extra" id="contenedorEgresosTotal">
 						<div class=" fondoCuadroInformacion ">
-							<c:forEach items="${egresos}" var="egresos">
+							<c:forEach items="${egresos}" var="egreso">
 								<div
 									style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
-									<p>${egresos.nombre}</p>
-									<p>-${egresos.valor}</p>
+									<p>${egreso.nombre}</p>
+									<p>-${egreso.valor}</p>
 								</div>
 								<c:forEach items="${egresosSubcategoria}" var="subcategoria">
 									<div class="contenedorCategoriaEgresos">
 										<div class="contenedorValoresEgresos">
 											<c:if
-												test="${egresos.categoria==subcategoria.categoriaPadre}">
+												test="${egreso.categoria==subcategoria.categoriaPadre}">
 												<p>$ ${subcategoria.valor}</p>
 												<h5>${subcategoria.nombre}</h5>
 											</c:if>
-											<c:if test="${egresos.categoria==null}">
+											<c:if test="${egreso.categoria==null}">
 												<p></p>
 												<h5></h5>
 											</c:if>
