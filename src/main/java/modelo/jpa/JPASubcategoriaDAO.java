@@ -17,7 +17,7 @@ public class JPASubcategoriaDAO extends JPAGenericDAO<Subcategoria, Integer> imp
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Subcategoria> getSubcategoriasPorCategoria(Categoria categoria) {
-		String sentencia = "SELECT c FROM Categoria c WHERE c.categoriaPadre = :categoria";
+		String sentencia = "SELECT s FROM Subcategoria s WHERE s.categoriaPadre = :categoria";
 	    Query query = em.createQuery(sentencia);
 	    
 	    query.setParameter("categoria", categoria.getId());

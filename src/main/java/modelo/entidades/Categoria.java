@@ -3,19 +3,24 @@ package modelo.entidades;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Categoria")
-public class Categoria implements Serializable {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_categoria", discriminatorType = DiscriminatorType.STRING)
+public class Categoria implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -24,15 +29,17 @@ public class Categoria implements Serializable {
 	private int id;
 	@Column(name = "nombre")
 	private String nombre;
+	@Column(name = "tipo_categoria")
+	private String tipoSubCategoria;
 	@Column(name = "tipo")
 	private String tipo;
 	@Column(name = "valor")
 	private double valor;
-	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "categoriaPadre")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoriaPadre")
 	private List<Subcategoria> subcategoria;
 	
-	
-	public Categoria() {}
+	public Categoria() {
+	}
 	
 	public Categoria(String nombre, String tipo) {
 		this.nombre = nombre;
@@ -54,14 +61,6 @@ public class Categoria implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public double getValor() {
-		return valor;
-	}
-
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
 
 	public String getTipo() {
 		return tipo;
@@ -71,13 +70,25 @@ public class Categoria implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public List<Subcategoria> getSubcategorias() {
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+	public List<Subcategoria> getSubcategoria() {
 		return subcategoria;
+	}
+
+	public void setSubcategoria(List<Subcategoria> subcategoria) {
+		this.subcategoria = subcategoria;
 	}
 
 	@Override
 	public String toString() {
-		return id + nombre + tipo + valor;
+		return + id + nombre + tipo +valor;
 	}
 	
 	

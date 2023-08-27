@@ -35,7 +35,7 @@ public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements Egre
 		for (Object[] resultado : resultados) {
 		    Subcategoria subcategoria = (Subcategoria) resultado[0];
 		    Movimiento movimiento = (Movimiento) resultado[1];
-		    double totalSubcategoria = (double) resultado[2];
+		    double totalSubcategoria = ((Number) resultado[2]).doubleValue();
 		    Egreso egreso = new Egreso(movimiento.getDescripcion(), movimiento.getFecha(),
 		                               movimiento.getValor(), movimiento.getCuenta(), subcategoria.getCategoriaPadre(), 
 		                               subcategoria);
@@ -64,7 +64,7 @@ public class JPAEgresoDAO extends JPAGenericDAO<Egreso, Integer> implements Egre
 
 		for (Object[] resultado : resultados) {
 		    Egreso movimiento = (Egreso) resultado[0];
-		    double totalCategoria = (double) resultado[1];
+		    double totalCategoria = ((Number) resultado[1]).doubleValue();
 		    Egreso egreso = new Egreso(movimiento.getDescripcion(), movimiento.getFecha(),
 		    							movimiento.getValor(), movimiento.getCuenta(), movimiento.getCategoria(), 
 		    							movimiento.getSubcategoria());
