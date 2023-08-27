@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,11 +33,16 @@
 						<select name="subcategoriaEgreso" id="" class="styled-combo">
 							<option value="default" selected disabled="disabled">Seleccione
 								una subcategoria</option>
+								<c:if test="${subcategorias!=null}">
 							<c:forEach items="${subcategorias}" var="subcategoria">
 								<option value="${subcategoria.nombre}"
 									${subcategoria==subcategoria ? 'selected':''}>${subcategoria.nombre}</option>
 								<!--  <option value="Persona">Peluquería</option>-->
 							</c:forEach>
+							</c:if>
+							<c:if test="${subcategorias==null}">
+							<option value="default"></option>
+							</c:if>
 						</select>
 					</div>
 				</div>
