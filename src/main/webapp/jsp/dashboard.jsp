@@ -99,8 +99,8 @@
 							<c:forEach items="${egresos}" var="egreso">
 								<div
 									style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
-									<p>${egreso.nombre}</p>
-									<p>-${egreso.valor}</p>
+									<p>${egreso.categoria.nombre}</p>
+									<p>-${egreso.categoria.valor}</p>
 								</div>
 								<c:forEach items="${egresosSubcategoria}" var="subcategoria">
 									<div class="contenedorCategoriaEgresos">
