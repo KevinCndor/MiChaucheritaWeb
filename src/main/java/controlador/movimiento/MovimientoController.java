@@ -69,40 +69,25 @@ public class MovimientoController extends HttpServlet {
 		List<Subcategoria> subcategoriasEgresos = null;		
 		Categoria catParaSubcat = null;
 		
-		// Es necesario este if???
-		if (request.getParameter("filtrosubcat") != null) {
-			String catSelected = request.getParameter("categoriaEgreso");
-			catParaSubcat = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(catSelected));			
-			subcategoriasEgresos = DAOFactory.getFactory().getSubcategoriaDAO().getSubcategoriasPorCategoria(catParaSubcat);
-			
-			response.setContentType("application/json");
-	        PrintWriter out = response.getWriter();
-	        out.print("[");
-	        for (int i = 0; i < subcategoriasEgresos.size(); i++) {
-	            Subcategoria subcategoria = subcategoriasEgresos.get(i);
-	            out.print("{");
-	            out.print("\"id\": \"" + subcategoria.getId() + "\",");
-	            out.print("\"nombre\": \"" + subcategoria.getNombre() + "\"");
-	            out.print("}");
-	            if (i < subcategoriasEgresos.size() - 1) {
-	                out.print(",");
-	            }
-	        }
-	        out.print("]");
-	        out.close();
-		}
+		String catSelected = request.getParameter("categoriaEgreso");
+		catParaSubcat = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(catSelected));			
+		subcategoriasEgresos = DAOFactory.getFactory().getSubcategoriaDAO().getSubcategoriasPorCategoria(catParaSubcat);
 		
-		/*
-		//1. Obtener datos que me envian en la solicitud
-		Categoria categoria = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(request.getParameter("categoria")));
-		
-		//2. Llamo al Modelo para obtener datos
-		List<Subcategoria> subcategorias = DAOFactory.getFactory().getSubcategoriaDAO().getSubcategoriasPorCategoria(categoria);
-		
-		//3. Llamo a la Vista
-		request.setAttribute("subcategorias", subcategorias);
-		// request.getRequestDispatcher("jsp/dashboard.jsp").forward(request, response);
-		 */
+		response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        out.print("[");
+        for (int i = 0; i < subcategoriasEgresos.size(); i++) {
+            Subcategoria subcategoria = subcategoriasEgresos.get(i);
+            out.print("{");
+            out.print("\"id\": \"" + subcategoria.getId() + "\",");
+            out.print("\"nombre\": \"" + subcategoria.getNombre() + "\"");
+            out.print("}");
+            if (i < subcategoriasEgresos.size() - 1) {
+                out.print(",");
+            }
+        }
+        out.print("]");
+        out.close();
 	}
 
 	private void movimiento(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
