@@ -1,6 +1,7 @@
 package controlador.movimiento;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -65,6 +66,33 @@ public class MovimientoController extends HttpServlet {
 	}
 	
 	private void mostrarSubcategoria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Subcategoria> subcategoriasEgresos = null;		
+		Categoria catParaSubcat = null;
+		
+		// Es necesario este if???
+		if (request.getParameter("filtrosubcat") != null) {
+			String catSelected = request.getParameter("categoriaEgreso");
+			catParaSubcat = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(catSelected));			
+			subcategoriasEgresos = DAOFactory.getFactory().getSubcategoriaDAO().getSubcategoriasPorCategoria(catParaSubcat);
+			
+			response.setContentType("application/json");
+	        PrintWriter out = response.getWriter();
+	        out.print("[");
+	        for (int i = 0; i < subcategoriasEgresos.size(); i++) {
+	            Subcategoria subcategoria = subcategoriasEgresos.get(i);
+	            out.print("{");
+	            out.print("\"id\": \"" + subcategoria.getId() + "\",");
+	            out.print("\"nombre\": \"" + subcategoria.getNombre() + "\"");
+	            out.print("}");
+	            if (i < subcategoriasEgresos.size() - 1) {
+	                out.print(",");
+	            }
+	        }
+	        out.print("]");
+	        out.close();
+		}
+		
+		/*
 		//1. Obtener datos que me envian en la solicitud
 		Categoria categoria = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(request.getParameter("categoria")));
 		
@@ -74,26 +102,30 @@ public class MovimientoController extends HttpServlet {
 		//3. Llamo a la Vista
 		request.setAttribute("subcategorias", subcategorias);
 		// request.getRequestDispatcher("jsp/dashboard.jsp").forward(request, response);
+		 */
 	}
 
-	private void movimiento(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void movimiento(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//1. Obtener datos que me envian en la solicitud
 		String tipo = request.getParameter("tipo");
 		Usuario usuario = getSession(request);
 		
-		//2. Llamo al Modelo para obtener datos
-		List<Categoria> categorias = null;
-		List<Cuenta> cuentas = DAOFactory.getFactory().getCuentaDAO().getCuentasUsuario(usuario);
-		
+		//2. Llamo al Modelo para obtener datos		
 		if (tipo.equals("Ingreso")) {
-			categorias = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo(tipo);
+			//2. Llamo al Modelo para obtener datos	
+			List<Categoria> categoriasIngresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Ingreso");
+			
+			//3. Llamo a la Vista
+			request.setAttribute("categoriasIngreso", categoriasIngresos);
+			request.getRequestDispatcher("templates/ingresotemplate.jsp").forward(request, response);			
 		} else {
-			categorias = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo(tipo);
+			//2. Llamo al Modelo para obtener datos	
+			List<Categoria> categoriasEgresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Egreso");
+			
+			//3. Llamo a la Vista
+			request.setAttribute("categoriasEgreso", categoriasEgresos);
+			request.getRequestDispatcher("templates/egresotemplate.jsp").forward(request, response);
 		}
-		
-		//3. Llamo a la Vista
-		request.setAttribute("categorias", categorias);
-		request.setAttribute("cuentas", cuentas);
 	}
 	
 	private void realizarTransferencia(HttpServletRequest request, HttpServletResponse response) throws IOException {	
