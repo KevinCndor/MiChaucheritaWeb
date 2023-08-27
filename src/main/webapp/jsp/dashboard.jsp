@@ -74,7 +74,7 @@
 							class="modal-container contenedorModal">
 							<div class="modal">
 								<h3>Nuevo Ingreso</h3>
-								<form action="">
+								<form action="MovimientoController?ruta=movimiento&tipo=Ingreso" method="POST">
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 15px;">
 										<p>Categoría</p>
@@ -84,7 +84,7 @@
 											<c:forEach items="${categoriasIngreso}"
 												var="categoriaIngreso">
 												<option value="${categoriaIngreso.id}"
-													${categoriaIngreso.nombre==categoriaIngreso ? 'selected':''}>${categoriaIngreso.nombre}</option>
+													${categoriaIngreso==categoriaIngreso ? 'selected':''}>${categoriaIngreso.nombre}</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -96,7 +96,7 @@
 												una cuenta</option>
 											<c:forEach items="${cuentas}" var="cuenta">
 												<option value="${cuenta.nombre}"
-													${cuenta.nombre==cuenta ? 'selected':''}>${cuenta.nombre}</option>
+													${cuenta==cuenta ? 'selected':''}>${cuenta.nombre}</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -165,7 +165,7 @@
 												una categoria</option>
 											<c:forEach items="${categoriasEgresos}" var="categoriaEgresos">
 												<option value="${categoriaEgresos.id}"
-													${categoriaEgresos.nombre==categoriaEgresos ? 'selected':''}>${categoriaEgresos.nombre}</option>
+													${categoriaEgresos==categoriaEgresos ? 'selected':''}>${categoriaEgresos.nombre}</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -176,8 +176,8 @@
 											<option value="default" selected disabled="disabled">Seleccione
 												una subcategoria</option>
 											<c:forEach items="${subcategorias}" var="subcategoria">
-												<option value="${subcateoria.nombre}"
-													${subcateoria.nombre==subcategoria ? 'selected':''}>${subcateoria.nombre}</option>
+												<option value="${subcategoria.nombre}"
+													${subcategoria==subcategoria ? 'selected':''}>${subcategoria.nombre}</option>
 												<!--  <option value="Persona">Peluquería</option>-->
 											</c:forEach>
 										</select>
@@ -191,7 +191,7 @@
 												una cuenta</option>
 											<c:forEach items="${cuentas}" var="cuenta">
 												<option value="${cuenta.nombre}"
-													${cuenta.nombre==cuenta ? 'selected':''}>${cuenta.nombre}</option>
+													${cuenta==cuenta ? 'selected':''}>${cuenta.nombre}</option>
 												<!--  <option value="Cuenta1">Produbanco</option> -->
 											</c:forEach>
 										</select>
@@ -334,7 +334,7 @@
 							<div class="contenedorCuenta">
 								<p style="font-size: 30px; padding-left: 20px;" name="nombre" value="${cuenta.nombre}">${cuenta.nombre}</p>
 								<div class="numCuenta">
-									<p>${cuenta.numeronumeroCuenta}</p>
+									<p>${cuenta.numeroCuenta}</p>
 									<p>${cuenta.saldo}</p>
 								</div>
 							</div>
