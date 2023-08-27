@@ -71,7 +71,7 @@
 							<button class="botonSectionIzquierda fondoBotones"
 								id="openIngreso">Nuevo Ingreso</button>
 						</form>
-						<%@ include file='../templates/ingresotemplate.jsp' %>
+						<%@ include file='../templates/ingresotemplate.jsp'%>
 					</div>
 					<br>
 					<div style="padding-left: 100px;" id="contenedorIngresosTotal">
@@ -92,7 +92,7 @@
 							<button class="botonSectionIzquierda fondoBotones"
 								id="openEgreso">Nuevo Egreso</button>
 						</form>
-						<%@ include file='../templates/egresotemplate.jsp' %>
+						<%@ include file='../templates/egresotemplate.jsp'%>
 					</div>
 					<div class="extra" id="contenedorEgresosTotal">
 						<div class=" fondoCuadroInformacion ">
