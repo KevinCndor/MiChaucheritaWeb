@@ -69,6 +69,7 @@ public class MovimientoController extends HttpServlet {
 		List<Subcategoria> subcategoriasEgresos = null;		
 		Categoria catParaSubcat = null;
 		
+		// Es necesario este if???
 		if (request.getParameter("filtrosubcat") != null) {
 			String catSelected = request.getParameter("categoriaEgreso");
 			catParaSubcat = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(catSelected));			
