@@ -20,89 +20,107 @@
 			</div>
 			<nav class="MenuHeader">
 				<ul>
-						<li><a href="DashboardController?ruta=mostrar">REGRESAR</a></li>					
-						<li><a href="AccesoController?ruta=inicio">CERRAR SESIÓN</a></li>
+					<li><a href="DashboardController?ruta=mostrar">REGRESAR</a></li>
+					<li><a href="AccesoController?ruta=inicio">CERRAR SESIÓN</a></li>
 				</ul>
 			</nav>
 		</header>
 		<section class="sectionBienvenida fondoCelesteDegradado">
 			<h1 class="titulo1">
-				Bienvenido de vuelta
+				Bienvenido de vuelta,
 				<c:out value="${sessionScope.usuarioLogeado.nombre}" />
 				!
 			</h1>
 		</section>
 		<section class="fondoMisCuentas">
 			<h3 class="titulo1 seccionMovimiento">Nueva Transferencia</h3>
-			<form class="inputInicio-container" action="MovimientoController?ruta=transferencia" method="POST">
-			<div class="seccionMovimiento">
+			<form class="inputInicio-container"
+				action="MovimientoController?ruta=transferencia" method="POST">
+				<div class="seccionMovimiento">
 
-				<!-- Escoger cuenta de origen -->
-				<div class="centrarBotones">
-				    <div class="titulo2 seccionMovimiento">1. Elija la cuenta de origen</div>
-				    <div class="contenedorcuadrosCuentaTransferencia">
-				
-				        <c:forEach items="${cuentas}" var="cuenta">
-				            <div class="contenedorCuentaTransferencia clickable-div">
-				                <div style="font-size: 30px; padding-left: 20px;" id = "cuentaOrigen">${cuenta.nombre}</div>
-				                <div class="numCuenta">
-				                    <p>${cuenta.numeroCuenta}</p>
-				                    <p>$ ${cuenta.saldo}</p>
-				                </div>
-				            </div>
-				        </c:forEach>
-				    </div>
-				    <button id="showAll" class="botonInicio fondoBotones" style="font-size: 30px;">Regresar</button>
-				</div>
-				
-				<!-- Escoger cuenta de destino -->
-				<div class="centrarBotones">
-				    <div class="titulo2 seccionMovimiento">2. Elija la cuenta de destino</div>
-				    <div class="contenedorcuadrosCuentaTransferencia">
-				
-				        <c:forEach items="${cuentas}" var="cuenta">
-				                <div class="contenedorCuentaTransferencia clickable-div1">
-				                    <div style="font-size: 30px; padding-left: 20px;" id = "cuentaDestino">${cuenta.nombre}</div>
-				                    <div class="numCuenta">
-				                        <p>${cuenta.numeroCuenta}</p>
-				                        <p>$ ${cuenta.saldo}</p>
-				                    </div>
-				                </div>
-				        </c:forEach>
-				
-				    </div>
-				    <button id="showAll1" class="botonInicio fondoBotones" style="font-size: 30px;">Regresar</button>
-				</div>
+					<!-- Escoger cuenta de origen -->
+					<div id="seccion1" style="width: 33%;">
+						<div class="centrarBotones">
+							<div class="titulo2 seccionMovimiento">1. Elija la cuenta
+								de origen</div>
+							<div class="contenedorcuadrosCuentaTransferencia">
 
-
-				<!-- Info Transferencia -->
-				<div class="centrarBotones">
-					<div class="titulo2 seccionMovimiento">3. Información de transferencia</div>
-					<div class="fondoCuadroInformacion contenedorFormTransferencia">
-						
-						
-							<div>
-								<div class="titulo2">Monto</div>
-								<input type="text" name="monto" placeholder="$00.00" required class="styled-inputTransferencia">
+								<c:forEach items="${cuentas}" var="cuenta">
+									<div class="contenedorCuentaTransferencia clickable-div">
+										<div style="font-size: 30px; padding-left: 20px;"
+											id="cuentaOrigen">${cuenta.nombre}</div>
+										<div class="numCuenta">
+											<p>${cuenta.numeroCuenta}</p>
+											<p>$ ${cuenta.saldo}</p>
+										</div>
+									</div>
+								</c:forEach>
 							</div>
-							<div>
-								<div class="titulo2">Descripción</div>
-								<input type="text" name="descripcion" required class="styled-inputTransferencia2">
-							</div>
-
-							<!-- <a href=""> -->
-								<button type="submit" value="HacerTransferencia" class="botonInicio fondoBotones">Hacer Transferencia</button>
-							<!-- </a> -->
+							<button id="showAll" class="botonInicio fondoBotones"
+								style="font-size: 30px;">Regresar</button>
+						</div>
 					</div>
 
-					<a href="DashboardController?ruta=mostrar">
-						<button type="submit" value="Cancelar" class="botonInicio fondoBotones ">Cancelar</button>
-					</a>
+					<div id="seccion2" class="hidden" style="width: 33%;">
+						<!-- Escoger cuenta de destino -->
+						<div class="centrarBotones">
+							<div class="titulo2 seccionMovimiento">2. Elija la cuenta
+								de destino</div>
+							<div class="contenedorcuadrosCuentaTransferencia">
+
+								<c:forEach items="${cuentas}" var="cuenta">
+									<div class="contenedorCuentaTransferencia clickable-div1">
+										<div style="font-size: 30px; padding-left: 20px;"
+											id="cuentaDestino">${cuenta.nombre}</div>
+										<div class="numCuenta">
+											<p>${cuenta.numeroCuenta}</p>
+											<p>$ ${cuenta.saldo}</p>
+										</div>
+									</div>
+								</c:forEach>
+
+							</div>
+							<button id="showAll1" class="botonInicio fondoBotones"
+								style="font-size: 30px;">Regresar</button>
+						</div>
+					</div>
+
+
+					<!-- Info Transferencia -->
+					<div id="seccion3" class="hidden" style="width: 34%;">
+						<div class="centrarBotones">
+							<div class="titulo2 seccionMovimiento">3. Información de
+								transferencia</div>
+							<div class="fondoCuadroInformacion contenedorFormTransferencia">
+
+
+								<div>
+									<div class="titulo2">Monto</div>
+									<input type="text" name="monto" placeholder="$00.00" required
+										class="styled-inputTransferencia">
+								</div>
+								<div>
+									<div class="titulo2">Descripción</div>
+									<input type="text" name="descripcion" required
+										class="styled-inputTransferencia2">
+								</div>
+
+								<!-- <a href=""> -->
+								<button type="submit" value="HacerTransferencia"
+									class="botonInicio fondoBotones">Hacer Transferencia</button>
+								<!-- </a> -->
+							</div>
+
+							<a href="DashboardController?ruta=mostrar">
+								<button type="submit" value="Cancelar"
+									class="botonInicio fondoBotones ">Cancelar</button>
+							</a>
+						</div>
+
+					</div>
 				</div>
 
-			</div>
-			
-				</form>
+			</form>
 		</section>
 
 		<footer class="piepagina">
@@ -115,11 +133,15 @@
 			</div>
 		</footer>
 	</main>
-<script src="${pageContext.request.contextPath}/js/app1.js"></script>
-<script src="https://kit.fontawesome.com/85e6f64c7f.js" crossorigin="anonymous"></script>
-
 	<script src="${pageContext.request.contextPath}/js/app1.js"></script>
-	<script src="https://kit.fontawesome.com/85e6f64c7f.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/85e6f64c7f.js"
+		crossorigin="anonymous"></script>
+	<script>
+		function mostrarSeccion(numero) {
+			document.getElementById(`seccion${numero}`).classList
+					.remove('hidden');
+		}
+	</script>
 </body>
 
 </html>

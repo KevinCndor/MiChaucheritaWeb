@@ -3,6 +3,27 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'PoppinsRegular';
+    margin: 0px;
+    padding: 0px;
+    height: auto;
+    box-sizing: border-box;
+}
+
+header {
+    font-family: 'PoppinsRegular';
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 70px;
+}
+
+.hidden {
+    display: none;
+}
+/**************************************** Fuentes ******************************************/
 @font-face {
     font-family: 'PoppinsRegular';
     /* colocar nombre */
@@ -15,7 +36,7 @@
     src: url('../fuentes/Poppins/Poppins-Black.ttf');
 }
 
-/* Colores Fondo */
+/**************************************** Colores Fondo ******************************************/
 .fondoGrisClaro {
     background-color: #EEEEEE;
 }
@@ -53,7 +74,7 @@
     background-color: #D4E7F9;
 }
 
-/*  Tipografia */
+/********************************************  Tipografia ************************************/
 .titulo1 {
     font-size: 32px;
 }
@@ -75,35 +96,26 @@
     padding-right: 70px;
 }
 
-/* Estilos para los botones */
+/***************************************** Estilos para enlaces *********************************/
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+/***************************************** Estilos para los botones *****************************/
 button {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-/* Cambio de color al pasar el mouse sobre los botones */
 button:hover {
     background-color: #ffff00;
 }
 
-body {
-    font-family: 'PoppinsRegular';
-    margin: 0px;
-    padding: 0px;
-    height: auto;
-    box-sizing: border-box;
-}
-
-header {
-    font-family: 'PoppinsRegular';
-    height: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 70px;
-}
-
-/* LOGIN*/
+/************************************************** LOGIN *****************************************/
 .LoginChaucherita {
     display: flex;
     justify-content: space-between;
@@ -181,154 +193,7 @@ header {
     border-color: #32F9A5;
 }
 
-/* REGISTRAR */
-
-/*************************************************** TRANSFERENCIA *******************************************/
-
-.centrarBotones {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 50px;
-}
-
-.contenedorCuentaTransferencia {
-    background-color: #B6DAFC;
-    border-radius: 15px;
-    width: 400px;
-    height: 100px;
-    align-items: center;
-}
-
-.contenedorcuadrosCuentaTransferencia {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px 0px;
-    gap: 20px;
-}
-
-.contenedorFormTransferencia {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px 30px;
-    gap: 20px;
-}
-
-.styled-inputTransferencia {
-    border: 2px solid #3498db;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border-color 0.3s ease-in-out;
-    width: 400px;
-    height: 65px;
-}
-
-.styled-inputTransferencia2 {
-    border: 2px solid #3498db;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border-color 0.3s ease-in-out;
-    width: 400px;
-    height: 100px;
-}
-
-.hidden {
-    display: none;
-}
-
-/********************************************* MOVIMIENTO *********************************************/
-
-.seccionMovimiento {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 70px;
-}
-
-
-.contenedorMovimiento {
-    width: 100%;
-    height: 680px;
-    background-color: #837C7C;
-}
-
-
-/* Combo box Meses */
-/* Estilos para el combo box */
-#months {
-    font-size: 16px;      /* Tamaño de la fuente */
-    padding: 8px 12px;    /* Espaciado interno */
-    border: 1px solid #ccc;  /* Borde */
-    border-radius: 4px;   /* Esquinas redondeadas */
-    background-color: #f9f9f9;  /* Color de fondo */
-    color: #333;         /* Color del texto */
-    transition: background-color 0.3s;  /* Transición suave del color de fondo */
-    outline: none;       /* Remover el borde exterior por defecto de algunos navegadores */
-    width: 200px;        /* Ancho */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
-}
-
-/* Estilo al poner el cursor encima del combo box */
-#months:hover {
-    background-color: #e6e6e6;
-}
-
-/* Estilo cuando el combo box está enfocado (al hacer clic dentro) */
-#months:focus {
-    border-color: #007BFF;  /* Cambia el color del borde a azul */
-    background-color: #e6e6e6;
-}
-
-
-/* Combo box Categoria */
-#categoria {
-    font-size: 16px;      /* Tamaño de la fuente */
-    padding: 8px 12px;    /* Espaciado interno */
-    border: 1px solid #ccc;  /* Borde */
-    border-radius: 4px;   /* Esquinas redondeadas */
-    background-color: #f9f9f9;  /* Color de fondo */
-    color: #333;         /* Color del texto */
-    transition: background-color 0.3s;  /* Transición suave del color de fondo */
-    outline: none;       /* Remover el borde exterior por defecto de algunos navegadores */
-    width: 200px;        /* Ancho */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
-}
-
-/* Estilo al poner el cursor encima del combo box */
-#categoria:hover {
-    background-color: #e6e6e6;
-}
-
-/* Estilo cuando el combo box está enfocado (al hacer clic dentro) */
-#categoria:focus {
-    border-color: #007BFF;  /* Cambia el color del borde a azul */
-    background-color: #e6e6e6;
-}
-
-.sectionFiltros {
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 500px;
-    font-size: large;
-}
-
-
-.sectionBienvenida2 {
-    height: 160px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 500px;
-    font-size: large;
-}
-
-
-/* DASHBOARD */
+/**************************************************** DASHBOARD **************************************/
 
 .MenuHeader {
     display: inline-block;
@@ -373,10 +238,10 @@ header {
     height: auto;
 }
 
-
 .borderContenedorMisCuentas {
     border-left: 2px solid #837C7C;
 }
+
 .encabezadoSeccionIzquierda {
     display: flex;
     justify-content: space-between;
@@ -509,7 +374,6 @@ header {
     height: 100vh;
     width: 100vw;
     transition: opacity 0.3s ease;
-
 }
 
 .show {
@@ -529,7 +393,6 @@ header {
     display: flex;
     flex-direction: column;
     gap: 20px;
-
 }
 
 .modal h1 {
@@ -557,7 +420,6 @@ header {
     font-size: 20px;
 }
 
-
 .modal {
     background-color: #fff;
     width: 745px;
@@ -570,7 +432,6 @@ header {
     display: flex;
     flex-direction: column;
     gap: 20px;
-
 }
 
 .styled-combo {
@@ -684,4 +545,100 @@ header {
 
 .styled-table tr:hover {
     background-color: #ddd;
+}
+
+/*************************************************** TRANSFERENCIA *******************************************/
+.centrarBotones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.contenedorCuentaTransferencia {
+    background-color: #B6DAFC;
+    border-radius: 15px;
+    width: 400px;
+    height: 100px;
+    align-items: center;
+}
+
+.contenedorcuadrosCuentaTransferencia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0px;
+    gap: 20px;
+}
+
+.styled-inputTransferenciaMonto {
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out;
+    width: 400px;
+    height: 65px;
+}
+
+.styled-inputTransferenciaDescripcion {
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out;
+    width: 400px;
+    height: 100px;
+}
+
+.secciones {
+    display: flex;
+    justify-items: left;
+    align-items: center;
+    padding: 20px 70px;
+}
+
+/********************************************* MOVIMIENTO *********************************************/
+
+.seccionMovimiento {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 70px;
+}
+
+.contenedorMovimiento {
+    width: 100%;
+    height: 680px;
+}
+
+/* Combo box */
+.comboBox {
+    font-size: 16px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: background-color 0.3s;
+    outline: none;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comboBox:hover {
+    background-color: #e6e6e6;
+}
+
+.comboBox:focus {
+    border-color: #007BFF;
+    background-color: #e6e6e6;
+}
+
+.sectionFiltros {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 500px;
+    font-size: large;
 }
