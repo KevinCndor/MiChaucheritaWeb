@@ -105,8 +105,7 @@
 								<c:forEach items="${egresosSubcategoria}" var="subcategoria">
 									<div class="contenedorCategoriaEgresos">
 										<div class="contenedorValoresEgresos">
-											<c:if
-												test="${egreso.categoria==subcategoria.categoriaPadre}">
+											<c:if test="${egreso.categoria.nombre==subcategoria.categoriaPadre.nombre}">
 												<p>$ ${subcategoria.valor}</p>
 												<h5>${subcategoria.nombre}</h5>
 											</c:if>
