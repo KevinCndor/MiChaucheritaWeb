@@ -65,7 +65,7 @@
 				</form>
 			</div>
 			
-			<div>
+			<div class="contenedorTabla" style="min-height: 516px">
 				<table border="1" class="styled-table">
 					<tr>
 						<th>ID Movimiento</th>

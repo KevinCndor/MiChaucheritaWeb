@@ -689,3 +689,7 @@ button:hover {
     gap: 500px;
     font-size: large;
 }
+
+.contenedorTabla {
+	width: 100%;
+}
