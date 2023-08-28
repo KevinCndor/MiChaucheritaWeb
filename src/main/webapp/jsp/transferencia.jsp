@@ -21,10 +21,11 @@
 			<nav class="MenuHeader">
 				<ul>
 					<li><a href="DashboardController?ruta=mostrar">REGRESAR</a></li>
-					<li><a href="AccesoController?ruta=inicio">CERRAR SESIÓN</a></li>
+					<li><a href="AccesoController?ruta=inicio">CERRAR SESION</a></li>
 				</ul>
 			</nav>
 		</header>
+
 		<section class="sectionBienvenida fondoCelesteDegradado">
 			<h1 class="titulo1">
 				Bienvenido de vuelta,
@@ -32,18 +33,19 @@
 				!
 			</h1>
 		</section>
+
 		<section class="fondoMisCuentas">
 			<h3 class="titulo1 seccionMovimiento">Nueva Transferencia</h3>
 			<form class="inputInicio-container"
 				action="MovimientoController?ruta=transferencia" method="POST">
+				
 				<div class="seccionTransferencia">
-
 					<!-- Escoger cuenta de origen -->
-					<div id="seccion1" style="width: 33%;">
+					<div id="seccion1">
 						<div class="centrarBotones">
 							<div class="titulo2 seccionMovimiento">1. Elija la cuenta
 								de origen</div>
-							<div class="contenedorcuadrosCuentaTransferencia onclick="mostrarSeccion(2)">
+							<div class="contenedorcuadrosCuentaTransferencia">
 
 								<c:forEach items="${cuentas}" var="cuenta">
 									<div class="contenedorCuentaTransferencia clickable-div">
@@ -61,12 +63,12 @@
 						</div>
 					</div>
 
-					<div id="seccion2" class="hidden" style="width: 33%;">
+					<div id="seccion2">
 						<!-- Escoger cuenta de destino -->
 						<div class="centrarBotones">
 							<div class="titulo2 seccionMovimiento">2. Elija la cuenta
 								de destino</div>
-							<div class="contenedorcuadrosCuentaTransferencia onclick="mostrarSeccion(3)">
+							<div class="contenedorcuadrosCuentaTransferencia">
 
 								<c:forEach items="${cuentas}" var="cuenta">
 									<div class="contenedorCuentaTransferencia clickable-div1">
@@ -85,53 +87,49 @@
 						</div>
 					</div>
 
-
 					<!-- Info Transferencia -->
-					<div id="seccion3" class="hidden" style="width: 34%;">
+					<div id="seccion3">
 						<div class="centrarBotones">
-							<div class="titulo2 seccionMovimiento">3. Información de
+							<div class="titulo2 seccionMovimiento">3. Informacion de
 								transferencia</div>
-							<div class="fondoCuadroInformacion contenedorFormTransferencia">
-
-
+							<div
+								class="fondoCuadroInformacion contenedorcuadrosCuentaTransferencia">
 								<div>
 									<div class="titulo2">Monto</div>
 									<input type="text" name="monto" placeholder="$00.00" required
-										class="styled-inputTransferencia">
+										class="styled-inputTransferenciaMonto">
 								</div>
 								<div>
-									<div class="titulo2">Descripción</div>
+									<div class="titulo2">Descripcion</div>
 									<input type="text" name="descripcion" required
-										class="styled-inputTransferencia2">
+										class="styled-inputTransferenciaDescripcion">
 								</div>
-
-								<!-- <a href=""> -->
-								<button type="submit" value="HacerTransferencia"
-									class="botonInicio fondoBotones">Hacer Transferencia</button>
-								<!-- </a> -->
 							</div>
+
+							<button type="submit" value="HacerTransferencia"
+									class="botonInicio fondoBotones">Hacer Transferencia</button>
+							
 
 							<a href="DashboardController?ruta=mostrar">
 								<button type="submit" value="Cancelar"
 									class="botonInicio fondoBotones ">Cancelar</button>
 							</a>
 						</div>
-
 					</div>
 				</div>
-
 			</form>
 		</section>
 
 		<footer class="piepagina">
 			<div>Desarrollado Por Grupo 5 Aplicaciones Web</div>
 			<div>
-				<h5>Síguenos En</h5>
+				<h5>Siguenos En</h5>
 				<i class="fa-brands fa-facebook fa-xl"></i> <i
 					class="fa-brands fa-x-twitter fa-xl"></i> <i
 					class="fa-brands fa-youtube fa-xl"></i>
 			</div>
 		</footer>
+
 	</main>
 	<script src="${pageContext.request.contextPath}/js/app1.js"></script>
 	<script src="https://kit.fontawesome.com/85e6f64c7f.js"
