@@ -44,13 +44,8 @@
 					<!-- Combo box de meses -->
 					<div class="encabezadoSeccionIzquierda"
 						style="display: flex; justify-content: center;">
-<<<<<<< HEAD
 						<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST" style="padding-right: 200px">
-							<select name="months" id="months">
-=======
-						<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST">
 							<select name="months" id="months" class="comboBox">
->>>>>>> branch 'Rafaela' of https://github.com/KevinCndor/MiChaucheritaWeb.git
 								<option value="-1" selected disabled="disabled">Seleccione un mes</option>
 								<option value="0">Enero</option>
 								<option value="1">Febrero</option>
