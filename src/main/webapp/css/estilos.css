@@ -572,6 +572,13 @@ button:hover {
     flex-direction: column;
     gap: 20px;
 }
+.centrarBotones2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
 
 .contenedorCuentaTransferencia {
     background-color: #B6DAFC;
@@ -619,7 +626,15 @@ button:hover {
     justify-items: left;
     align-items: center;
     padding: 20px 70px;
-    gap: 100px;
+    gap: 140px;
+}
+
+.botonCancelar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 80px;
 }
 
 /********************************************* MOVIMIENTO *********************************************/
