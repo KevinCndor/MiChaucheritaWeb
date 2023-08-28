@@ -45,7 +45,7 @@
 					<div class="encabezadoSeccionIzquierda"
 						style="display: flex; justify-content: center; gap: 150px; align-items: center;">
 						<div style="display: flex;">
-			<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST" style="padding-right: 200px">
+			<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST" style="display: flex ; justify-content: space-between; align-items: center; gap: 150px;">
 							<select name="months" id="months" class="comboBox">
 								<option value="-1" selected disabled="disabled">Seleccione un mes</option>
 								<option value="0">Enero</option>
@@ -140,7 +140,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="fondoGrisClaro Egresos ">
+				<div class="fondoGrisClaro " style="height: 470px;">
 					<div class="encabezadoSeccionIzquierda">
 						<h3>Egresos</h3>
 							<button class="botonSectionIzquierda fondoBotones" id="openEgreso">Nuevo Egreso</button>
