@@ -229,8 +229,7 @@ button:hover {
 }
 
 .Egresos {
- height: 100%;
-    width: 47vh;
+   width: 100%;
 }
 
 .MisCuentas {
@@ -423,7 +422,7 @@ button:hover {
 .modal {
     background-color: #fff;
     width: 745px;
-    height: 525px;
+    min-height: 600px; /* modal */
     max-width: 100%;
     padding: 30px 50px;
     border-radius: 5px;
@@ -641,11 +640,4 @@ button:hover {
     align-items: center;
     gap: 500px;
     font-size: large;
-}
-
-.seccionTransferencia {
-    display: flex;
-    justify-items: left;
-    align-items: center;
-    padding: 20px 70px;
 }
