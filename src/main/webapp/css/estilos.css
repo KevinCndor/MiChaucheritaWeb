@@ -20,6 +20,9 @@ header {
     padding-left: 70px;
 }
 
+.MenuHeader ul li a:hover {
+  color: #32F9A5; /* Cambia el color de fondo a amarillo */
+}
 .hidden {
     display: none;
 }
