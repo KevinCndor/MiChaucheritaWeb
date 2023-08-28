@@ -1,6 +1,5 @@
 package modelo.jpa;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -25,7 +24,7 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 	    Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getById(idCuenta);
 	    
 	    query.setParameter("idCuenta", cuenta);
-	    query.setParameter("mes", mes);
+	    query.setParameter("mes", mes+1);
 	    
 		List<Movimiento> movimientosPorMes = query.getResultList();
 	    return movimientosPorMes;
@@ -34,27 +33,28 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movimiento> getByType(String idCuenta, String tipo) {
-		String sentencia = "SELECT DISTINCT m FROM Movimiento m WHERE m.cuenta = :idCuenta AND m.tipoMovimiento = :tipo";
+		String sentencia = "SELECT DISTINCT m FROM Movimiento m WHERE m.cuenta = :cuenta AND m.tipoMovimiento = :tipo";
 	    Query query = em.createQuery(sentencia);
 	    Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getById(idCuenta);
-	    query.setParameter("idCuenta", cuenta);
+	    query.setParameter("cuenta", cuenta);
 	    query.setParameter("tipo", tipo);
 	    
 		List<Movimiento> movimientosPorTipo = query.getResultList();
 	    return movimientosPorTipo;
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({"unchecked" })
 	@Override
 	public List<Movimiento> getByMothAndType(String idCuenta, int mes, String tipo) {
-		List<Movimiento> movimientosPorTipo = getByType(idCuenta, tipo);
-		List<Movimiento> movPorTipoYMes = new ArrayList<Movimiento>();
-		for (Movimiento movimiento : movimientosPorTipo) {
-			int mesMovimiento = movimiento.getFecha().getMonth();
-			if( mesMovimiento == mes) {
-				movPorTipoYMes.add(movimiento);
-			}
-		}
+		String sentencia = "SELECT DISTINCT m FROM Movimiento m WHERE m.cuenta = :idCuenta AND FUNCTION('MONTH', m.fecha) = :mes AND m.tipoMovimiento = :tipo";
+	    Query query = em.createQuery(sentencia);
+	    Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getById(idCuenta);
+	    
+	    query.setParameter("idCuenta", cuenta);
+	    query.setParameter("mes", mes+1);
+	    query.setParameter("tipo", tipo);
+	    
+		List<Movimiento> movPorTipoYMes = query.getResultList();
 		return movPorTipoYMes;
 	}
 
@@ -97,7 +97,7 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 	    Query query = em.createQuery(sentencia);
 	    
 	    query.setParameter("idUsuario", usuario.getId());
-	    query.setParameter("mes", mes);
+	    query.setParameter("mes", mes+1);
 	    
 		List<Movimiento> movimientosPorMes = query.getResultList();
 	    return movimientosPorMes;
@@ -107,7 +107,7 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 	@Override
 	public List<Movimiento> getAllByType(Usuario usuario, String tipo) {
 		String sentencia = "SELECT m FROM Movimiento m JOIN m.cuenta c JOIN c.propietario u "
-							+ "WHERE u.id = :idUsuario AND m.tipoMovimiento = :tipoMovimiento";
+                				+ "WHERE u.id = :idUsuario AND m.tipoMovimiento = :tipoMovimiento";
 
 
 	    Query query = em.createQuery(sentencia);
@@ -123,14 +123,15 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 	@Override
 	public List<Movimiento> getAllByMonthAndType(Usuario usuario, int mes, String tipo) {
 		String sentencia = "SELECT m FROM Movimiento m JOIN m.cuenta c JOIN c.propietario u "
-							+ "WHERE u.id = :idUsuario AND m.tipoMovimiento = :tipoMovimiento AND FUNCTION('MONTH', m.fecha) = :mes";
+				                + "WHERE u.id = :idUsuario AND m.tipoMovimiento = :tipoMovimiento "
+				                + "AND FUNCTION('MONTH', m.fecha) = :mes";
 
 
 		Query query = em.createQuery(sentencia);
 		
 		query.setParameter("idUsuario", usuario.getId());
 		query.setParameter("tipoMovimiento", tipo);
-	    query.setParameter("mes", mes);
+	    query.setParameter("mes", mes+1);
 		
 		List<Movimiento> movimientosPorMes = query.getResultList();
 		return movimientosPorMes;

@@ -191,14 +191,15 @@ public class MovimientoController extends HttpServlet {
 		//1. Obtener datos que me envian en la solicitud
 		String nombreCuenta = request.getParameter("nombre");
 		String numCuenta = null;
+		HttpSession session = request.getSession();
 		Usuario usuario = getSession(request);
 		List<Movimiento> movimientos = null;
 		if(nombreCuenta != null){
-			HttpSession session = request.getSession();
 			session.setAttribute("cuenta", DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(nombreCuenta, usuario));
 			numCuenta = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(nombreCuenta, usuario).getNumeroCuenta();
 			movimientos = DAOFactory.getFactory().getMovimientoDAO().getByCuenta(numCuenta, usuario);
 		}else {
+			session.removeAttribute("cuenta");
 			movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByUser(usuario);
 		}
 		//3. Llamo a la Vista
@@ -216,9 +217,10 @@ public class MovimientoController extends HttpServlet {
 		}
 		
 		String tipo = request.getParameter("tipo");
+		System.out.println(tipo);
 		List<Movimiento> movimientos = null;
 		if(cuenta == null) {
-			if(mes != -1) {
+			if(mes >= 0) {
 				if(tipo == null) {
 					movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByMonth(usuario, mes);
 				}else {
@@ -232,7 +234,7 @@ public class MovimientoController extends HttpServlet {
 				}
 			}
 		}else {
-			if(mes != -1) {
+			if(mes >= 0) {
 				if(tipo == null) {
 					movimientos = DAOFactory.getFactory().getMovimientoDAO().getByMonth(cuenta.getNumeroCuenta(), mes);
 				}else {
