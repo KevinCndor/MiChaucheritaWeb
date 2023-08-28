@@ -55,9 +55,8 @@ public class DashboardController extends HttpServlet {
 		//1. Obtener datos que me envian en la solicitud		
 		String numeroCuenta = request.getParameter("numero");
 		
+		System.out.println(numeroCuenta);
 		//2. Llamo al Modelo para obtener datos
-		
-		// REVISAR el metodo porque en la BD el ID es String !!!
 		DAOFactory.getFactory().getCuentaDAO().deleteById(numeroCuenta);
 		
 		//3. Llamo a la Vista
@@ -108,7 +107,6 @@ public class DashboardController extends HttpServlet {
 		misCuentas = DAOFactory.getFactory().getCuentaDAO().getCuentasUsuario(usuario);
 		List<Categoria> categoriasIngresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Ingreso");
 		List<Categoria> categoriasEgresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Egreso");
-
 		request.setAttribute("categoriasEgreso", categoriasEgresos);
 		request.setAttribute("categoriasIngreso", categoriasIngresos);
 		request.setAttribute("ingresos", ingresosPorCategoria);
