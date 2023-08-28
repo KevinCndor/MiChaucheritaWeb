@@ -35,10 +35,18 @@
 		</section>
 
 		<section class="fondoMisCuentas">
-			<h3 class="titulo1 seccionMovimiento">Nueva Transferencia</h3>
+			<div class="secciones2">
+				<h3 class="titulo1 seccionMovimiento">Nueva Transferencia</h3>
+				<div class="botonCancelar">
+					<a href="DashboardController?ruta=mostrar">
+						<button type="submit" value="Cancelar"
+							class="botonInicio fondoBotones" style="font-size: 30px;">Cancelar</button>
+					</a>
+				</div>
+			</div>
 			<form class="inputInicio-container"
 				action="MovimientoController?ruta=transferencia" method="POST">
-				
+
 				<div class="seccionTransferencia">
 					<!-- Escoger cuenta de origen -->
 					<div id="seccion1">
@@ -89,7 +97,7 @@
 
 					<!-- Info Transferencia -->
 					<div id="seccion3">
-						<div class="centrarBotones">
+						<div class="centrarBotones2">
 							<div class="titulo2 seccionMovimiento">3. Informacion de
 								transferencia</div>
 							<div
@@ -107,13 +115,7 @@
 							</div>
 
 							<button type="submit" value="HacerTransferencia"
-									class="botonInicio fondoBotones">Hacer Transferencia</button>
-							
-
-							<a href="DashboardController?ruta=mostrar">
-								<button type="submit" value="Cancelar"
-									class="botonInicio fondoBotones ">Cancelar</button>
-							</a>
+								class="botonInicio fondoBotones">Hacer Transferencia</button>
 						</div>
 					</div>
 				</div>
