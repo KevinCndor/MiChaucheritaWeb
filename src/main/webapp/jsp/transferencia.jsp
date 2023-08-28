@@ -36,14 +36,14 @@
 			<h3 class="titulo1 seccionMovimiento">Nueva Transferencia</h3>
 			<form class="inputInicio-container"
 				action="MovimientoController?ruta=transferencia" method="POST">
-				<div class="seccionMovimiento">
+				<div class="seccionTransferencia">
 
 					<!-- Escoger cuenta de origen -->
 					<div id="seccion1" style="width: 33%;">
 						<div class="centrarBotones">
 							<div class="titulo2 seccionMovimiento">1. Elija la cuenta
 								de origen</div>
-							<div class="contenedorcuadrosCuentaTransferencia">
+							<div class="contenedorcuadrosCuentaTransferencia onclick="mostrarSeccion(2)">
 
 								<c:forEach items="${cuentas}" var="cuenta">
 									<div class="contenedorCuentaTransferencia clickable-div">
@@ -66,7 +66,7 @@
 						<div class="centrarBotones">
 							<div class="titulo2 seccionMovimiento">2. Elija la cuenta
 								de destino</div>
-							<div class="contenedorcuadrosCuentaTransferencia">
+							<div class="contenedorcuadrosCuentaTransferencia onclick="mostrarSeccion(3)">
 
 								<c:forEach items="${cuentas}" var="cuenta">
 									<div class="contenedorCuentaTransferencia clickable-div1">
