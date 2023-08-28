@@ -43,12 +43,9 @@
 				<div class="fondoGrisClaro Ingresos">
 					<!-- Combo box de meses -->
 					<div class="encabezadoSeccionIzquierda"
-						style="display: flex; justify-content: center;">
-<<<<<<< HEAD
-						<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST" style="padding-right: 200px">
-=======
+						style="display: flex; justify-content: center; gap: 150px; align-items: center;">
+						<div style="display: flex;">
 			<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST" style="padding-right: 200px">
->>>>>>> branch 'JeanP' of https://github.com/KevinCndor/MiChaucheritaWeb.git
 							<select name="months" id="months" class="comboBox">
 								<option value="-1" selected disabled="disabled">Seleccione un mes</option>
 								<option value="0">Enero</option>
@@ -64,8 +61,9 @@
 								<option value="10">Noviembre</option>
 								<option value="11">Diciembre</option>
 							</select>
-							<button type="submit" class="botonSectionIzquierda fondoBotones" style="padding-left: 15px">Visualizar</button>
+							<button type="submit" class="botonSectionIzquierda fondoBotones">Visualizar</button>
 						</form>
+						</div>
 					</div>
 					<div class="encabezadoSeccionIzquierda">
 						<h3>Ingresos</h3>

@@ -229,8 +229,9 @@ button:hover {
 }
 
 .Egresos {
-    height: auto;
-    width: 1200px;
+   width: 842px;
+height: 516px;
+flex-shrink: 0;
 }
 
 .MisCuentas {
