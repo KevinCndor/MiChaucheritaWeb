@@ -229,9 +229,8 @@ button:hover {
 }
 
 .Egresos {
-   width: 842px;
-height: 516px;
-flex-shrink: 0;
+ height: 100%;
+    width: 47vh;
 }
 
 .MisCuentas {
@@ -642,4 +641,11 @@ flex-shrink: 0;
     align-items: center;
     gap: 500px;
     font-size: large;
+}
+
+.seccionTransferencia {
+    display: flex;
+    justify-items: left;
+    align-items: center;
+    padding: 20px 70px;
 }
