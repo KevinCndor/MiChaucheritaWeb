@@ -127,7 +127,7 @@
 										<input type="text" placeholder="Introduce una Descripción "
 											id="valorIngreso" class="styled-combo" name="descripcion">
 									</div>
-
+								
 									<div class="contenedorBotonesModal">
 										<button id="guardarIngreso"
 											class="botonSectionIzquierda fondoBotones">Guardar</button>
@@ -136,6 +136,7 @@
 								<div class="contenedorBotonesModal">
 									<button id="closeIngreso"
 										class="botonSectionIzquierda fondoBotones">Cancelar</button>
+								
 								</div>
 							</div>
 						</div>
@@ -159,7 +160,7 @@
 							Egreso</button>
 						<div id="modal_container_Egreso"
 							class="modal-container contenedorModal">
-							<div class="modal">
+							<div class="modalEgreso">
 								<h3>Nuevo Egreso</h3>
 								<form
 									action="MovimientoController?ruta=nuevomovimiento&tipo=Egreso"
@@ -255,7 +256,7 @@
 								<div
 									style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 15px;">
 									<p>${egreso.categoria.nombre}</p>
-									<p>-${egreso.categoria.valor}</p>
+									<p style="color: red;">-$ ${egreso.categoria.valor}</p>
 								</div>
 								<div class="contenedorCategoriaEgresos">
 									<c:forEach items="${egresosSubcategoria}" var="egresosSub">
@@ -313,7 +314,6 @@
 										placeholder="Introduce el saldo en la cuenta" id="SaldoCuenta"
 										class="styled-combo2" name="saldo">
 								</div>
-
 								<div class="contenedorBotonesModal">
 									<button id="guardarAgregarCuenta"
 										class="botonSectionIzquierda fondoBotones">Guardar</button>
@@ -323,6 +323,7 @@
 								<button id="closeAgregarCuenta"
 									class="botonSectionIzquierda fondoBotones">Cancelar</button>
 							</div>
+							
 						</div>
 					</div>
 					<button class="botonSectionMisCuentas fondoBotones"
@@ -353,12 +354,13 @@
 						</div>
 					</div>
 				</div>
-				<div class="contenedorcuadrosCuenta">
+				<div class="contenedorcuadrosCuenta" style= "padding: 15px">
 					<form id="cuentaForm" action="MovimientoController?ruta=mostrar"
-						method="POST">
+						method="POST"  style= "padding: 15px">
 						<c:forEach items="${cuentas}" var="cuenta">
+						<br>
 							<div class="contenedorCuenta"
-								onclick="enviarCuenta('${cuenta.nombre}')">
+								onclick="enviarCuenta('${cuenta.nombre}')" >
 								<p style="font-size: 30px; padding-left: 20px;" name="nombre"
 									value="${cuenta.nombre}">${cuenta.nombre}</p>
 								<div class="numCuenta">

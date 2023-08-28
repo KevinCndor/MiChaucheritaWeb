@@ -405,8 +405,8 @@ button:hover {
 
 .contenedorBotonesModal {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
     padding-top: 20px;
 }
 
@@ -433,6 +433,21 @@ button:hover {
     gap: 20px;
 }
 
+
+
+.modalEgreso {
+    background-color: #fff;
+    width: 745px;
+    min-height: 605px; /* modal */
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 .styled-combo {
     padding: 8px;
     font-size: 16px;
@@ -479,7 +494,7 @@ button:hover {
 .modal2 {
     background-color: #fff;
     width: 650px;
-    height: 400px;
+    height: 470px;
     max-width: 100%;
     padding: 30px 50px;
     border-radius: 5px;
@@ -502,7 +517,7 @@ button:hover {
 .modalEliminarCuenta {
     background-color: #fff;
     width: 650px;
-    height: 250px;
+    height: 290px;
     max-width: 100%;
     padding: 30px 50px;
     border-radius: 5px;
