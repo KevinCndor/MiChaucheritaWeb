@@ -60,8 +60,7 @@
 							<option value="3">Transferencias</option>
 						</select>
 
-						<button type="submit" class="botonSectionIzquierda fondoBotones"
-							style="padding-left: 15px">Buscar</button>
+						<button type="submit" class="botonSectionIzquierda fondoBotones">Buscar</button>
 					</div>
 				</form>
 			</div>

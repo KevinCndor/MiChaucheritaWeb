@@ -118,7 +118,7 @@
 										<c:set var="fechaActual" value="<%=new java.util.Date()%>" />
 										<fmt:formatDate var="fechaFormateada" value="${fechaActual}"
 											pattern="yyyy-MM-dd" />
-										<input type="date" min="2023-07-22" max="${fechaFormateada}"
+										<input type="date" min="2021-07-22" max="${fechaFormateada}"
 											class="styled-combo" name="fecha">
 									</div>
 									<div
@@ -228,7 +228,7 @@
 										<c:set var="fechaActual" value="<%=new java.util.Date()%>" />
 										<fmt:formatDate var="fechaFormateada" value="${fechaActual}"
 											pattern="yyyy-MM-dd" />
-										<input type="date" min="2023-07-22" max="${fechaFormateada}"
+										<input type="date" min="2021-07-22" max="${fechaFormateada}"
 											class="styled-combo" name="fecha">
 									</div>
 									<div
