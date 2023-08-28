@@ -55,9 +55,8 @@ public class DashboardController extends HttpServlet {
 		//1. Obtener datos que me envian en la solicitud		
 		String numeroCuenta = request.getParameter("numero");
 		
+		System.out.println(numeroCuenta);
 		//2. Llamo al Modelo para obtener datos
-		
-		// REVISAR el metodo porque en la BD el ID es String !!!
 		DAOFactory.getFactory().getCuentaDAO().deleteById(numeroCuenta);
 		
 		//3. Llamo a la Vista
@@ -82,8 +81,7 @@ public class DashboardController extends HttpServlet {
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//1. Obtener datos que me envian en la solicitud
 		int mes = -1;
-		String filtroMes = request.getParameter("filtromes");
-		if( filtroMes != null) {
+		if( request.getParameter("months") != null ) {
 			mes = Integer.parseInt(request.getParameter("months"));
 		}
 		// REVISAR LA OBTENCION DEL USUARIO !!!
@@ -94,8 +92,7 @@ public class DashboardController extends HttpServlet {
 		List<Egreso> egresosPorCategoria = null;
 		List<Egreso> egresosPorSubcategoria = null;
 		List<Cuenta> misCuentas = null;
-		
-		if (mes != -1) {
+		if (mes >= 0) {
 			ingresosPorCategoria = DAOFactory.getFactory().getIngresoDAO().getIngresosPorCategoriaYMes(usuario, mes);
 			egresosPorCategoria = DAOFactory.getFactory().getEgresoDAO().getEgresosPorCategoriaYMes(usuario, mes);
 			egresosPorSubcategoria = DAOFactory.getFactory().getEgresoDAO().getEgresosPorSubCatYMes(usuario, mes);
@@ -108,7 +105,6 @@ public class DashboardController extends HttpServlet {
 		misCuentas = DAOFactory.getFactory().getCuentaDAO().getCuentasUsuario(usuario);
 		List<Categoria> categoriasIngresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Ingreso");
 		List<Categoria> categoriasEgresos = DAOFactory.getFactory().getCategoriaDAO().getCategoriasPorTipo("Egreso");
-
 		request.setAttribute("categoriasEgreso", categoriasEgresos);
 		request.setAttribute("categoriasIngreso", categoriasIngresos);
 		request.setAttribute("ingresos", ingresosPorCategoria);

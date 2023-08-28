@@ -356,7 +356,6 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    display: flex;
     font-size: 20px;
     padding-left: 70px;
     padding-right: 70px;
@@ -688,4 +687,10 @@ button:hover {
     align-items: center;
     gap: 500px;
     font-size: large;
+}
+
+.contenedorTabla {
+	width: 100%;
+	overflow: auto;
+	height: 500px;
 }

@@ -63,6 +63,7 @@
 											<p>${cuenta.numeroCuenta}</p>
 											<p>$ ${cuenta.saldo}</p>
 										</div>
+										<input type="hidden" name="cuentaOrigen" id="inputCuentaOrigen" value="">
 									</div>
 								</c:forEach>
 							</div>
@@ -86,6 +87,7 @@
 											<p>${cuenta.numeroCuenta}</p>
 											<p>$ ${cuenta.saldo}</p>
 										</div>
+										<input type="hidden" name="cuentaDestino" id="inputCuentaDestino" value="">
 									</div>
 								</c:forEach>
 
@@ -141,6 +143,32 @@
 			document.getElementById(`seccion${numero}`).classList
 					.remove('hidden');
 		}
+	</script>
+	<script>
+	    // Script para llenar el campo oculto con el nombre de la cuenta seleccionada
+	    const cuentasOrigen = document.querySelectorAll(".clickable-div");
+	    const inputCuentaOrigen = document.getElementById("inputCuentaOrigen");
+	
+	    cuentasOrigen.forEach(cuenta => {
+	        cuenta.addEventListener("click", () => {
+	            const nombreCuentaOrigen = cuenta.querySelector("#cuentaOrigen").textContent;
+	            inputCuentaOrigen.value = nombreCuentaOrigen;
+	            // También podrías hacer algún estilo para resaltar la cuenta seleccionada si es necesario
+	        });
+	    });
+	</script>
+	<script>
+	// Script para llenar el campo oculto con el nombre de la cuenta seleccionada (cuenta de destino)
+    const cuentasDestino = document.querySelectorAll(".clickable-div1");
+    const inputCuentaDestino = document.getElementById("inputCuentaDestino");
+
+    cuentasDestino.forEach(cuenta => {
+        cuenta.addEventListener("click", () => {
+            const nombreCuentaDestino = cuenta.querySelector("#cuentaDestino").textContent;
+            inputCuentaDestino.value = nombreCuentaDestino;
+            // También podrías hacer algún estilo para resaltar la cuenta seleccionada si es necesario
+        });
+    });
 	</script>
 </body>
 

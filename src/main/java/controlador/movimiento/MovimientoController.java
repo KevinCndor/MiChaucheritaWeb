@@ -124,6 +124,12 @@ public class MovimientoController extends HttpServlet {
 		//2. Llamo al Modelo para obtener datos
 		Transferencia nuevaTransferencia = new Transferencia(descripcion, "Trasnferencia", fecha, valor, cuentaOrigen, cuentaDestino);
 		DAOFactory.getFactory().getTransferenciaDAO().create(nuevaTransferencia);
+		Cuenta cuentaOrigenAct = nuevaTransferencia.getCuenta();
+		Cuenta cuentaOrigenActualizar = new Cuenta(cuentaOrigenAct.getNumeroCuenta(),cuentaOrigenAct.getNombre(),cuentaOrigenAct.getSaldo()-nuevaTransferencia.getValor(),cuentaOrigenAct.getPropietario());
+		DAOFactory.getFactory().getCuentaDAO().update(cuentaOrigenActualizar);
+		Cuenta cuentaDestinoAct = nuevaTransferencia.getCuentaDestino();
+		Cuenta cuentaDestinoActualizar = new Cuenta(cuentaDestinoAct.getNumeroCuenta(),cuentaDestinoAct.getNombre(),cuentaDestinoAct.getSaldo()+nuevaTransferencia.getValor(),cuentaDestinoAct.getPropietario());
+		DAOFactory.getFactory().getCuentaDAO().update(cuentaDestinoActualizar);
 		
 		//3. Llamo a la Vista
 		response.sendRedirect("DashboardController?ruta=mostrar");
@@ -164,11 +170,17 @@ public class MovimientoController extends HttpServlet {
 			categoria = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(request.getParameter("categoriaIngreso")));
 			Ingreso nuevoIngreso = new Ingreso(descripcion, tipoMovimiento, fecha, valor, cuenta, categoria);			
 			DAOFactory.getFactory().getIngresoDAO().create(nuevoIngreso);
+			Cuenta cuentaAct = nuevoIngreso.getCuenta();
+			Cuenta cuentaAActualizar = new Cuenta(cuentaAct.getNumeroCuenta(),cuentaAct.getNombre(),cuentaAct.getSaldo()+nuevoIngreso.getValor(),cuentaAct.getPropietario());
+			DAOFactory.getFactory().getCuentaDAO().update(cuentaAActualizar);
 		} else  {
 			categoria = DAOFactory.getFactory().getCategoriaDAO().getById(Integer.parseInt(request.getParameter("categoriaEgreso")));
 			Subcategoria subcategoria = DAOFactory.getFactory().getSubcategoriaDAO().getByName(request.getParameter("subcategoriaEgreso"));
 			Egreso nuevoEgreso = new Egreso(descripcion, fecha, valor, cuenta, categoria, subcategoria, tipoMovimiento);
 			DAOFactory.getFactory().getEgresoDAO().create(nuevoEgreso);
+			Cuenta cuentaAct = nuevoEgreso.getCuenta();
+			Cuenta cuentaAActualizar = new Cuenta(cuentaAct.getNumeroCuenta(),cuentaAct.getNombre(),cuentaAct.getSaldo()-nuevoEgreso.getValor(),cuentaAct.getPropietario());
+			DAOFactory.getFactory().getCuentaDAO().update(cuentaAActualizar);
 		}
 		
 		//3. Llamo a la Vista
@@ -179,14 +191,15 @@ public class MovimientoController extends HttpServlet {
 		//1. Obtener datos que me envian en la solicitud
 		String nombreCuenta = request.getParameter("nombre");
 		String numCuenta = null;
+		HttpSession session = request.getSession();
 		Usuario usuario = getSession(request);
 		List<Movimiento> movimientos = null;
 		if(nombreCuenta != null){
-			HttpSession session = request.getSession();
 			session.setAttribute("cuenta", DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(nombreCuenta, usuario));
 			numCuenta = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(nombreCuenta, usuario).getNumeroCuenta();
 			movimientos = DAOFactory.getFactory().getMovimientoDAO().getByCuenta(numCuenta, usuario);
 		}else {
+			session.removeAttribute("cuenta");
 			movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByUser(usuario);
 		}
 		//3. Llamo a la Vista
@@ -204,9 +217,10 @@ public class MovimientoController extends HttpServlet {
 		}
 		
 		String tipo = request.getParameter("tipo");
+		System.out.println(tipo);
 		List<Movimiento> movimientos = null;
 		if(cuenta == null) {
-			if(mes != -1) {
+			if(mes >= 0) {
 				if(tipo == null) {
 					movimientos = DAOFactory.getFactory().getMovimientoDAO().getAllByMonth(usuario, mes);
 				}else {
@@ -220,7 +234,7 @@ public class MovimientoController extends HttpServlet {
 				}
 			}
 		}else {
-			if(mes != -1) {
+			if(mes >= 0) {
 				if(tipo == null) {
 					movimientos = DAOFactory.getFactory().getMovimientoDAO().getByMonth(cuenta.getNumeroCuenta(), mes);
 				}else {

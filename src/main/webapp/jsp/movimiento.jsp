@@ -55,9 +55,9 @@
 						</select> <select name="tipo" id="tipo" class="comboBox">
 							<option value="-1" selected disabled="disabled">Seleccione
 								una opcion</option>
-							<option value="1">Ingreso</option>
-							<option value="2">Egreso</option>
-							<option value="3">Transferencias</option>
+							<option value="Ingreso">Ingreso</option>
+							<option value="Egreso">Egreso</option>
+							<option value="Transferencia">Transferencias</option>
 						</select>
 
 						<button type="submit" class="botonSectionIzquierda fondoBotones">Buscar</button>
@@ -65,7 +65,7 @@
 				</form>
 			</div>
 			
-			<div>
+			<div class="contenedorTabla">
 				<table border="1" class="styled-table">
 					<tr>
 						<th>ID Movimiento</th>
