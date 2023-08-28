@@ -81,8 +81,7 @@ public class DashboardController extends HttpServlet {
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//1. Obtener datos que me envian en la solicitud
 		int mes = -1;
-		String filtroMes = request.getParameter("filtromes");
-		if( filtroMes != null) {
+		if( request.getParameter("months") != null ) {
 			mes = Integer.parseInt(request.getParameter("months"));
 		}
 		// REVISAR LA OBTENCION DEL USUARIO !!!
@@ -93,8 +92,7 @@ public class DashboardController extends HttpServlet {
 		List<Egreso> egresosPorCategoria = null;
 		List<Egreso> egresosPorSubcategoria = null;
 		List<Cuenta> misCuentas = null;
-		
-		if (mes != -1) {
+		if (mes >= 0) {
 			ingresosPorCategoria = DAOFactory.getFactory().getIngresoDAO().getIngresosPorCategoriaYMes(usuario, mes);
 			egresosPorCategoria = DAOFactory.getFactory().getEgresoDAO().getEgresosPorCategoriaYMes(usuario, mes);
 			egresosPorSubcategoria = DAOFactory.getFactory().getEgresoDAO().getEgresosPorSubCatYMes(usuario, mes);
