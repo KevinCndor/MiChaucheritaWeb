@@ -35,38 +35,38 @@
 		<section class="contenedorMovimiento fondoGrisClaro">
 			<div class="sectionFiltros">
 				<h3 class="seccionMovimiento">Movimientos</h3>
-
 				<form action="MovimientoController?ruta=filtrar" method="POST">
-					<select name="months" id="months" class="comboBox">
-						<option value="-1" selected disabled="disabled">Seleccione
-							un mes</option>
-						<option value="0">Enero</option>
-						<option value="1">Febrero</option>
-						<option value="2">Marzo</option>
-						<option value="3">Abril</option>
-						<option value="4">Mayo</option>
-						<option value="5">Junio</option>
-						<option value="6">Julio</option>
-						<option value="7">Agosto</option>
-						<option value="8">Septiembre</option>
-						<option value="9">Octubre</option>
-						<option value="10">Noviembre</option>
-						<option value="11">Diciembre</option>
-					</select>
-					<select name="tipo" id="tipo" class="comboBox">
-						<option value="-1" selected disabled="disabled">Seleccione
-							una opcion</option>
-						<option value="1">Ingreso</option>
-						<option value="2">Egreso</option>
-						<option value="3">Transferencias</option>
-					</select>
+					<div class="secciones" style="gap: 30px;">
+						<select name="months" id="months" class="comboBox">
+							<option value="-1" selected disabled="disabled">Seleccione
+								un mes</option>
+							<option value="0">Enero</option>
+							<option value="1">Febrero</option>
+							<option value="2">Marzo</option>
+							<option value="3">Abril</option>
+							<option value="4">Mayo</option>
+							<option value="5">Junio</option>
+							<option value="6">Julio</option>
+							<option value="7">Agosto</option>
+							<option value="8">Septiembre</option>
+							<option value="9">Octubre</option>
+							<option value="10">Noviembre</option>
+							<option value="11">Diciembre</option>
+						</select> <select name="tipo" id="tipo" class="comboBox">
+							<option value="-1" selected disabled="disabled">Seleccione
+								una opcion</option>
+							<option value="1">Ingreso</option>
+							<option value="2">Egreso</option>
+							<option value="3">Transferencias</option>
+						</select>
 
-					<button type="submit" class="botonSectionIzquierda fondoBotones" style="padding-left: 15px">Buscar</button>
+						<button type="submit" class="botonSectionIzquierda fondoBotones"
+							style="padding-left: 15px">Buscar</button>
+					</div>
 				</form>
-
 			</div>
+			
 			<div>
-
 				<table border="1" class="styled-table">
 					<tr>
 						<th>ID Movimiento</th>
