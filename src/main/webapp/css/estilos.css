@@ -621,6 +621,13 @@ button:hover {
     padding: 20px 70px;
 }
 
+.secciones2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 70px;
+}
+
 .seccionTransferencia {
     display: flex;
     justify-items: left;

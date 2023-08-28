@@ -35,13 +35,15 @@
 		</section>
 
 		<section class="fondoMisCuentas">
-			<h3 class="titulo1 seccionMovimiento">Nueva Transferencia</h3>
-			<div class="botonCancelar">
+			<div class="secciones2">
+				<h3 class="titulo1 seccionMovimiento">Nueva Transferencia</h3>
+				<div class="botonCancelar">
 					<a href="DashboardController?ruta=mostrar">
 						<button type="submit" value="Cancelar"
 							class="botonInicio fondoBotones" style="font-size: 30px;">Cancelar</button>
 					</a>
 				</div>
+			</div>
 			<form class="inputInicio-container"
 				action="MovimientoController?ruta=transferencia" method="POST">
 
