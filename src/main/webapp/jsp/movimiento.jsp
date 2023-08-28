@@ -31,15 +31,13 @@
 				<c:out value="${sessionScope.usuarioLogeado.nombre}" />
 				!
 			</h1>
-			<div></div>
-			<div></div>
 		</section>
-		<section class="contenedorMovimiento">
+		<section class="contenedorMovimiento fondoGrisClaro">
 			<div class="sectionFiltros">
-				<h3 class="seccionMovimiento fondoGrisClaro">Movimientos</h3>
+				<h3 class="seccionMovimiento">Movimientos</h3>
 
 				<form action="MovimientoController?ruta=filtrar" method="POST">
-					<select name="months" id="months">
+					<select name="months" id="months" class="comboBox">
 						<option value="-1" selected disabled="disabled">Seleccione
 							un mes</option>
 						<option value="0">Enero</option>
@@ -55,7 +53,7 @@
 						<option value="10">Noviembre</option>
 						<option value="11">Diciembre</option>
 					</select>
-					<select name="tipo" id="tipo">
+					<select name="tipo" id="tipo" class="comboBox">
 						<option value="-1" selected disabled="disabled">Seleccione
 							una opcion</option>
 						<option value="1">Ingreso</option>
@@ -63,7 +61,7 @@
 						<option value="3">Transferencias</option>
 					</select>
 
-					<button type="submit">Buscar</button>
+					<button type="submit" class="botonSectionIzquierda fondoBotones" style="padding-left: 15px">Buscar</button>
 				</form>
 
 			</div>
