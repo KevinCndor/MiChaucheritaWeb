@@ -45,7 +45,7 @@
 					<div class="encabezadoSeccionIzquierda"
 						style="display: flex; justify-content: center; gap: 150px; align-items: center;">
 						<div style="display: flex;">
-			<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST" style="padding-right: 200px">
+			<form action="DashboardController?ruta=mostrar&filtromes=mes" method="POST" style="display: flex ; justify-content: space-between; align-items: center; gap: 150px;">
 							<select name="months" id="months" class="comboBox">
 								<option value="-1" selected disabled="disabled">Seleccione un mes</option>
 								<option value="0">Enero</option>
@@ -140,7 +140,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="fondoGrisClaro Egresos ">
+				<div class="fondoGrisClaro Egresos" style="height: 47vh;">
 					<div class="encabezadoSeccionIzquierda">
 						<h3>Egresos</h3>
 							<button class="botonSectionIzquierda fondoBotones" id="openEgreso">Nuevo Egreso</button>
@@ -334,7 +334,7 @@
 									value="${cuenta.nombre}">${cuenta.nombre}</p>
 								<div class="numCuenta">
 									<p>${cuenta.numeroCuenta}</p>
-									<p>${cuenta.saldo}</p>
+									<p>$ ${cuenta.saldo}</p>
 								</div>
 							</div>
 						</c:forEach>
@@ -363,6 +363,37 @@
 			document.getElementById("cuentaForm").submit();
 		}
 	</script>
+<script>
+document.getElementById("categoriaEgreso").addEventListener("change", cargarSubcategorias);
+
+function cargarSubcategorias() {
+    var categoriaSelect = document.getElementById("categoriaEgreso");
+    var subcategoriaSelect = document.getElementById("subcategoriaEgreso");
+
+    while (subcategoriaSelect.options.length > 0) {
+        subcategoriaSelect.remove(0);
+    }
+
+    var categoriaSeleccionada = categoriaSelect.value;
+
+    if (categoriaSeleccionada !== "0") {
+        fetch("MovimientoController?ruta=subcategoria&categoriaEgreso=" + categoriaSeleccionada)
+            .then(response => response.text())
+            .then(data => {
+                // Dividir el texto por saltos de línea para obtener las subcategorías individuales
+                var subcategorias = data.split('\n');
+
+                subcategorias.forEach(subcategoria => {
+                    var option = document.createElement("option");
+                    option.text = subcategoria;
+                    option.value = subcategoria;
+                    subcategoriaSelect.add(option);
+                });
+            })
+            .catch(error => console.error("Error: " + error));
+    }
+}
+</script>
 
 	<script src="https://kit.fontawesome.com/85e6f64c7f.js"
 		crossorigin="anonymous"></script>
