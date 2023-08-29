@@ -83,12 +83,14 @@
 						<tr>
 							<td>${movimiento.id}</td>
 							<td>${movimiento.cuenta.numeroCuenta}</td>
-							<c:if test="${movimiento.tipoMovimiento ne 'Transferencia'}">
-								<td>${movimiento.categoria.nombre}</td>
-							</c:if>
-							<c:if test="${movimiento.tipoMovimiento eq 'Transferencia'}">
-								<td>-</td>
-							</c:if>
+							<c:choose>
+							    <c:when test="${movimiento.tipoMovimiento eq 'Transferencia'}">
+							        <td>-</td>
+							    </c:when>
+							    <c:otherwise>
+							        <td>${empty movimiento.categoria ? '-' : movimiento.categoria.nombre}</td>
+							    </c:otherwise>
+							</c:choose>
 							<c:if test="${movimiento.tipoMovimiento eq 'Egreso'}">
 								<td>${movimiento.subcategoria.nombre}</td>
 							</c:if>
