@@ -581,7 +581,7 @@ min-height: 100vh;
     background-color: #B6DAFC;
     border-radius: 15px;
     width: 400px;
-    height: 100px;
+    height: 80px;
     align-items: center;
 }
 
@@ -622,15 +622,15 @@ min-height: 100vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 70px;
+   
 }
 
 .seccionTransferencia {
     display: flex;
     justify-items: left;
     align-items: center;
-    padding: 20px 70px;
-    gap: 140px;
+    padding: 20px ;
+    gap: 40px;
 }
 
 .botonCancelar {
