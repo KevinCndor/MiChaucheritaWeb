@@ -153,7 +153,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="fondoGrisClaro Egresos" style="min-height: 516px;">
+				<div class="fondoGrisClaro Egresos" style="min-height: 215px;">
 					<div class="encabezadoSeccionIzquierda">
 						<h3>Egresos</h3>
 						<button class="botonSectionIzquierda fondoBotones" id="openEgreso">Nuevo
