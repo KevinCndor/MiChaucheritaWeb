@@ -15,7 +15,7 @@
 	<main>
 		<section class="LoginChaucherita ">
 			<div class="divLogoInicio ">
-				<h1>CHAUCHERITA</h1>
+				<h1 style="padding-left: 140px" >CHAUCHERITA</h1>
 			</div>
 			<div class="divFormularioIngreso fondoInicio">
 				<h3 style="font-size: 50px;">Crear Una Cuenta</h3>
@@ -49,7 +49,7 @@
 					</form>
 				</div>
 
-				<p>¿Tienes una cuenta? ¡Inicia Sesión!</p>
+				<p style="padding:20px">¿Tienes una cuenta? ¡Inicia Sesión!</p>
 				<a href="../AccesoController?ruta=inicio">
 					<button type="submit" value="CrearCuenta"
 						class="botonRegistrar fondoBotones ">Regresar</button>
