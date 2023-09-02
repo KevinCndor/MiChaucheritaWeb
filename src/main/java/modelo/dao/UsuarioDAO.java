@@ -4,5 +4,5 @@ import modelo.entidades.Usuario;
 
 public interface UsuarioDAO extends GenericDAO<Usuario, Integer> {
 	
-	public Usuario autorizar(String username, String password);
+	public Usuario getByName(String username);
 }
