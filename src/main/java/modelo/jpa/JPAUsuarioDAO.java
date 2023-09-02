@@ -12,17 +12,16 @@ public class JPAUsuarioDAO extends JPAGenericDAO<Usuario, Integer> implements Us
 	}
 
 	@Override
-	public Usuario autorizar(String username, String password) {
+	public Usuario getByName(String username) {
 		
-		String sentencia = "SELECT u FROM Usuario u WHERE u.username = :username AND u.password = :password";
+		String sentencia = "SELECT u FROM Usuario u WHERE u.username = :username";
 		Query query = em.createQuery(sentencia);
 
 		query.setParameter("username", username);
-		query.setParameter("password", password);
 
-		Usuario personaAutorizada = (Usuario) query.getSingleResult();
+		Usuario persona = (Usuario) query.getSingleResult();
 
-		return personaAutorizada;
+		return persona;
 	}
 
 }
