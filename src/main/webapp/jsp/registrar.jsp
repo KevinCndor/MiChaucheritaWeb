@@ -15,7 +15,11 @@
 	<main>
 		<section class="LoginChaucherita ">
 			<div class="divLogoInicio ">
+<<<<<<< HEAD
 				<h1 style="padding-left: 140px">CHAUCHERITA</h1>
+=======
+				<h1 style="padding-left: 140px" >CHAUCHERITA</h1>
+>>>>>>> 993c7c2ca62124ab8edc65c163ca258b6513c382
 			</div>
 			<div class="divFormularioIngreso fondoInicio">
 				<h3 style="font-size: 50px;">Crear Una Cuenta</h3>

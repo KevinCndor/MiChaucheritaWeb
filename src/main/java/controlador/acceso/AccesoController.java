@@ -72,25 +72,33 @@ public class AccesoController extends HttpServlet {
 		String nombre= request.getParameter("usuario");
 		String clave = request.getParameter("contrasena");
 		
-		//2. Llamo al Modelo para obtener datos		
-		Usuario usuarioAutenticado = DAOFactory.getFactory().getUsuarioDAO().autorizar(nombre, clave);
-		
-		if(usuarioAutenticado != null) {			
-			// Crear la sesion
-			HttpSession session = request.getSession();
-			session.setAttribute("usuarioLogeado", usuarioAutenticado);
-			
-			//3. Llamo a la vista
-			response.sendRedirect("DashboardController?ruta=mostrar");
-			return;
-		}else {
-			//3. Llamo a la vista
-			String mensaje = "Ingresaste mal tu usuario y clave";
-			// Enviar datos a la vista
-			request.setAttribute("mensaje", mensaje);
+		try {
+			Usuario usuario = DAOFactory.getFactory().getUsuarioDAO().getByName(nombre);
+			//2. Llamo al Modelo para obtener datos		
+
+			if(usuario != null && usuario.getPassword().equals(clave)) {			
+				// Crear la sesion
+				HttpSession session = request.getSession();
+				session.setAttribute("usuarioLogeado", usuario);
+				
+				//3. Llamo a la vista
+				response.sendRedirect("DashboardController?ruta=mostrar");
+				return;
+			}else {
+				if(usuario != null) {
+					// Redireccionar a la vista
+					response.sendRedirect("AccesoController?ruta=inicio"); 
+				}else {
+					//3. Llamo a la vista
+					// Redireccionar a la vista
+					response.sendRedirect("AccesoController?ruta=inicio"); 
+				}		
+			}
+		}catch (Exception e) {
 			// Redireccionar a la vista
-			request.getRequestDispatcher("jsp/error.jsp").forward(request, response);
+			response.sendRedirect("AccesoController?ruta=inicio"); 
 		}
+		
 	}
 	
 	private void registrar(HttpServletRequest request, HttpServletResponse response) throws IOException {

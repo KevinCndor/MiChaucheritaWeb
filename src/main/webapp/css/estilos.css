@@ -124,6 +124,10 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+<<<<<<< HEAD
+=======
+   
+>>>>>>> 993c7c2ca62124ab8edc65c163ca258b6513c382
 }
 
 .divLogoInicio {
@@ -186,6 +190,10 @@ min-height: 100vh;
     transition: border-color 0.3s ease-in-out;
     width: 600px;
     height: 50px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 993c7c2ca62124ab8edc65c163ca258b6513c382
 }
 
 /* Cambiar el color del borde cuando el input está enfocado */
@@ -620,6 +628,10 @@ min-height: 100vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
+<<<<<<< HEAD
+=======
+   
+>>>>>>> 993c7c2ca62124ab8edc65c163ca258b6513c382
 }
 
 .seccionTransferencia {
