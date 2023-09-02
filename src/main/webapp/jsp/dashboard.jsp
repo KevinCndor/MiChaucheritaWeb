@@ -136,7 +136,6 @@
 								<div class="contenedorBotonesModal">
 									<button id="closeIngreso"
 										class="botonSectionIzquierda fondoBotones">Cancelar</button>
-								
 								</div>
 							</div>
 						</div>

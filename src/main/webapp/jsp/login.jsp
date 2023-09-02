@@ -31,10 +31,6 @@
                         <button type="submit" value="Iniciar" class="botonInicio fondoBotones">Iniciar</button>
                     </form>
                 </div>
-<<<<<<< HEAD
-=======
-                
->>>>>>> 993c7c2ca62124ab8edc65c163ca258b6513c382
                 <p style="padding:30px">¿Sin cuenta? ¡Crea una!</p>
                 <a href="../AccesoController?ruta=registrar">
                     <button type="submit" value="CrearCuenta" class="botonInicio fondoBotones "> Crear Cuenta</button>
