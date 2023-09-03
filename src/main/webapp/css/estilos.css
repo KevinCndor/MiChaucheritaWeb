@@ -685,6 +685,12 @@ min-height: 100vh;
 
 .contenedorTabla {
 	width: 100%;
-	overflow: auto;
-	height: 500px;
+	overflow-y: auto;
+	max-height: 600px;
+}
+
+th {
+    position: sticky;
+    top: 0; /* para que se quede fijo en la parte superior del contenedor al desplazarse */
+    z-index: 10; /* para garantizar que se superponga a las filas al desplazarse */
 }
