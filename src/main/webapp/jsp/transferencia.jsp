@@ -107,7 +107,7 @@
 								<div>
 									<div class="titulo2">Monto</div>
 									<input type="number" name="monto" placeholder="$00.00" required
-										class="styled-inputTransferenciaMonto" oninput="validarMonto(this)" required>
+										class="styled-inputTransferenciaMonto" oninput="validarMonto(this)" min="0.01" required>
 								</div>
 								<div>
 									<div class="titulo2">Descripcion</div>
@@ -153,7 +153,7 @@
 	        cuenta.addEventListener("click", () => {
 	            const nombreCuentaOrigen = cuenta.querySelector("#cuentaOrigen").textContent;
 	            inputCuentaOrigen.value = nombreCuentaOrigen;
-	            // También podrías hacer algún estilo para resaltar la cuenta seleccionada si es necesario
+	            // Tambiï¿½n podrï¿½as hacer algï¿½n estilo para resaltar la cuenta seleccionada si es necesario
 	        });
 	    });
 	</script>
@@ -166,7 +166,7 @@
         cuenta.addEventListener("click", () => {
             const nombreCuentaDestino = cuenta.querySelector("#cuentaDestino").textContent;
             inputCuentaDestino.value = nombreCuentaDestino;
-            // También podrías hacer algún estilo para resaltar la cuenta seleccionada si es necesario
+            // Tambiï¿½n podrï¿½as hacer algï¿½n estilo para resaltar la cuenta seleccionada si es necesario
         });
     });
 	</script>
@@ -176,7 +176,7 @@ function validarMonto(input) {
     if (input.value < 0) {
         input.setCustomValidity("El monto no puede ser negativo");
     } else {
-        input.setCustomValidity(""); // Restablecer la validación personalizada
+        input.setCustomValidity(""); // Restablecer la validaciï¿½n personalizada
     }
 }
 </script>
