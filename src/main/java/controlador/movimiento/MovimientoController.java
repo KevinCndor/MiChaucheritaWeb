@@ -117,7 +117,7 @@ public class MovimientoController extends HttpServlet {
 		//1. Obtener datos que me envian en la solicitud
 		Usuario usuario = getSession(request);
 		
-		String descripcion = request.getParameter("descripcion");
+		String descripcion = request.getParameter("monto");
 		
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String fechaFormateada = LocalDate.now().format(formato);
