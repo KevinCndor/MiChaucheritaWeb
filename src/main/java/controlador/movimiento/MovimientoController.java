@@ -88,11 +88,23 @@ public class MovimientoController extends HttpServlet {
         System.out.println(catSelected);
         subcategoriasEgresos = DAOFactory.getFactory().getSubcategoriaDAO().getSubcategoriasPorCategoria(catParaSubcat);
 
-        StringBuilder subcategoriasTexto = new StringBuilder();
-        for (Subcategoria subcategoria : subcategoriasEgresos) {
+      StringBuilder subcategoriasTexto = new StringBuilder();
+      /*    for (Subcategoria subcategoria : subcategoriasEgresos) {
             subcategoriasTexto.append(subcategoria.getNombre()).append("\n");
         }
-
+        */
+        
+        for(int i=0 ; i< subcategoriasEgresos.size(); i++) 
+        {
+        	subcategoriasTexto.append(subcategoriasEgresos.get(i).getNombre());
+        	if(i!= subcategoriasEgresos.size()-1) {
+        		subcategoriasTexto.append("\n");
+        	}
+        	
+        }
+       
+        System.out.println(subcategoriasTexto);
+        System.out.println(subcategoriasTexto.toString());
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
 

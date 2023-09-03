@@ -107,7 +107,7 @@
 								<div>
 									<div class="titulo2">Monto</div>
 									<input type="number" name="monto" placeholder="$00.00" required
-										class="styled-inputTransferenciaMonto" required>
+										class="styled-inputTransferenciaMonto" oninput="validarMonto(this)" required>
 								</div>
 								<div>
 									<div class="titulo2">Descripcion</div>
@@ -170,6 +170,17 @@
         });
     });
 	</script>
+	
+	<script>
+function validarMonto(input) {
+    if (input.value < 0) {
+        input.setCustomValidity("El monto no puede ser negativo");
+    } else {
+        input.setCustomValidity(""); // Restablecer la validación personalizada
+    }
+}
+</script>
+
 </body>
 
 </html>

@@ -169,7 +169,7 @@
 											<p>Categoría</p>
 											<select name="categoriaEgreso" id="categoriaEgreso"
 												class="styled-combo"
-												onchange="enviarCategoria(${categoriaEgresos.id})" requerid>
+												onchange="enviarCategoria(${categoriaEgresos.id})" required>
 												<option value="default" selected disabled="disabled">Seleccione
 													una categoria</option>
 												<c:forEach items="${categoriasEgreso}"
@@ -183,18 +183,14 @@
 											style="display: flex; justify-content: space-between; padding-top: 15px;">
 											<p>Subcategoría</p>
 											<select name="subcategoriaEgreso" id="subcategoriaEgreso"
-												class="styled-combo" requerid>
+												class="styled-combo" required>
 												<option value="default" selected disabled="disabled">Seleccione
 													una subcategoria</option>
 												<c:if test="${subcategorias!=null}">
 													<c:forEach items="${subcategorias}" var="subcategoria">
 														<option value="${subcategoria.id}"
 															${subcategoria.nombre ? 'selected':''}>${subcategoria.nombre}</option>
-														<!--  <option value="Persona">Peluquería</option>-->
 													</c:forEach>
-												</c:if>
-												<c:if test="${subcategorias==null}">
-													<option value="default"></option>
 												</c:if>
 											</select>
 										</div>
@@ -209,7 +205,6 @@
 											<c:forEach items="${cuentas}" var="cuenta">
 												<option value="${cuenta.nombre}"
 													${cuenta.nombre ? 'selected':''}>${cuenta.nombre}</option>
-												<!--  <option value="Cuenta1">Produbanco</option> -->
 											</c:forEach>
 										</select>
 									</div>
