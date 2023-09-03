@@ -637,6 +637,13 @@ min-height: 100vh;
     padding: 20px 80px;
 }
 
+.seccionesMov{
+    display: flex;
+    justify-items: left;
+    align-items: center;
+    padding: 20px 30px 20px 70px;
+}
+
 /********************************************* MOVIMIENTO *********************************************/
 
 .seccionMovimiento {
