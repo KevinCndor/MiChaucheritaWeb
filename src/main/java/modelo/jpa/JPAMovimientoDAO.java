@@ -136,4 +136,21 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 		List<Movimiento> movimientosPorMes = query.getResultList();
 		return movimientosPorMes;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Movimiento> getByIdUsuario( String idCuenta) {
+		String sentencia = "SELECT DISTINCT m FROM Movimiento m JOIN Cuenta c ON m.cuenta = :cuenta WHERE c.propietario = :propietario ";
+		
+		Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getById(idCuenta);
+		Query query = em.createQuery(sentencia);
+	    
+		query.setParameter("cuenta", cuenta);
+	    query.setParameter("propietario", cuenta.getPropietario());
+	    
+		List<Movimiento> movimientosPorCuenta = query.getResultList();
+	    return movimientosPorCuenta;
+	}
+
+	
 }

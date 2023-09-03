@@ -17,5 +17,5 @@ public interface MovimientoDAO extends GenericDAO<Movimiento, Integer>{
 	public List<Movimiento> getAllByMonth(Usuario usuario, int mes);
 	public List<Movimiento> getAllByType(Usuario usuario, String tipo);
 	public List<Movimiento> getAllByMonthAndType(Usuario usuario, int mes, String tipo);
-	
+	public List<Movimiento> getByIdUsuario(String idCuenta);
 }
