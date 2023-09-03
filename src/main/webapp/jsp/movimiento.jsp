@@ -36,7 +36,7 @@
 			<div class="sectionFiltros">
 				<h3 class="seccionMovimiento">Movimientos</h3>
 				<form action="MovimientoController?ruta=filtrar" method="POST">
-					<div class="secciones" style="gap: 30px;">
+					<div class="seccionMovFiltro" style="gap: 30px;">
 						<select name="months" id="months" class="comboBox">
 							<option value="-1" selected disabled="disabled">Seleccione
 								un mes</option>
