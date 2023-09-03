@@ -63,7 +63,7 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 	public List<Movimiento> getAllByUser(Usuario usuario) {
 		String sentencia = "SELECT DISTINCT m FROM Movimiento m "
 				+ "JOIN Cuenta c ON m.cuenta = c "
-				+ "WHERE c.propietario = :propietario";
+				+ "WHERE c.propietario = :propietario" + " ORDER BY m.id DESC";
 		
 		Query query = em.createQuery(sentencia);
 	    
@@ -76,7 +76,7 @@ public class JPAMovimientoDAO extends JPAGenericDAO<Movimiento, Integer> impleme
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movimiento> getByCuenta( String idCuenta, Usuario usuario) {
-		String sentencia = "SELECT DISTINCT m FROM Movimiento m JOIN Cuenta c ON m.cuenta = :cuenta WHERE c.propietario = :propietario ";
+		String sentencia = "SELECT DISTINCT m FROM Movimiento m JOIN Cuenta c ON m.cuenta = :cuenta WHERE c.propietario = :propietario ORDER BY m.id DESC";
 		
 		Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getById(idCuenta);
 		Query query = em.createQuery(sentencia);
