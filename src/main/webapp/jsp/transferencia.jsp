@@ -106,7 +106,7 @@
 								class="fondoCuadroInformacion contenedorcuadrosCuentaTransferencia">
 								<div>
 									<div class="titulo2">Monto</div>
-									<input type="number" name="monto" placeholder="$00.00" required
+									<input type="number" name="monto" placeholder="$00.00" required step="0.01" min="0.01"
 										class="styled-inputTransferenciaMonto" oninput="validarMonto(this)" required>
 								</div>
 								<div>
