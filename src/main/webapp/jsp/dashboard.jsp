@@ -14,7 +14,6 @@
 <title>Dashboard</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/estilos.css" />
-
 </head>
 
 <body>
@@ -79,7 +78,7 @@
 								<h3>Nuevo Ingreso</h3>
 								<form
 									action="MovimientoController?ruta=nuevomovimiento&tipo=Ingreso"
-									method="POST">
+									method="POST"  id="formularioIngreso">
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 15px;">
 										<p>Categoría</p>
@@ -163,14 +162,14 @@
 								<h3>Nuevo Egreso</h3>
 								<form
 									action="MovimientoController?ruta=nuevomovimiento&tipo=Egreso"
-									method="POST">
+									method="POST" id="formularioEgreso">
 									<div>
 										<div
 											style="display: flex; justify-content: space-between; padding-top: 15px;">
 											<p>Categoría</p>
 											<select name="categoriaEgreso" id="categoriaEgreso"
 												class="styled-combo"
-												onchange="enviarCategoria(${categoriaEgresos.id})">
+												onchange="enviarCategoria(${categoriaEgresos.id})" requerid>
 												<option value="default" selected disabled="disabled">Seleccione
 													una categoria</option>
 												<c:forEach items="${categoriasEgreso}"
@@ -184,7 +183,7 @@
 											style="display: flex; justify-content: space-between; padding-top: 15px;">
 											<p>Subcategoría</p>
 											<select name="subcategoriaEgreso" id="subcategoriaEgreso"
-												class="styled-combo">
+												class="styled-combo" requerid>
 												<option value="default" selected disabled="disabled">Seleccione
 													una subcategoria</option>
 												<c:if test="${subcategorias!=null}">
@@ -204,7 +203,7 @@
 										style="display: flex; justify-content: space-between; padding-top: 25px;">
 										<p>Cuenta</p>
 										<select name="cuenta" id="categoriaEgreso"
-											class="styled-combo">
+											class="styled-combo" requerid>
 											<option value="default" selected disabled="disabled">Seleccione
 												una cuenta</option>
 											<c:forEach items="${cuentas}" var="cuenta">
@@ -219,7 +218,7 @@
 										<p>Valor</p>
 										<input type="number" step="0.01" min="0.01"
 											placeholder="Introduce el Valor del egreso" id="valorEgreso"
-											class="styled-combo" name="valor">
+											class="styled-combo" name="valor" required>
 									</div>
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 25px;">
@@ -228,14 +227,14 @@
 										<fmt:formatDate var="fechaFormateada" value="${fechaActual}"
 											pattern="yyyy-MM-dd" />
 										<input type="date" min="2021-07-22" max="${fechaFormateada}"
-											class="styled-combo" name="fecha">
+											class="styled-combo" name="fecha" required>
 									</div>
 									<div
 										style="display: flex; justify-content: space-between; padding-top: 25px;">
 										<p>Descripción</p>
 										<input type="text" placeholder="Introduce una Descripción "
 											id="descripcionEgreso" class="styled-combo"
-											name="descripcion">
+											name="descripcion" required>
 									</div>
 									<div class="contenedorBotonesModal">
 										<button id="guardarEgreso"
@@ -297,21 +296,21 @@
 									<p>Nombre</p>
 									<input type="text"
 										placeholder="Introduce el nombre de la cuenta"
-										id="nombreCuenta" class="styled-combo2" name="nombre">
+										id="nombreCuenta" class="styled-combo2" name="nombre" required>
 								</div>
 								<div
 									style="display: flex; justify-content: space-between; padding: 20px 10px 20px 10px;">
 									<p>Número</p>
 									<input type="number"
 										placeholder="Introduce el número de la cuenta"
-										id="numeroCuenta" class="styled-combo2" name="numero">
+										id="numeroCuenta" class="styled-combo2" name="numero" required>
 								</div>
 								<div
 									style="display: flex; justify-content: space-between; padding: 20px 10px 20px 10px;">
 									<p>Saldo</p>
 									<input type="number"
 										placeholder="Introduce el saldo en la cuenta" id="SaldoCuenta"
-										class="styled-combo2" name="saldo">
+										class="styled-combo2" name="saldo" required>
 								</div>
 								<div class="contenedorBotonesModal">
 									<button id="guardarAgregarCuenta"
@@ -338,7 +337,7 @@
 									<p>Número</p>
 									<input type="number" name="numero"
 										placeholder="Introduce el número de la cuenta"
-										id="numeroCuenta" class="styled-combo2">
+										id="numeroCuenta" class="styled-combo2" required>
 								</div>
 
 								<div class="contenedorBotonesModal">
@@ -424,10 +423,41 @@ function cargarSubcategorias() {
     }
 }
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const formulario = document.getElementById("formularioIngreso");
+        const botonGuardar = document.getElementById("guardarIngreso");
+
+        formulario.addEventListener("submit", function (event) {
+            if (!validarCampos()) {
+                event.preventDefault(); // Evita que el formulario se envíe si la validación falla
+            }
+        });
+
+        function validarCampos() {
+            const categoria = formulario.querySelector("select[name='categoriaIngreso']").value;
+            const cuenta = formulario.querySelector("select[name='cuenta']").value;
+            const valor = formulario.querySelector("input[name='valor']").value.trim();
+            const fecha = formulario.querySelector("input[name='fecha']").value.trim();
+            const descripcion = formulario.querySelector("input[name='descripcion']").value.trim();
+
+            // Realiza la validación de los campos aquí
+            if (categoria === "default" || cuenta === "default" || valor === "" || fecha === "" || descripcion === "") {
+                alert("Por favor, complete todos los campos y seleccione una categoría y una cuenta.");
+                return false; // Devuelve false si la validación falla
+            }
+
+            return true; // Devuelve true si la validación es exitosa
+        }
+    });
+</script>
+
+
 
 	<script src="https://kit.fontawesome.com/85e6f64c7f.js"
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
 </body>
 
 </html>

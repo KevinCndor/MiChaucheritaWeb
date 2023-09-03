@@ -106,8 +106,8 @@
 								class="fondoCuadroInformacion contenedorcuadrosCuentaTransferencia">
 								<div>
 									<div class="titulo2">Monto</div>
-									<input type="text" name="monto" placeholder="$00.00" required
-										class="styled-inputTransferenciaMonto">
+									<input type="number" name="monto" placeholder="$00.00" required
+										class="styled-inputTransferenciaMonto" required>
 								</div>
 								<div>
 									<div class="titulo2">Descripcion</div>
