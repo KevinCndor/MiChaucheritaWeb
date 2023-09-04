@@ -206,6 +206,11 @@ public class MovimientoController extends HttpServlet {
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date fecha = new Date();
+		try {
+			fecha = dateFormat.parse(request.getParameter("fecha"));
+		} catch (ParseException e) {
+			
+		}
 	
 		Double valor = Double.parseDouble(request.getParameter("valor"));
 		Cuenta cuenta = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(request.getParameter("cuenta"), usuario);
