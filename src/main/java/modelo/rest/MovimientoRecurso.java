@@ -10,6 +10,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import modelo.dao.DAOFactory;
+import modelo.entidades.Categoria;
 import modelo.entidades.Cuenta;
 import modelo.entidades.Egreso;
 import modelo.entidades.Ingreso;
@@ -52,22 +53,25 @@ public class MovimientoRecurso  {
     @Path("/crearingreso")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void crearIngreso(Ingreso ingreso) {
-         DAOFactory.getFactory().getIngresoDAO().create(ingreso);
-         Cuenta c = ingreso.getCuenta();
-         c.setSaldo(ingreso.getValor()+c.getSaldo());
-         DAOFactory.getFactory().getCuentaDAO().update(c);
+    public void crearIngreso(Ingreso i) {
+        Cuenta c = i.getCuenta();
+        Cuenta cAct = DAOFactory.getFactory().getCuentaDAO().getByNumCuenta(c.getNumeroCuenta());
+        cAct.setSaldo(i.getValor()+cAct.getSaldo());
+        DAOFactory.getFactory().getCuentaDAO().update(cAct);
+        
+        DAOFactory.getFactory().getIngresoDAO().create(new Ingreso(i.getDescripcion(),i.getTipoMovimiento(),i.getFecha(),i.getValor(),cAct,i.getCategoria()));
     }
     
     @POST
     @Path("/crearegreso")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void crearEgreso(Egreso egreso) {
-         DAOFactory.getFactory().getEgresoDAO().create(egreso);
-         Cuenta c = egreso.getCuenta();
-         c.setSaldo(egreso.getValor()-c.getSaldo());
-         DAOFactory.getFactory().getCuentaDAO().update(c);
+    public void crearEgreso(Egreso e) {
+    	Cuenta c = e.getCuenta();
+        Cuenta cAct = DAOFactory.getFactory().getCuentaDAO().getByNumCuenta(c.getNumeroCuenta());
+        cAct.setSaldo(e.getValor()-cAct.getSaldo());
+        DAOFactory.getFactory().getCuentaDAO().update(cAct);
+        DAOFactory.getFactory().getEgresoDAO().create(new Egreso(e.getDescripcion(),e.getFecha(),e.getValor(),cAct,e.getCategoria(),e.getSubcategoria(),e.getTipoMovimiento()));
     }
     
     @POST
