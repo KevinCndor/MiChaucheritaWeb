@@ -87,7 +87,10 @@
 							<c:if test="${movimiento.tipoMovimiento eq 'Transferencia'}">
 								<td>-</td>
 							</c:if>
-							<c:if test="${movimiento.tipoMovimiento ne 'Transferencia'}">
+							<c:if test="${movimiento.tipoMovimiento eq 'Ingreso'}">
+								<td>${movimiento.categoria.nombre}</td>
+							</c:if>
+							<c:if test="${movimiento.tipoMovimiento eq 'Egreso'}">
 								<td>${movimiento.categoria.nombre}</td>
 							</c:if>
 							<c:choose>
