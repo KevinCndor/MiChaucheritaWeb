@@ -64,7 +64,7 @@
 					</div>
 				</form>
 			</div>
-			
+
 			<div class="contenedorTabla">
 				<table border="1" class="styled-table">
 					<tr>
@@ -77,6 +77,7 @@
 						<th>Descripción</th>
 						<th>Fecha</th>
 						<th>Cuenta Destino</th>
+						<th>Eliminar</th>
 					</tr>
 
 					<c:forEach items="${movimientos}" var="movimiento">
@@ -90,12 +91,12 @@
 								<td>${movimiento.categoria.nombre}</td>
 							</c:if>
 							<c:choose>
-							    <c:when test="${movimiento.tipoMovimiento eq 'Transferencia'}">
-							        <td>-</td>
-							    </c:when>
-							    <c:otherwise>
-							        <td>${empty movimiento.categoria ? '-' : movimiento.categoria.nombre}</td>
-							    </c:otherwise>
+								<c:when test="${movimiento.tipoMovimiento eq 'Transferencia'}">
+									<td>-</td>
+								</c:when>
+								<c:otherwise>
+									<td>${empty movimiento.categoria ? '-' : movimiento.categoria.nombre}</td>
+								</c:otherwise>
 							</c:choose>
 							<td>${movimiento.tipoMovimiento}</td>
 							<td>${movimiento.valor}</td>
@@ -108,6 +109,15 @@
 							<c:if test="${movimiento.tipoMovimiento ne 'Transferencia'}">
 								<td>-</td>
 							</c:if>
+							
+							<!-- Para eliminar movimientos -->
+							<td><a
+								href="MovimientoController?ruta=eliminar&movimientoId=${movimiento.id}"
+								onclick="return confirm('¿Estás seguro de que deseas eliminar este movimiento?');"
+								style="color: inherit;">
+									<i class="fa-solid fa-trash"></i>
+							</a></td>
+
 						</tr>
 					</c:forEach>
 				</table>
