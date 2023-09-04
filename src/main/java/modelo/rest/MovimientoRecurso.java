@@ -54,7 +54,9 @@ public class MovimientoRecurso  {
     @Produces(MediaType.APPLICATION_JSON)
     public void crearIngreso(Ingreso ingreso) {
          DAOFactory.getFactory().getIngresoDAO().create(ingreso);
-       
+         Cuenta c = ingreso.getCuenta();
+         c.setSaldo(ingreso.getValor()+c.getSaldo());
+         DAOFactory.getFactory().getCuentaDAO().update(c);
     }
     
     @POST
@@ -63,7 +65,9 @@ public class MovimientoRecurso  {
     @Produces(MediaType.APPLICATION_JSON)
     public void crearEgreso(Egreso egreso) {
          DAOFactory.getFactory().getEgresoDAO().create(egreso);
-       
+         Cuenta c = egreso.getCuenta();
+         c.setSaldo(egreso.getValor()-c.getSaldo());
+         DAOFactory.getFactory().getCuentaDAO().update(c);
     }
     
     @POST
