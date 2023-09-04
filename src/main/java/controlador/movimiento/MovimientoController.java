@@ -64,12 +64,50 @@ public class MovimientoController extends HttpServlet {
 		case "filtrar":
 			this.filtrar(request, response);
 			break;
+		case "eliminar":
+			this.eliminarMovimiento(request, response);
+			break;
 		default:
 			break;
 		}
 	}
 
-		private void nuevaTransferencia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void eliminarMovimiento(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		int movimientoId = Integer.parseInt(request.getParameter("movimientoId"));
+		Movimiento movimientoEliminar = DAOFactory.getFactory().getMovimientoDAO().getById(movimientoId);
+		
+		switch (movimientoEliminar.getTipoMovimiento()) {
+			case "Ingreso": 
+				Cuenta cuentaActualizarIngreso = movimientoEliminar.getCuenta();
+				cuentaActualizarIngreso.setSaldo(cuentaActualizarIngreso.getSaldo() - movimientoEliminar.getValor());
+				DAOFactory.getFactory().getCuentaDAO().update(cuentaActualizarIngreso);
+				DAOFactory.getFactory().getMovimientoDAO().deleteById(movimientoId);
+				break;
+			case "Egreso": 
+				Cuenta cuentaActualizarEgreso = movimientoEliminar.getCuenta();
+				cuentaActualizarEgreso.setSaldo(cuentaActualizarEgreso.getSaldo() + movimientoEliminar.getValor());
+				DAOFactory.getFactory().getCuentaDAO().update(cuentaActualizarEgreso);
+				DAOFactory.getFactory().getMovimientoDAO().deleteById(movimientoId);
+				break;
+			case "Transferencia":
+				Transferencia transferenciaEliminar = DAOFactory.getFactory().getTransferenciaDAO().getById(movimientoId);
+				
+				Cuenta cuentaOrigen = transferenciaEliminar.getCuenta();
+				cuentaOrigen.setSaldo(cuentaOrigen.getSaldo() + transferenciaEliminar.getValor());
+				DAOFactory.getFactory().getCuentaDAO().update(cuentaOrigen);
+				
+				Cuenta cuentaDestino = transferenciaEliminar.getCuentaDestino();
+				cuentaDestino.setSaldo(cuentaDestino.getSaldo() - transferenciaEliminar.getValor());
+				DAOFactory.getFactory().getCuentaDAO().update(cuentaDestino);
+				
+				DAOFactory.getFactory().getMovimientoDAO().deleteById(movimientoId);
+				break;
+		}
+		
+	    response.sendRedirect("MovimientoController?ruta=mostrar");		
+	}
+
+	private void nuevaTransferencia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1. Obtener datos que me envian en la solicitud
 		Usuario usuario = getSession(request);
 		List<Cuenta> cuentas = DAOFactory.getFactory().getCuentaDAO().getCuentasUsuario(usuario);
@@ -134,7 +172,7 @@ public class MovimientoController extends HttpServlet {
 		Cuenta cuentaDestino = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(request.getParameter("cuentaDestino"), usuario);
 		
 		//2. Llamo al Modelo para obtener datos
-		Transferencia nuevaTransferencia = new Transferencia(descripcion, "Trasnferencia", fecha, valor, cuentaOrigen, cuentaDestino);
+		Transferencia nuevaTransferencia = new Transferencia(descripcion, "Transferencia", fecha, valor, cuentaOrigen, cuentaDestino);
 		DAOFactory.getFactory().getTransferenciaDAO().create(nuevaTransferencia);
 		Cuenta cuentaOrigenAct = nuevaTransferencia.getCuenta();
 		Cuenta cuentaOrigenActualizar = new Cuenta(cuentaOrigenAct.getNumeroCuenta(),cuentaOrigenAct.getNombre(),cuentaOrigenAct.getSaldo()-nuevaTransferencia.getValor(),cuentaOrigenAct.getPropietario());
