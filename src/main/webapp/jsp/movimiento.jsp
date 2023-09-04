@@ -91,11 +91,11 @@
 								<td>${movimiento.categoria.nombre}</td>
 							</c:if>
 							<c:choose>
-								<c:when test="${movimiento.tipoMovimiento eq 'Transferencia'}">
+								<c:when test="${movimiento.tipoMovimiento ne 'Egreso'}">
 									<td>-</td>
 								</c:when>
 								<c:otherwise>
-									<td>${empty movimiento.categoria ? '-' : movimiento.categoria.nombre}</td>
+									<td>${empty movimiento.categoria ? '-' : movimiento.subcategoria.nombre}</td>
 								</c:otherwise>
 							</c:choose>
 							<td>${movimiento.tipoMovimiento}</td>

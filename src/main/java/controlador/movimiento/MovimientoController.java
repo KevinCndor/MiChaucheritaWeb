@@ -155,7 +155,7 @@ public class MovimientoController extends HttpServlet {
 		//1. Obtener datos que me envian en la solicitud
 		Usuario usuario = getSession(request);
 		
-		String descripcion = request.getParameter("monto");
+		String descripcion = request.getParameter("descripcion");
 		
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String fechaFormateada = LocalDate.now().format(formato);
@@ -172,7 +172,7 @@ public class MovimientoController extends HttpServlet {
 		Cuenta cuentaDestino = DAOFactory.getFactory().getCuentaDAO().getPorNombreYUsuario(request.getParameter("cuentaDestino"), usuario);
 		
 		//2. Llamo al Modelo para obtener datos
-		Transferencia nuevaTransferencia = new Transferencia(descripcion, "Transferencia", fecha, valor, cuentaOrigen, cuentaDestino);
+		Transferencia nuevaTransferencia = new Transferencia(descripcion, "Trasnferencia", fecha, valor, cuentaOrigen, cuentaDestino);
 		DAOFactory.getFactory().getTransferenciaDAO().create(nuevaTransferencia);
 		Cuenta cuentaOrigenAct = nuevaTransferencia.getCuenta();
 		Cuenta cuentaOrigenActualizar = new Cuenta(cuentaOrigenAct.getNumeroCuenta(),cuentaOrigenAct.getNombre(),cuentaOrigenAct.getSaldo()-nuevaTransferencia.getValor(),cuentaOrigenAct.getPropietario());
